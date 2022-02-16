@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/topRow"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:orientation="horizontal"
@@ -70,7 +70,7 @@
         <LinearLayout
             android:id="@+id/row_one"
             android:layout_width="match_parent"
-            android:layout_height="80"
+            android:layout_height="60"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="parent"
@@ -123,7 +123,7 @@
         <LinearLayout
             android:id="@+id/row_two"
             android:layout_width="match_parent"
-            android:layout_height="80"
+            android:layout_height="60"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/row_one"
@@ -174,7 +174,7 @@
         <LinearLayout
             android:id="@+id/row_three"
             android:layout_width="match_parent"
-            android:layout_height="80"
+            android:layout_height="60"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/row_two"
@@ -225,7 +225,7 @@
         <LinearLayout
             android:id="@+id/row_four"
             android:layout_width="match_parent"
-            android:layout_height="80"
+            android:layout_height="60"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="row_three"
@@ -278,7 +278,7 @@
         <LinearLayout
             android:id="@+id/row_five"
             android:layout_width="match_parent"
-            android:layout_height="80"
+            android:layout_height="60"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/row_four"
@@ -329,7 +329,7 @@
         <LinearLayout
             android:id="@+id/row_six"
             android:layout_width="match_parent"
-            android:layout_height="80"
+            android:layout_height="60"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/row_five"
