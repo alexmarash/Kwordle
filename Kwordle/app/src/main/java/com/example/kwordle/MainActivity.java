@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.ArrayMap;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -28,10 +29,145 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Integer characterNumber = 0;
+    public Character wordEntry[] = new Character[5];
+    public Integer rowNumber = 0;
+
+    public int[][] tableIds= {
+            {R.id.rowOne_columnOne, R.id.rowOne_columnTwo, R.id.rowOne_columnThree, R.id.rowOne_columnFour, R.id.rowOne_columnFive},
+            {R.id.rowTwo_columnOne, R.id.rowTwo_columnTwo, R.id.rowTwo_columnThree, R.id.rowTwo_columnFour, R.id.rowTwo_columnFive},
+            {R.id.rowThree_columnOne, R.id.rowThere_columnTwo, R.id.rowThree_columnThree, R.id.rowThree_columnFour, R.id.rowThree_columnFive},
+            {R.id.rowFour_columnOne, R.id.rowFour_columnTwo, R.id.rowFour_columnThree, R.id.rowFour_columnFour, R.id.rowFour_columnFive},
+            {R.id.rowFive_columnOne, R.id.rowFive_columnTwo, R.id.rowFive_columnThree, R.id.rowFive_columnFour, R.id.rowFive_columnFive},
+    };
+    //findViewById(ids[0]);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Button aButton = (Button)findViewById(R.id.buttonA);
+        aButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (characterNumber < 5) {
+                    wordEntry[characterNumber] = 'A';
+                    characterNumber += 1;
+
+                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+                    letterTextView.setText('A');
+
+                }
+            }
+
+        });
+
+        Button bButton = (Button)findViewById(R.id.buttonB);
+        bButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (characterNumber < 5) {
+                    wordEntry[characterNumber] = 'B';
+                    characterNumber += 1;
+
+                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+                    letterTextView.setText('B');
+
+                }
+            }
+
+        });
+
+        Button cButton = (Button)findViewById(R.id.buttonC);
+        cButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (characterNumber < 5) {
+                    wordEntry[characterNumber] = 'C';
+                    characterNumber += 1;
+
+                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+                    letterTextView.setText('C');
+
+                }
+            }
+
+        });
+
+        Button dButton = (Button)findViewById(R.id.buttonD);
+        dButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (characterNumber < 5) {
+                    wordEntry[characterNumber] = 'D';
+                    characterNumber += 1;
+
+                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+                    letterTextView.setText('D');
+
+                }
+            }
+
+        });
+
+        Button eButton = (Button)findViewById(R.id.buttonE);
+        eButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (characterNumber < 5) {
+                    wordEntry[characterNumber] = 'E';
+                    characterNumber += 1;
+
+                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+                    letterTextView.setText('E');
+
+                }
+            }
+
+        });
+
+        Button fButton = (Button)findViewById(R.id.buttonF);
+        fButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (characterNumber < 5) {
+                    wordEntry[characterNumber] = 'F';
+                    characterNumber += 1;
+
+                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+                    letterTextView.setText('F');
+
+                }
+            }
+
+        });
+
+        Button gButton = (Button)findViewById(R.id.buttonG);
+        gButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (characterNumber < 5) {
+                    wordEntry[characterNumber] = 'G';
+                    characterNumber += 1;
+
+                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+                    letterTextView.setText('G');
+
+                }
+            }
+
+        });
+
+
+        public void updateTextView(String toThis) {
+            TextView textView = (TextView) findViewById(R.id.textView);
+            textView.setText(toThis);
+        }
+
+
+
     }
 
     Random rn = new Random();
@@ -40,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton statsButton = findViewById(R.id.stats);
     ImageButton settingsButton = findViewById(R.id.settings);
 
+    /*
     TextView rowOne_columnOneView = findViewById(R.id.rowOne_columnOne);
         // rowOne_columnOneView.setTextColor(Color.parseColor("#FFFFFF"));
         // rowOne_columnOneView.setBackgroundColor(0x55FF0000);
@@ -68,8 +205,13 @@ public class MainActivity extends AppCompatActivity {
     TextView rowFive_columnFourView = findViewById(R.id.rowFive_columnFour);
     TextView rowFive_columnFiveView = findViewById(R.id.rowFive_columnFive);
 
-    Button aButton = findViewById(R.id.buttonA);
+
+
     Button bButton = findViewById(R.id.buttonB);
+
+
+
+
     Button cButton = findViewById(R.id.buttonC);
     Button dButton = findViewById(R.id.buttonD);
     Button eButton = findViewById(R.id.buttonE);
@@ -97,6 +239,13 @@ public class MainActivity extends AppCompatActivity {
     Button enterButton = findViewById(R.id.buttonEnter);
     Button deleteButton = findViewById(R.id.buttonDelete);
 
+
+
+
+     */
+    //private AdapterView.OnItemClickListener clickListener;
+    //private ItemClickListener gameScoreClickListener;
+
     Hashtable alphabet = new Hashtable();
     Hashtable entry = new Hashtable();
     //ArrayList currentWord = new ArrayList<Character>();
@@ -104,6 +253,10 @@ public class MainActivity extends AppCompatActivity {
     Character currentWord[] = new Character[5];
     ArrayMap listOfWords = new ArrayMap<String,Boolean>();
 
+    // allows clicks events to be caught
+    //public void setClickListener(ItemClickListener itemClickListener) {
+     //   this.gameScoreClickListener = itemClickListener;
+    //}
 
     //Initialize alphabet
     public void initializeAlphabet() {
@@ -133,7 +286,9 @@ public class MainActivity extends AppCompatActivity {
         alphabet.put("X", new Boolean(false));
         alphabet.put("Y", new Boolean(false));
         alphabet.put("Z", new Boolean(false));
-        
+
     }
+
+
 
 }
