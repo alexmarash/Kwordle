@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Hashtable entry = new Hashtable();
     public Hashtable alphabet = new Hashtable();
+    public Character[] currentWord = new Character[5];
 
     //public Random rn = new Random();
     //public Button newGameButton = findViewById(R.id.newGame);
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         alphabet = initializeAlphabet();
+        currentWord = getNewWord();
 
         /*
         Button aButton = (Button)findViewById(R.id.buttonA);
@@ -319,91 +321,25 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    public void enterClick(View view) {}
+    public void enterClick(View view) {
+
+        1
 
 
+        if (characterNumber != 5) {
+            return;
+        }
 
-    /*
-    TextView rowOne_columnOneView = findViewById(R.id.rowOne_columnOne);
-        // rowOne_columnOneView.setTextColor(Color.parseColor("#FFFFFF"));
-        // rowOne_columnOneView.setBackgroundColor(0x55FF0000);
-    TextView rowOne_columnTwoView = findViewById(R.id.rowOne_columnTwo);
-    TextView rowOne_columnThreeView = findViewById(R.id.rowOne_columnThree);
-    TextView rowOne_columnFourView = findViewById(R.id.rowOne_columnFour);
-    TextView rowOne_columnFiveView = findViewById(R.id.rowOne_columnFive);
-    TextView rowTwo_columnOneView = findViewById(R.id.rowTwo_columnOne);
-    TextView rowTwo_columnTwoView = findViewById(R.id.rowTwo_columnTwo);
-    TextView rowTwo_columnThreeView = findViewById(R.id.rowTwo_columnThree);
-    TextView rowTwo_columnFourView = findViewById(R.id.rowTwo_columnFour);
-    TextView rowTwo_columnFiveView = findViewById(R.id.rowTwo_columnFive);
-    TextView rowThree_columnOneView = findViewById(R.id.rowThree_columnOne);
-    TextView rowThree_columnTwoView = findViewById(R.id.rowThree_columnTwo);
-    TextView rowThree_columnThreeView = findViewById(R.id.rowThree_columnThree);
-    TextView rowThree_columnFourView = findViewById(R.id.rowThree_columnFour);
-    TextView rowThree_columnFiveView = findViewById(R.id.rowThree_columnFive);
-    TextView rowFour_columnOneView = findViewById(R.id.rowFour_columnOne);
-    TextView rowFour_columnTwoView = findViewById(R.id.rowFour_columnTwo);
-    TextView rowFour_columnThreeView = findViewById(R.id.rowFour_columnThree);
-    TextView rowFour_columnFourView = findViewById(R.id.rowFour_columnFour);
-    TextView rowFour_columnFiveView = findViewById(R.id.rowFour_columnFive);
-    TextView rowFive_columnOneView = findViewById(R.id.rowFive_columnOne);
-    TextView rowFive_columnTwoView = findViewById(R.id.rowFive_columnTwo);
-    TextView rowFive_columnThreeView = findViewById(R.id.rowFive_columnThree);
-    TextView rowFive_columnFourView = findViewById(R.id.rowFive_columnFour);
-    TextView rowFive_columnFiveView = findViewById(R.id.rowFive_columnFive);
+        
+
+        for (int i = 1; i < 5; i++) {
+            if (false){}
+        }
 
 
-
-    Button bButton = findViewById(R.id.buttonB);
-
+    }
 
 
-
-    Button cButton = findViewById(R.id.buttonC);
-    Button dButton = findViewById(R.id.buttonD);
-    Button eButton = findViewById(R.id.buttonE);
-    Button fButton = findViewById(R.id.buttonF);
-    Button gButton = findViewById(R.id.buttonG);
-    Button hButton = findViewById(R.id.buttonH);
-    Button iButton = findViewById(R.id.buttonI);
-    Button jButton = findViewById(R.id.buttonJ);
-    Button kButton = findViewById(R.id.buttonK);
-    Button lButton = findViewById(R.id.buttonL);
-    Button mButton = findViewById(R.id.buttonM);
-    Button nButton = findViewById(R.id.buttonN);
-    Button oButton = findViewById(R.id.buttonO);
-    Button pButton = findViewById(R.id.buttonP);
-    Button qButton = findViewById(R.id.buttonQ);
-    Button rButton = findViewById(R.id.buttonR);
-    Button sButton = findViewById(R.id.buttonS);
-    Button tButton = findViewById(R.id.buttonT);
-    Button uButton = findViewById(R.id.buttonU);
-    Button vButton = findViewById(R.id.buttonV);
-    Button wButton = findViewById(R.id.buttonW);
-    Button xButton = findViewById(R.id.buttonX);
-    Button yButton = findViewById(R.id.buttonY);
-    Button zButton = findViewById(R.id.buttonZ);
-    Button enterButton = findViewById(R.id.buttonEnter);
-    Button deleteButton = findViewById(R.id.buttonDelete);
-
-
-
-
-     */
-    //private AdapterView.OnItemClickListener clickListener;
-    //private ItemClickListener gameScoreClickListener;
-
-    //Hashtable alphabet = new Hashtable();
-    //Hashtable entry = new Hashtable();
-    //ArrayList currentWord = new ArrayList<Character>();
-    //ArrayList listOfWords = new ArrayList<String, Boolean>();
-    //Character currentWord[] = new Character[5];
-    //ArrayMap listOfWords = new ArrayMap<String,Boolean>();
-
-    // allows clicks events to be caught
-    //public void setClickListener(ItemClickListener itemClickListener) {
-     //   this.gameScoreClickListener = itemClickListener;
-    //}
 
     //Initialize alphabet
     public Hashtable initializeAlphabet() {
@@ -440,4 +376,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    public Character[] getNewWord(){
+
+        Character newWord[] = {'S', 'T', 'A', 'R', 'T'};
+
+        return newWord;
+    }
 }
