@@ -190,11 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            //TextView letterTextView = (TextView) findViewById(R.id.rowOne_columnOne);
             letterTextView.setText("Q");
-            //letterTextView.setBackground(ContextCompat.getDrawable(MainActivity.this));
-            letterTextView.setBackgroundColor(Color.parseColor("#808080"));
-
 
             characterNumber += 1;
         }
@@ -307,8 +303,23 @@ public class MainActivity extends AppCompatActivity {
 
             characterNumber += 1;
         }
+
+
+
     }
 
+    public void deleteClick(View view) {
+        if (characterNumber > 0) {
+            characterNumber -= 1;
+            wordEntry[characterNumber] = ' ';
+
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText(" ");
+
+        }
+    }
+    public void enterClick(View view) {}
 
 
 
