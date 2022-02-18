@@ -40,6 +40,17 @@ public class MainActivity extends AppCompatActivity {
             {R.id.rowFour_columnOne, R.id.rowFour_columnTwo, R.id.rowFour_columnThree, R.id.rowFour_columnFour, R.id.rowFour_columnFive},
             {R.id.rowFive_columnOne, R.id.rowFive_columnTwo, R.id.rowFive_columnThree, R.id.rowFive_columnFour, R.id.rowFive_columnFive},
     };
+
+    public Hashtable entry = new Hashtable();
+    public Hashtable alphabet = new Hashtable();
+
+    //public Random rn = new Random();
+    //public Button newGameButton = findViewById(R.id.newGame);
+    //public ImageButton statsButton = findViewById(R.id.stats);
+    //public ImageButton settingsButton = findViewById(R.id.settings);
+
+
+
     //findViewById(ids[0]);
 
     @Override
@@ -47,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initializeAlphabet();
+        alphabet = initializeAlphabet();
 
         /*
         Button aButton = (Button)findViewById(R.id.buttonA);
@@ -274,11 +285,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    Random rn = new Random();
 
-    Button newGameButton = findViewById(R.id.newGame);
-    ImageButton statsButton = findViewById(R.id.stats);
-    ImageButton settingsButton = findViewById(R.id.settings);
 
     /*
     TextView rowOne_columnOneView = findViewById(R.id.rowOne_columnOne);
@@ -350,12 +357,12 @@ public class MainActivity extends AppCompatActivity {
     //private AdapterView.OnItemClickListener clickListener;
     //private ItemClickListener gameScoreClickListener;
 
-    Hashtable alphabet = new Hashtable();
-    Hashtable entry = new Hashtable();
+    //Hashtable alphabet = new Hashtable();
+    //Hashtable entry = new Hashtable();
     //ArrayList currentWord = new ArrayList<Character>();
     //ArrayList listOfWords = new ArrayList<String, Boolean>();
-    Character currentWord[] = new Character[5];
-    ArrayMap listOfWords = new ArrayMap<String,Boolean>();
+    //Character currentWord[] = new Character[5];
+    //ArrayMap listOfWords = new ArrayMap<String,Boolean>();
 
     // allows clicks events to be caught
     //public void setClickListener(ItemClickListener itemClickListener) {
@@ -363,7 +370,8 @@ public class MainActivity extends AppCompatActivity {
     //}
 
     //Initialize alphabet
-    public void initializeAlphabet() {
+    public Hashtable initializeAlphabet() {
+        Hashtable alphabet = new Hashtable();
         alphabet.put("A", new Boolean(false));
         alphabet.put("B", new Boolean(false));
         alphabet.put("C", new Boolean(false));
@@ -391,6 +399,7 @@ public class MainActivity extends AppCompatActivity {
         alphabet.put("Y", new Boolean(false));
         alphabet.put("Z", new Boolean(false));
 
+        return alphabet;
     }
 
 
