@@ -186,40 +186,50 @@ public class MainActivity extends AppCompatActivity {
     public void qClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'Q';
-            characterNumber += 1;
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('Q');
+            //TextView letterTextView = (TextView) findViewById(R.id.rowOne_columnOne);
+            letterTextView.setText("Q");
+
+
+            characterNumber += 1;
         }
     }
 
     public void wClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'W';
-            characterNumber += 1;
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('W');
+            letterTextView.setText("W");
+
+            characterNumber += 1;
         }
     }
 
     public void eClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'W';
-            characterNumber += 1;
+            wordEntry[characterNumber] = 'E';
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('W');
+            letterTextView.setText("E");
+
+            characterNumber += 1;
         }
     }
 
     public void rClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'R';
-            characterNumber += 1;
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('R');
+            letterTextView.setText("R");
+
+            characterNumber += 1;
         }
     }
 
@@ -227,60 +237,72 @@ public class MainActivity extends AppCompatActivity {
     public void tClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'T';
-            characterNumber += 1;
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('T');
+            letterTextView.setText("T");
+
+            characterNumber += 1;
         }
     }
 
     public void yClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'Y';
-            characterNumber += 1;
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('Y');
+            letterTextView.setText("Y");
+
+            characterNumber += 1;
         }
     }
 
     public void uClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'U';
-            characterNumber += 1;
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('U');
+            letterTextView.setText("U");
+
+            characterNumber += 1;
         }
     }
 
     public void iClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'I';
-            characterNumber += 1;
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('I');
+            letterTextView.setText("I");
+
+            characterNumber += 1;
         }
     }
 
     public void oClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'O';
-            characterNumber += 1;
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('O');
+            letterTextView.setText("O");
+
+            characterNumber += 1;
         }
     }
 
     public void pClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'P';
-            characterNumber += 1;
+
 
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-            letterTextView.setText('P');
+            letterTextView.setText("P");
+
+            characterNumber += 1;
         }
     }
 
