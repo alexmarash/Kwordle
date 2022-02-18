@@ -70,7 +70,7 @@
         <LinearLayout
             android:id="@+id/row_one"
             android:layout_width="match_parent"
-            android:layout_height="60"
+            android:layout_height="60dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="parent"
@@ -123,7 +123,7 @@
         <LinearLayout
             android:id="@+id/row_two"
             android:layout_width="match_parent"
-            android:layout_height="60"
+            android:layout_height="60dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/row_one"
@@ -174,7 +174,7 @@
         <LinearLayout
             android:id="@+id/row_three"
             android:layout_width="match_parent"
-            android:layout_height="60"
+            android:layout_height="60dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/row_two"
@@ -227,10 +227,10 @@
         <LinearLayout
             android:id="@+id/row_four"
             android:layout_width="match_parent"
-            android:layout_height="60"
+            android:layout_height="60dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
-            app:layout_constraintTop_toBottomOf="row_three"
+            app:layout_constraintTop_toBottomOf="@+id/row_three"
             android:orientation="horizontal">
 
             <TextView
@@ -280,7 +280,7 @@
         <LinearLayout
             android:id="@+id/row_five"
             android:layout_width="match_parent"
-            android:layout_height="60"
+            android:layout_height="60dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/row_four"
@@ -331,7 +331,7 @@
         <LinearLayout
             android:id="@+id/row_six"
             android:layout_width="match_parent"
-            android:layout_height="60"
+            android:layout_height="60dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/row_five"
@@ -384,8 +384,8 @@
         <LinearLayout
             android:id="@+id/alphaOne"
             android:layout_width="match_parent"
-            android:layout_height="100"
-            android:layout_marginTop="60"
+            android:layout_height="100dp"
+            android:layout_marginTop="60dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/row_six"
@@ -398,6 +398,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="qClick"
                 android:clickable="true"
                 android:text="Q" />
             <Button
@@ -407,6 +408,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="wClick"
                 android:clickable="true"
                 android:text="W" />
             <Button
@@ -416,6 +418,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="eClick"
                 android:clickable="true"
                 android:text="E" />
             <Button
@@ -425,6 +428,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="rClick"
                 android:clickable="true"
                 android:text="R" />
             <Button
@@ -434,6 +438,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="tClick"
                 android:clickable="true"
                 android:text="T" />
             <Button
@@ -443,6 +448,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="yClick"
                 android:clickable="true"
                 android:text="Y" />
             <Button
@@ -452,6 +458,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="uClick"
                 android:clickable="true"
                 android:text="U" />
             <Button
@@ -461,6 +468,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="iClick"
                 android:clickable="true"
                 android:text="I" />
             <Button
@@ -470,6 +478,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="oClick"
                 android:clickable="true"
                 android:text="O" />
             <Button
@@ -479,13 +488,14 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                android:onClick="pClick"
                 android:clickable="true"
                 android:text="P" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/alphaTwo"
             android:layout_width="match_parent"
-            android:layout_height="100"
+            android:layout_height="100dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/alphaOne"
@@ -576,7 +586,7 @@
         <LinearLayout
             android:id="@+id/alphaThree"
             android:layout_width="match_parent"
-            android:layout_height="100"
+            android:layout_height="100dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             app:layout_constraintTop_toBottomOf="@+id/alphaTwo"

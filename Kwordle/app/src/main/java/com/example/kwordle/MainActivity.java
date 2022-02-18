@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public int[][] tableIds= {
             {R.id.rowOne_columnOne, R.id.rowOne_columnTwo, R.id.rowOne_columnThree, R.id.rowOne_columnFour, R.id.rowOne_columnFive},
             {R.id.rowTwo_columnOne, R.id.rowTwo_columnTwo, R.id.rowTwo_columnThree, R.id.rowTwo_columnFour, R.id.rowTwo_columnFive},
-            {R.id.rowThree_columnOne, R.id.rowThere_columnTwo, R.id.rowThree_columnThree, R.id.rowThree_columnFour, R.id.rowThree_columnFive},
+            {R.id.rowThree_columnOne, R.id.rowThree_columnTwo, R.id.rowThree_columnThree, R.id.rowThree_columnFour, R.id.rowThree_columnFive},
             {R.id.rowFour_columnOne, R.id.rowFour_columnTwo, R.id.rowFour_columnThree, R.id.rowFour_columnFour, R.id.rowFour_columnFive},
             {R.id.rowFive_columnOne, R.id.rowFive_columnTwo, R.id.rowFive_columnThree, R.id.rowFive_columnFour, R.id.rowFive_columnFive},
     };
@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initializeAlphabet();
 
+        /*
         Button aButton = (Button)findViewById(R.id.buttonA);
         aButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,14 +163,116 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        public void updateTextView(String toThis) {
-            TextView textView = (TextView) findViewById(R.id.textView);
-            textView.setText(toThis);
-        }
+        //public void updateTextView(String toThis) {
+        //    TextView textView = (TextView) findViewById(R.id.textView);
+        //    textView.setText(toThis);
+        //}
 
-
+        */
 
     }
+
+    public void qClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'Q';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('Q');
+        }
+    }
+
+    public void wClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'W';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('W');
+        }
+    }
+
+    public void eClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'W';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('W');
+        }
+    }
+
+    public void rClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'R';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('R');
+        }
+    }
+
+
+    public void tClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'T';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('T');
+        }
+    }
+
+    public void yClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'Y';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('Y');
+        }
+    }
+
+    public void uClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'U';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('U');
+        }
+    }
+
+    public void iClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'I';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('I');
+        }
+    }
+
+    public void oClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'O';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('O');
+        }
+    }
+
+    public void pClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'P';
+            characterNumber += 1;
+
+            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            letterTextView.setText('P');
+        }
+    }
+
 
     Random rn = new Random();
 
