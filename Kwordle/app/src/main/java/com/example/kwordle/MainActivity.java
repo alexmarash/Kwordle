@@ -1,6 +1,7 @@
 package com.example.kwordle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -191,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
             //TextView letterTextView = (TextView) findViewById(R.id.rowOne_columnOne);
             letterTextView.setText("Q");
+            //letterTextView.setBackground(ContextCompat.getDrawable(MainActivity.this));
+            letterTextView.setBackgroundColor(Color.parseColor("#808080"));
 
 
             characterNumber += 1;
