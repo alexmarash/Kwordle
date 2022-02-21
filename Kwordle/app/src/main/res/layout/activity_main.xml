@@ -85,6 +85,7 @@
 
                 <TextView
                     android:id="@+id/rowOne_columnOne"
+                    android:background="@color/white"
                     style="@style/displayGrid" />
             </RelativeLayout>
 
@@ -95,6 +96,7 @@
 
                 <TextView
                     android:id="@+id/rowOne_columnTwo"
+                    android:background="@color/white"
                     style="@style/displayGrid" />
             </RelativeLayout>
 
@@ -104,6 +106,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowOne_columnThree"
+                    android:background="@color/white"
                     style="@style/displayGrid" />
             </RelativeLayout>
 
@@ -113,16 +116,20 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowOne_columnFour"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
+                android:background="@color/white"
                 android:layout_weight="0.20">
+
                 <TextView
                     android:id="@+id/rowOne_columnFive"
-                    style="@style/displayGrid"/>
+                    android:background="@color/white"
+                    style="@style/displayGrid" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -144,6 +151,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowTwo_columnOne"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -153,6 +161,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowTwo_columnTwo"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -162,6 +171,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowTwo_columnThree"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -171,6 +181,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowTwo_columnFour"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -180,6 +191,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowTwo_columnFive"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
         </LinearLayout>
@@ -201,6 +213,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowThree_columnOne"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -210,6 +223,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowThree_columnTwo"
+                    android:background="@color/white"
                     style="@style/displayGrid" />
             </RelativeLayout>
 
@@ -219,6 +233,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowThree_columnThree"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -228,6 +243,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowThree_columnFour"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -237,6 +253,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowThree_columnFive"
+                    android:background="@color/white"
                     style="@style/displayGrid" />
             </RelativeLayout>
         </LinearLayout>
@@ -257,6 +274,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowFour_columnOne"
+                    android:background="@color/white"
                     style="@style/displayGrid" />
             </RelativeLayout>
 
@@ -266,6 +284,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowFour_columnTwo"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -275,6 +294,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowFour_columnThree"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -284,6 +304,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowFour_columnFour"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -293,6 +314,7 @@
                 android:layout_weight="0.20">
                 <TextView
                     android:id="@+id/rowFour_columnFive"
+                    android:background="@color/white"
                     style="@style/displayGrid"/>
             </RelativeLayout>
         </LinearLayout>
@@ -315,6 +337,7 @@
                 android:layout_weight="0.20">
                     <TextView
                         android:id="@+id/rowFive_columnOne"
+                        android:background="@color/white"
                         style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -324,6 +347,7 @@
                 android:layout_weight="0.20">
                     <TextView
                         android:id="@+id/rowFive_columnTwo"
+                        android:background="@color/white"
                         style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -333,6 +357,7 @@
                 android:layout_weight="0.20">
                     <TextView
                         android:id="@+id/rowFive_columnThree"
+                        android:background="@color/white"
                         style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -342,6 +367,7 @@
                 android:layout_weight="0.20">
                     <TextView
                         android:id="@+id/rowFive_columnFour"
+                        android:background="@color/white"
                         style="@style/displayGrid" />
             </RelativeLayout>
 
@@ -351,6 +377,7 @@
                 android:layout_weight="0.20">
                     <TextView
                         android:id="@+id/rowFive_columnFive"
+                        android:background="@color/white"
                         style="@style/displayGrid"/>
             </RelativeLayout>
         </LinearLayout>
@@ -373,6 +400,7 @@
                 android:layout_weight="0.20">
                         <TextView
                             android:id="@+id/rowSix_columnOne"
+                            android:background="@color/white"
                             style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -382,6 +410,7 @@
                 android:layout_weight="0.20">
                         <TextView
                             android:id="@+id/rowSix_columnTwo"
+                            android:background="@color/white"
                             style="@style/displayGrid" />
             </RelativeLayout>
 
@@ -391,6 +420,7 @@
                 android:layout_weight="0.20">
                         <TextView
                             android:id="@+id/rowSix_columnThree"
+                            android:background="@color/white"
                             style="@style/displayGrid" />
             </RelativeLayout>
 
@@ -400,6 +430,7 @@
                 android:layout_weight="0.20">
                         <TextView
                             android:id="@+id/rowSix_columnFour"
+                            android:background="@color/white"
                             style="@style/displayGrid"/>
             </RelativeLayout>
 
@@ -409,6 +440,7 @@
                 android:layout_weight="0.20">
                         <TextView
                             android:id="@+id/rowSix_columnFive"
+                            android:background="@color/white"
                             style="@style/displayGrid" />
             </RelativeLayout>
         </LinearLayout>

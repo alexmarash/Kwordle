@@ -1,8 +1,11 @@
 package com.example.kwordle;
 
+import static android.R.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.R.color;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -34,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     public Integer letters = 5;
     public Integer characterNumber = 0;
     public Character wordEntry[] = new Character[letters];
-    public Integer rowNumber = 0;
+    //public Integer rowNumber = 0;
+    public Integer currentTry = 0;
 
     public int[][] tableIds= {
             {R.id.rowOne_columnOne, R.id.rowOne_columnTwo, R.id.rowOne_columnThree, R.id.rowOne_columnFour, R.id.rowOne_columnFive},
@@ -45,11 +49,13 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public String[][] tableColors = new String[letters][tries];
+    public Integer[][] tableColorsInt = new Integer[letters][tries];
 
     public Hashtable entry = new Hashtable();
     public Hashtable alphabet = new Hashtable();
     public Character[] currentWord = new Character[letters];
     public String[] wordColor = new String[letters];
+    public Integer[] wordColorInt = new Integer[letters];
 
     //public Random rn = new Random();
     //public Button newGameButton = findViewById(R.id.newGame);
@@ -67,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         alphabet = initializeAlphabet();
         currentWord = getNewWord();
-        initializeTableColor();
+        initializeTableColors();
         initializeWordColor();
 
         /*
@@ -196,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
     public void qClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'Q';
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("Q");
 
             characterNumber += 1;
@@ -206,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
     public void wClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'W';
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("W");
 
             characterNumber += 1;
@@ -218,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
             wordEntry[characterNumber] = 'E';
 
 
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("E");
 
             characterNumber += 1;
@@ -230,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
             wordEntry[characterNumber] = 'R';
 
 
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("R");
 
             characterNumber += 1;
@@ -242,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
             wordEntry[characterNumber] = 'T';
 
 
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("T");
 
             characterNumber += 1;
@@ -254,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
             wordEntry[characterNumber] = 'Y';
 
 
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("Y");
 
             characterNumber += 1;
@@ -266,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
             wordEntry[characterNumber] = 'U';
 
 
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("U");
 
             characterNumber += 1;
@@ -278,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
             wordEntry[characterNumber] = 'I';
 
 
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("I");
 
             characterNumber += 1;
@@ -290,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
             wordEntry[characterNumber] = 'O';
 
 
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("O");
 
             characterNumber += 1;
@@ -302,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
             wordEntry[characterNumber] = 'P';
 
 
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("P");
 
             characterNumber += 1;
@@ -313,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
         if (characterNumber > 0) {
             characterNumber -= 1;
             wordEntry[characterNumber] = ' ';
-            TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText(" ");
         }
     }
@@ -323,23 +329,34 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         Character entryCheck[] = currentWord.clone();
-        String currentWordColor[] = wordColor.clone();
+        //String currentWordColor[] = wordColor.clone();
+        Integer currentWordColor[] = wordColorInt.clone();
 
         for (int i = 0; i < letters; i++) {
             if (wordEntry[i] == currentWord[i]) {
-                currentWordColor[i] = "green";
+                //currentWordColor[i] = "green";
+                currentWordColor[i] = getResources().getColor(R.color.green);
                 entryCheck[i] = ' ';
             } else {
                 for (int j = 0; j < letters; j++) {
                     if (wordEntry[i] == entryCheck[j]) {
-                        currentWordColor[i] = "yellow";
+                        //currentWordColor[i] = "yellow";
+                        currentWordColor[i] = getResources().getColor(R.color.yellow);
                         entryCheck[j] = ' ';
                     }
                 }
             }
         }
 
-        for 
+        for (int i = 0; i < letters; i++) {
+            tableColorsInt[i][currentTry] = currentWordColor[i];
+            //tableIds[i][currentTry].setBackgroundDrawable(getResources().getDrawable(R.drawable.cellborder) );
+            TextView currentLetter = findViewById(tableIds[i][currentTry]);
+            //currentLetter.setBackground(context.getResources().getColor(android.R.color.holo_green_light));
+            //currentLetter.setBackgroundColor(getResources().getColor(R.color.black));
+            //currentLetter.setBackgroundColor(tableColorInt[i][currentTry]);
+            currentLetter.setBackgroundColor(currentWordColor[i]);
+        }
 
 
 
@@ -381,10 +398,11 @@ public class MainActivity extends AppCompatActivity {
         return alphabet;
     }
 
-    public void initializeTableColor(){
+    public void initializeTableColors(){
         for (int i = 0; i < letters; i++) {
             for (int j = 0; j < tries; j++) {
                 tableColors[i][j] = "gray";
+                tableColorsInt[i][j] = getResources().getColor(R.color.gray);
             }
         }
     }
@@ -392,6 +410,7 @@ public class MainActivity extends AppCompatActivity {
     public void initializeWordColor(){
         for (int i = 0; i < letters; i++){
             wordColor[i] = "gray";
+            wordColorInt[i] = getResources().getColor(R.color.gray);
         }
     }
 
