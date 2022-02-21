@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
             {R.id.rowFive_columnOne, R.id.rowFive_columnTwo, R.id.rowFive_columnThree, R.id.rowFive_columnFour, R.id.rowFive_columnFive},
     };
 
-    public String[][] tableColors = new String[letters][tries];
-    public Integer[][] tableColorsInt = new Integer[letters][tries];
+    public String[][] tableColors = new String[tries][letters];
+    public Integer[][] tableColorsInt = new Integer[tries][letters];
 
     public Hashtable entry = new Hashtable();
     public Hashtable alphabet = new Hashtable();
@@ -349,14 +349,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < letters; i++) {
-            tableColorsInt[i][currentTry] = currentWordColor[i];
+            tableColorsInt[currentTry][i] = currentWordColor[i];
             //tableIds[i][currentTry].setBackgroundDrawable(getResources().getDrawable(R.drawable.cellborder) );
-            TextView currentLetter = findViewById(tableIds[i][currentTry]);
+            TextView currentLetter = findViewById(tableIds[currentTry][i]);
             //currentLetter.setBackground(context.getResources().getColor(android.R.color.holo_green_light));
             //currentLetter.setBackgroundColor(getResources().getColor(R.color.black));
             //currentLetter.setBackgroundColor(tableColorInt[i][currentTry]);
             currentLetter.setBackgroundColor(currentWordColor[i]);
         }
+
+        currentTry += 1;
 
 
 
@@ -399,8 +401,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initializeTableColors(){
-        for (int i = 0; i < letters; i++) {
-            for (int j = 0; j < tries; j++) {
+        for (int i = 0; i < tries; i++) {
+            for (int j = 0; j < letters; j++) {
                 tableColors[i][j] = "gray";
                 tableColorsInt[i][j] = getResources().getColor(R.color.gray);
             }
