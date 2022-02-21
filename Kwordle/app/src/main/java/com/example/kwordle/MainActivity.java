@@ -30,8 +30,10 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Integer tries = 6;
+    public Integer letters = 5;
     public Integer characterNumber = 0;
-    public Character wordEntry[] = new Character[5];
+    public Character wordEntry[] = new Character[letters];
     public Integer rowNumber = 0;
 
     public int[][] tableIds= {
@@ -42,9 +44,12 @@ public class MainActivity extends AppCompatActivity {
             {R.id.rowFive_columnOne, R.id.rowFive_columnTwo, R.id.rowFive_columnThree, R.id.rowFive_columnFour, R.id.rowFive_columnFive},
     };
 
+    public String[][] tableColors = new String[letters][tries];
+
     public Hashtable entry = new Hashtable();
     public Hashtable alphabet = new Hashtable();
-    public Character[] currentWord = new Character[5];
+    public Character[] currentWord = new Character[letters];
+    public String[] wordColor = new String[letters];
 
     //public Random rn = new Random();
     //public Button newGameButton = findViewById(R.id.newGame);
@@ -62,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         alphabet = initializeAlphabet();
         currentWord = getNewWord();
+        initializeTableColor();
+        initializeWordColor();
 
         /*
         Button aButton = (Button)findViewById(R.id.buttonA);
@@ -189,8 +196,6 @@ public class MainActivity extends AppCompatActivity {
     public void qClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'Q';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
             letterTextView.setText("Q");
 
@@ -201,8 +206,6 @@ public class MainActivity extends AppCompatActivity {
     public void wClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'W';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
             letterTextView.setText("W");
 
@@ -233,7 +236,6 @@ public class MainActivity extends AppCompatActivity {
             characterNumber += 1;
         }
     }
-
 
     public void tClick(View view) {
         if (characterNumber < 5) {
@@ -305,36 +307,41 @@ public class MainActivity extends AppCompatActivity {
 
             characterNumber += 1;
         }
-
-
-
     }
 
     public void deleteClick(View view) {
         if (characterNumber > 0) {
             characterNumber -= 1;
             wordEntry[characterNumber] = ' ';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
             letterTextView.setText(" ");
-
         }
     }
+
     public void enterClick(View view) {
-
-
-
-
         if (characterNumber != 5) {
             return;
         }
+        Character entryCheck[] = currentWord.clone();
+        String currentWordColor[] = wordColor.clone();
 
-
-
-        for (int i = 1; i < 5; i++) {
-            if (false){}
+        for (int i = 0; i < letters; i++) {
+            if (wordEntry[i] == currentWord[i]) {
+                currentWordColor[i] = "green";
+                entryCheck[i] = ' ';
+            } else {
+                for (int j = 0; j < letters; j++) {
+                    if (wordEntry[i] == entryCheck[j]) {
+                        currentWordColor[i] = "yellow";
+                        entryCheck[j] = ' ';
+                    }
+                }
+            }
         }
+
+        for 
+
+
 
 
     }
@@ -374,6 +381,19 @@ public class MainActivity extends AppCompatActivity {
         return alphabet;
     }
 
+    public void initializeTableColor(){
+        for (int i = 0; i < letters; i++) {
+            for (int j = 0; j < tries; j++) {
+                tableColors[i][j] = "gray";
+            }
+        }
+    }
+
+    public void initializeWordColor(){
+        for (int i = 0; i < letters; i++){
+            wordColor[i] = "gray";
+        }
+    }
 
 
     public Character[] getNewWord(){
