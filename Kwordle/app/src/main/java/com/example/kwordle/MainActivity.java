@@ -323,14 +323,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public void enterClick(View view) {
 
-        1
+
 
 
         if (characterNumber != 5) {
             return;
         }
 
-        
+
 
         for (int i = 1; i < 5; i++) {
             if (false){}

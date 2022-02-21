@@ -78,67 +78,71 @@
             app:layout_constraintTop_toBottomOf="parent"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/rowOne_columnOne"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/initial_text"
-                android:background="@color/gray"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"/>
-            
-            <TextView
-                android:id="@+id/rowOne_columnTwo"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/initial_text"
-                android:background="@color/gray"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size" />
-            <TextView
-                android:id="@+id/rowOne_columnThree"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/initial_text"
-                android:background="@color/gray"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size" />
-            <TextView
-                android:id="@+id/rowOne_columnFour"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/initial_text"
-                android:background="@color/gray"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size" />
-            <TextView
-                android:id="@+id/rowOne_columnFive"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/initial_text"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size" />
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+
+                <TextView
+                    android:id="@+id/rowOne_columnOne"
+                    style="@style/displayGrid"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="@dimen/text_size"
+                    />
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+
+                <TextView
+                    android:id="@+id/rowOne_columnTwo"
+                    style="@style/displayGrid"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="@dimen/text_size" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/rowOne_columnThree"
+                    style="@style/displayGrid"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="@dimen/text_size" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/rowOne_columnFour"
+                    style="@style/displayGrid"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="@dimen/text_size" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/rowOne_columnFive"
+                    style="@style/displayGrid"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="@dimen/text_size" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -153,52 +157,27 @@
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/rowTwo_columnOne"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/gray"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowTwo_columnTwo"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/gray"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
             <TextView
                 android:id="@+id/rowTwo_columnThree"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/gray"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
             <TextView
                 android:id="@+id/rowTwo_columnFour"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/gray"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
             <TextView
                 android:id="@+id/rowTwo_columnFive"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/gray"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
 
@@ -217,52 +196,27 @@
 
             <TextView
                 android:id="@+id/rowThree_columnOne"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowThree_columnTwo"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowThree_columnThree"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
             <TextView
                 android:id="@+id/rowThree_columnFour"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
             <TextView
                 android:id="@+id/rowThree_columnFive"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
 
@@ -281,52 +235,27 @@
 
             <TextView
                 android:id="@+id/rowFour_columnOne"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowFour_columnTwo"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowFour_columnThree"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
             <TextView
                 android:id="@+id/rowFour_columnFour"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
             <TextView
                 android:id="@+id/rowFour_columnFive"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
         </LinearLayout>
@@ -343,52 +272,27 @@
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/rowFive_columnOne"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowFive_columnTwo"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowFive_columnThree"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
             <TextView
                 android:id="@+id/rowFive_columnFour"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowFive_columnFive"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
 
@@ -406,52 +310,27 @@
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/rowSix_columnOne"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"/>
             <TextView
                 android:id="@+id/rowSix_columnTwo"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowSix_columnThree"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowSix_columnFour"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
             <TextView
                 android:id="@+id/rowSix_columnFive"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:background="@color/gray"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                style="@style/displayGrid"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size" />
 
