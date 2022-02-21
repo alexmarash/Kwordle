@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public Integer characterNumber = 0;
     public Character wordEntry[] = new Character[letters];
     //public Integer rowNumber = 0;
-    public Integer currentTry = 0;
+    public Integer currentTry;
 
     public int[][] tableIds= {
             {R.id.rowOne_columnOne, R.id.rowOne_columnTwo, R.id.rowOne_columnThree, R.id.rowOne_columnFour, R.id.rowOne_columnFive},
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         currentWord = getNewWord();
         initializeTableColors();
         initializeWordColor();
+        currentTry = 0;
 
         /*
         Button aButton = (Button)findViewById(R.id.buttonA);
@@ -203,6 +204,9 @@ public class MainActivity extends AppCompatActivity {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'Q';
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            //TextView letterTextView = (TextView) findViewById(tableIds[characterNumber][currentTry]);
+            //letterTextView.setText(String.valueOf(currentTry));
+            //letterTextView.setTextColor(Color.parseColor("#bdbdbd"));
             letterTextView.setText("Q");
 
             characterNumber += 1;
@@ -359,10 +363,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         currentTry += 1;
-
-
-
-
+        characterNumber = 0;
+        //TextView letterTextView = (TextView) findViewById(tableIds[4][4]);
+        //letterTextView.setText(String.valueOf(currentTry));
+        return;
     }
 
 
