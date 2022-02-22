@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     public Integer[][] tableColorsInt = new Integer[tries][letters];
 
     public Hashtable entry = new Hashtable();
-    public Hashtable alphabet = new Hashtable();
+    public Map<Character, alphaWrapper> alphabet = new HashMap<>();
     public Character[] currentWord = new Character[letters];
     public String[] wordColor = new String[letters];
     public Integer[] wordColorInt = new Integer[letters];
@@ -334,15 +334,25 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         Character entryCheck[] = currentWord.clone();
-        //String currentWordColor[] = wordColor.clone();
+        String currentWordColorString[] = wordColor.clone();
         Integer currentWordColor[] = wordColorInt.clone();
+
+        for (int i = 0; i < letters; i++) {
+            alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
+            thisLetter.color = getResources().getColor(R.color.gray);
+            alphabet.put(wordEntry[i], thisLetter);
+        }
+
 
         for (int i = 0; i < letters; i++) {
             if (wordEntry[i] == currentWord[i]) {
                 //currentWordColor[i] = "green";
                 currentWordColor[i] = getResources().getColor(R.color.green);
                 entryCheck[i] = ' ';
-                alphabet.put(wordEntry[i], getResources().getColor(R.color.green));
+                currentWordColorString[i] = "green";
+                alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
+                thisLetter.color = getResources().getColor(R.color.green);
+                alphabet.put(wordEntry[i], thisLetter);
 
             } else {
                 for (int j = 0; j < letters; j++) {
@@ -350,19 +360,17 @@ public class MainActivity extends AppCompatActivity {
                         //currentWordColor[i] = "yellow";
                         currentWordColor[i] = getResources().getColor(R.color.yellow);
                         entryCheck[j] = ' ';
-                        Object thisObject = alphabet.get('A');
-                        Object greenColor = getResources().getColor(R.color.green);
-                        if (alphabet.get(wordEntry[i]) != greenColor) {
-                            alphabet.put(wordEntry[i], getResources().getColor(R.color.yellow));
+                        currentWordColorString[i] = "yellow";
+                        alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
+                        if (thisLetter.getColor() != getResources().getColor(R.color.green)) {
+                            thisLetter.color = getResources().getColor(R.color.yellow);
+                            alphabet.put(wordEntry[i], thisLetter);
                         }
                     }
-                    else {
-                        alphabet.put(wordEntry[i], getResources().getColor(R.color.gray));
-                    }
-
                 }
             }
         }
+
 
         for (int i = 0; i < letters; i++) {
             tableColorsInt[currentTry][i] = currentWordColor[i];
@@ -372,21 +380,80 @@ public class MainActivity extends AppCompatActivity {
             //currentLetter.setBackgroundColor(getResources().getColor(R.color.black));
             //currentLetter.setBackgroundColor(tableColorInt[i][currentTry]);
             currentLetter.setBackgroundColor(currentWordColor[i]);
+
+            //set the alphabet color
+            //currentAlphaColor
+            //for (int j = 0; i < letters; j++) {
+             //   if
+                //alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
+                //thisLetter.color = currentWordColor[i];
+                //alphabet.put(wordEntry[i], thisLetter);
         }
+
+
+
 
         currentTry += 1;
         characterNumber = 0;
+
+        setAlphabetColor();
+        //resetAlphabetColor();
+
         //TextView letterTextView = (TextView) findViewById(tableIds[4][4]);
         //letterTextView.setText(String.valueOf(currentTry));
         return;
     }
 
 
+    class alphaWrapper {
+        //private final int letter;
+        //private final int color;
+
+        public alphaWrapper(int letter, int color) {
+            this.letter = letter;
+            this.color = color;
+        }
+
+        public int getColor() {return this.color;}
+        public int getLetter() {return this.letter;}
+
+        private int letter;
+        private int color;
+    }
+
 
     //Initialize alphabet
-    public Hashtable initializeAlphabet() {
-        Hashtable alphabet = new Hashtable();
+    public Map initializeAlphabet() {
+        Map<Character, alphaWrapper> alphabet = new HashMap<>();
 
+        alphabet.put('A', new alphaWrapper(R.id.buttonA, getResources().getColor(R.color.white)));
+        alphabet.put('B', new alphaWrapper(R.id.buttonB, getResources().getColor(R.color.white)));
+        alphabet.put('C', new alphaWrapper(R.id.buttonC, getResources().getColor(R.color.white)));
+        alphabet.put('D', new alphaWrapper(R.id.buttonD, getResources().getColor(R.color.white)));
+        alphabet.put('E', new alphaWrapper(R.id.buttonE, getResources().getColor(R.color.white)));
+        alphabet.put('F', new alphaWrapper(R.id.buttonF, getResources().getColor(R.color.white)));
+        alphabet.put('G', new alphaWrapper(R.id.buttonG, getResources().getColor(R.color.white)));
+        alphabet.put('H', new alphaWrapper(R.id.buttonH, getResources().getColor(R.color.white)));
+        alphabet.put('I', new alphaWrapper(R.id.buttonI, getResources().getColor(R.color.white)));
+        alphabet.put('J', new alphaWrapper(R.id.buttonJ, getResources().getColor(R.color.white)));
+        alphabet.put('K', new alphaWrapper(R.id.buttonK, getResources().getColor(R.color.white)));
+        alphabet.put('L', new alphaWrapper(R.id.buttonL, getResources().getColor(R.color.white)));
+        alphabet.put('M', new alphaWrapper(R.id.buttonM, getResources().getColor(R.color.white)));
+        alphabet.put('N', new alphaWrapper(R.id.buttonN, getResources().getColor(R.color.white)));
+        alphabet.put('O', new alphaWrapper(R.id.buttonO, getResources().getColor(R.color.white)));
+        alphabet.put('P', new alphaWrapper(R.id.buttonP, getResources().getColor(R.color.white)));
+        alphabet.put('Q', new alphaWrapper(R.id.buttonQ, getResources().getColor(R.color.white)));
+        alphabet.put('R', new alphaWrapper(R.id.buttonR, getResources().getColor(R.color.white)));
+        alphabet.put('S', new alphaWrapper(R.id.buttonS, getResources().getColor(R.color.white)));
+        alphabet.put('T', new alphaWrapper(R.id.buttonT, getResources().getColor(R.color.white)));
+        alphabet.put('U', new alphaWrapper(R.id.buttonU, getResources().getColor(R.color.white)));
+        alphabet.put('V', new alphaWrapper(R.id.buttonV, getResources().getColor(R.color.white)));
+        alphabet.put('W', new alphaWrapper(R.id.buttonW, getResources().getColor(R.color.white)));
+        alphabet.put('X', new alphaWrapper(R.id.buttonX, getResources().getColor(R.color.white)));
+        alphabet.put('Y', new alphaWrapper(R.id.buttonY, getResources().getColor(R.color.white)));
+        alphabet.put('Z', new alphaWrapper(R.id.buttonZ, getResources().getColor(R.color.white)));
+
+        /*
         alphabet.put('A', getResources().getColor(R.color.white));
         alphabet.put('B', getResources().getColor(R.color.white));
         alphabet.put('C', getResources().getColor(R.color.white));
@@ -413,7 +480,7 @@ public class MainActivity extends AppCompatActivity {
         alphabet.put('X', getResources().getColor(R.color.white));
         alphabet.put('Y', getResources().getColor(R.color.white));
         alphabet.put('Z', getResources().getColor(R.color.white));
-
+        */
         return alphabet;
     }
 
@@ -436,13 +503,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setAlphabetColor(){
-
-
-
+    public void setAlphabetColor() {
+        for (Map.Entry<Character, alphaWrapper> entry : alphabet.entrySet()  ){
+                alphaWrapper currentValue = entry.getValue();
+                TextView currentLetter = findViewById(currentValue.letter);
+                currentLetter.setBackgroundColor(currentValue.color);
+        }
     }
 
-
+    public void resetAlphabetColor() {
+        for (Map.Entry<Character, alphaWrapper> entry : alphabet.entrySet()  ){
+            alphaWrapper currentValue = entry.getValue();
+            Character currentKey = entry.getKey();
+            if (currentValue.color == getResources().getColor(R.color.yellow) || currentValue.color == getResources().getColor(R.color.green)) {
+                currentValue.color = getResources().getColor(R.color.gray);
+                alphabet.put(currentKey, currentValue);
+            }
+        }
+    }
 
     public Character[] getNewWord(){
 
