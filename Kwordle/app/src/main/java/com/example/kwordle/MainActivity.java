@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     public Character[] currentWord = new Character[letters];
     public String[] wordColor = new String[letters];
     public Integer[] wordColorInt = new Integer[letters];
+    public Boolean correct;
+
 
     //public Random rn = new Random();
     //public Button newGameButton = findViewById(R.id.newGame);
@@ -330,6 +332,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void enterClick(View view) {
+
+        correct = true;
+
         if (characterNumber != 5) {
             return;
         }
@@ -343,9 +348,9 @@ public class MainActivity extends AppCompatActivity {
             alphabet.put(wordEntry[i], thisLetter);
         }
 
-
         for (int i = 0; i < letters; i++) {
             if (wordEntry[i] == currentWord[i]) {
+
                 //currentWordColor[i] = "green";
                 currentWordColor[i] = getResources().getColor(R.color.green);
                 entryCheck[i] = ' ';
@@ -355,6 +360,7 @@ public class MainActivity extends AppCompatActivity {
                 alphabet.put(wordEntry[i], thisLetter);
 
             } else {
+                correct = false;
                 for (int j = 0; j < letters; j++) {
                     if (wordEntry[i] == entryCheck[j]) {
                         //currentWordColor[i] = "yellow";
@@ -401,6 +407,12 @@ public class MainActivity extends AppCompatActivity {
 
         //TextView letterTextView = (TextView) findViewById(tableIds[4][4]);
         //letterTextView.setText(String.valueOf(currentTry));
+
+        if (correct) {
+
+        }
+
+
         return;
     }
 
