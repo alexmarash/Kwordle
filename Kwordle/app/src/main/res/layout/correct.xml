@@ -1,20 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/correct"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#62def8"
-    tools:context=".Correct">
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_gravity="center" android:orientation="vertical"  >
 
     <TextView
+        android:id="@+id/correctBox"
+        android:text="@string/correctAnswer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="30dp"
-        android:text="You are correct."
-        android:textSize="22sp" />
+        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/answerBox"
+        android:text="@string/answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/correctDone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/correctDone"
+        android:onClick="doneCorrectClick" />
+</LinearLayout>

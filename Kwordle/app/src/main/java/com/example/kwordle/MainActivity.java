@@ -4,6 +4,8 @@ import static android.R.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import android.R.color;
 import android.content.Context;
@@ -33,6 +35,7 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+    //public static Object theAnswer;
     public Integer tries = 6;
     public Integer letters = 5;
     public Integer characterNumber = 0;
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     public String[] wordColor = new String[letters];
     public Integer[] wordColorInt = new Integer[letters];
     public Boolean correct;
+    public static String theAnswer = new String();
 
 
     //public Random rn = new Random();
@@ -408,6 +412,8 @@ public class MainActivity extends AppCompatActivity {
         //TextView letterTextView = (TextView) findViewById(tableIds[4][4]);
         //letterTextView.setText(String.valueOf(currentTry));
 
+        showCorrect();
+
         if (correct) {
 
         }
@@ -415,6 +421,25 @@ public class MainActivity extends AppCompatActivity {
 
         return;
     }
+
+    public void showCorrect(){
+        DialogFragment newFragment = Correct.newInstance(theAnswer);
+        newFragment.show(getSupportFragmentManager(), "dialog");
+
+
+        newFragment.setOndoneCorrectClick(new DialogFragment.onDoneCorrectClick() {
+            @Override
+            public void doneCorrectClick() {
+                //yes or ok clicked
+            }
+
+
+        });
+
+
+    }
+
+
 
 
     class alphaWrapper {
@@ -536,6 +561,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Character[] getNewWord(){
 
+        theAnswer = "START";
         Character newWord[] = {'S', 'T', 'A', 'R', 'T'};
 
         return newWord;
