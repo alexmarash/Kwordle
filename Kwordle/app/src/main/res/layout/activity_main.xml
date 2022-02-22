@@ -580,105 +580,107 @@
             app:layout_constraintTop_toBottomOf="@+id/alphaOne"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/buttonA"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="aClick"
-                android:text="A" />
-            <Button
-                android:id="@+id/buttonS"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="sClick"
-                android:text="S" />
-            <Button
-                android:id="@+id/buttonD"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="dClick"
-                android:text="D" />
-            <Button
-                android:id="@+id/buttonF"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="fClick"
-                android:text="F" />
-            <Button
-                android:id="@+id/buttonG"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="gClick"
-                android:text="G" />
-            <Button
-                android:id="@+id/buttonH"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="hClick"
-                android:text="H" />
-            <Button
-                android:id="@+id/buttonJ"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="jClick"
-                android:text="J" />
-            <Button
-                android:id="@+id/buttonK"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="kClick"
-                android:text="K" />
-            <Button
-                android:id="@+id/buttonL"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="lClick"
-                android:text="L" />
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonA"
+                    style="@style/alphabetGrid"
+                    android:onClick="aClick"
+                    android:text="A"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonS"
+                    style="@style/alphabetGrid"
+                    android:onClick="sClick"
+                    android:text="S"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonD"
+                    style="@style/alphabetGrid"
+                    android:onClick="dClick"
+                    android:text="D"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonF"
+                    style="@style/alphabetGrid"
+                    android:onClick="fClick"
+                    android:text="F"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonG"
+                    style="@style/alphabetGrid"
+                    android:onClick="gClick"
+                    android:text="G"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonH"
+                    style="@style/alphabetGrid"
+                    android:onClick="hClick"
+                    android:text="H"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonJ"
+                    style="@style/alphabetGrid"
+                    android:onClick="jClick"
+                    android:text="J"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonK"
+                    style="@style/alphabetGrid"
+                    android:onClick="kClick"
+                    android:text="K"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonL"
+                    style="@style/alphabetGrid"
+                    android:onClick="lClick"
+                    android:text="L"/>
+            </RelativeLayout>
+
+
+
 
         </LinearLayout>
         <LinearLayout
@@ -691,7 +693,7 @@
             app:layout_constraintTop_toBottomOf="@+id/alphaTwo"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/buttonEnter"
+                android:id="@+id/buttonEnterOld"
                 android:layout_width="0dp"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/text_size"
@@ -701,83 +703,107 @@
                 android:layout_weight="2"
                 android:onClick="enterClick"
                 android:text="Enter" />
-            <Button
-                android:id="@+id/buttonZ"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="zClick"
-                android:text="Z" />
-            <Button
-                android:id="@+id/buttonX"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="xClick"
-                android:text="X" />
-            <Button
-                android:id="@+id/buttonC"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="cClick"
-                android:text="C" />
-            <Button
-                android:id="@+id/buttonV"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="vClick"
-                android:text="V" />
-            <Button
-                android:id="@+id/buttonB"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="bClick"
-                android:text="B" />
-            <Button
-                android:id="@+id/buttonN"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="nClick"
-                android:text="N" />
-            <Button
-                android:id="@+id/buttonM"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:onClick="mClick"
-                android:text="M" />
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonEnter"
+                    style="@style/alphabetGrid"
+                    android:onClick="enterClick"
+                    android:text="Enter"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonZ"
+                    style="@style/alphabetGrid"
+                    android:onClick="zClick"
+                    android:text="Z"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonX"
+                    style="@style/alphabetGrid"
+                    android:onClick="xClick"
+                    android:text="X"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonC"
+                    style="@style/alphabetGrid"
+                    android:onClick="cClick"
+                    android:text="C"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonV"
+                    style="@style/alphabetGrid"
+                    android:onClick="vClick"
+                    android:text="V"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonB"
+                    style="@style/alphabetGrid"
+                    android:onClick="bClick"
+                    android:text="B"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonN"
+                    style="@style/alphabetGrid"
+                    android:onClick="nClick"
+                    android:text="N"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonM"
+                    style="@style/alphabetGrid"
+                    android:onClick="mClick"
+                    android:text="M"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20">
+                <TextView
+                    android:id="@+id/buttonDelete"
+                    style="@style/alphabetGrid"
+                    android:onClick="deleteClick"
+                    android:text="Delete"/>
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/buttonDelete"
