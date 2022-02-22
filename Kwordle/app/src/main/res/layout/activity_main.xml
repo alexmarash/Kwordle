@@ -692,22 +692,12 @@
             android:layout_marginEnd="20dp"
             app:layout_constraintTop_toBottomOf="@+id/alphaTwo"
             android:orientation="horizontal">
-            <Button
-                android:id="@+id/buttonEnterOld"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="2"
-                android:onClick="enterClick"
-                android:text="Enter" />
+
 
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.20">
+                android:layout_weight="0.40">
                 <TextView
                     android:id="@+id/buttonEnter"
                     style="@style/alphabetGrid"
@@ -796,7 +786,7 @@
             <RelativeLayout
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.20">
+                android:layout_weight="0.40">
                 <TextView
                     android:id="@+id/buttonDelete"
                     style="@style/alphabetGrid"
@@ -805,17 +795,6 @@
 
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/buttonDelete"
-                android:layout_width="0dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="@dimen/text_size"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="2"
-                android:onClick="deleteClick"
-                android:text="Delete" />
 
 
         </LinearLayout>

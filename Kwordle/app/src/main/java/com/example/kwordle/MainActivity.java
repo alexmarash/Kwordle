@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         initializeWordColor();
         currentTry = 0;
 
+
         /*
         Button aButton = (Button)findViewById(R.id.buttonA);
         aButton.setOnClickListener(new View.OnClickListener() {
@@ -341,13 +342,24 @@ public class MainActivity extends AppCompatActivity {
                 //currentWordColor[i] = "green";
                 currentWordColor[i] = getResources().getColor(R.color.green);
                 entryCheck[i] = ' ';
+                alphabet.put(wordEntry[i], getResources().getColor(R.color.green));
+
             } else {
                 for (int j = 0; j < letters; j++) {
                     if (wordEntry[i] == entryCheck[j]) {
                         //currentWordColor[i] = "yellow";
                         currentWordColor[i] = getResources().getColor(R.color.yellow);
                         entryCheck[j] = ' ';
+                        Object thisObject = alphabet.get('A');
+                        Object greenColor = getResources().getColor(R.color.green);
+                        if (alphabet.get(wordEntry[i]) != greenColor) {
+                            alphabet.put(wordEntry[i], getResources().getColor(R.color.yellow));
+                        }
                     }
+                    else {
+                        alphabet.put(wordEntry[i], getResources().getColor(R.color.gray));
+                    }
+
                 }
             }
         }
@@ -374,35 +386,39 @@ public class MainActivity extends AppCompatActivity {
     //Initialize alphabet
     public Hashtable initializeAlphabet() {
         Hashtable alphabet = new Hashtable();
-        alphabet.put("A", new Boolean(false));
-        alphabet.put("B", new Boolean(false));
-        alphabet.put("C", new Boolean(false));
-        alphabet.put("D", new Boolean(false));
-        alphabet.put("E", new Boolean(false));
-        alphabet.put("F", new Boolean(false));
-        alphabet.put("G", new Boolean(false));
-        alphabet.put("H", new Boolean(false));
-        alphabet.put("I", new Boolean(false));
-        alphabet.put("J", new Boolean(false));
-        alphabet.put("K", new Boolean(false));
-        alphabet.put("L", new Boolean(false));
-        alphabet.put("M", new Boolean(false));
-        alphabet.put("N", new Boolean(false));
-        alphabet.put("O", new Boolean(false));
-        alphabet.put("P", new Boolean(false));
-        alphabet.put("Q", new Boolean(false));
-        alphabet.put("R", new Boolean(false));
-        alphabet.put("S", new Boolean(false));
-        alphabet.put("T", new Boolean(false));
-        alphabet.put("U", new Boolean(false));
-        alphabet.put("V", new Boolean(false));
-        alphabet.put("W", new Boolean(false));
-        alphabet.put("X", new Boolean(false));
-        alphabet.put("Y", new Boolean(false));
-        alphabet.put("Z", new Boolean(false));
+
+        alphabet.put('A', getResources().getColor(R.color.white));
+        alphabet.put('B', getResources().getColor(R.color.white));
+        alphabet.put('C', getResources().getColor(R.color.white));
+        alphabet.put('D', getResources().getColor(R.color.white));
+        alphabet.put('E', getResources().getColor(R.color.white));
+        alphabet.put('F', getResources().getColor(R.color.white));
+        alphabet.put('G', getResources().getColor(R.color.white));
+        alphabet.put('H', getResources().getColor(R.color.white));
+        alphabet.put('I', getResources().getColor(R.color.white));
+        alphabet.put('J', getResources().getColor(R.color.white));
+        alphabet.put('K', getResources().getColor(R.color.white));
+        alphabet.put('L', getResources().getColor(R.color.white));
+        alphabet.put('M', getResources().getColor(R.color.white));
+        alphabet.put('N', getResources().getColor(R.color.white));
+        alphabet.put('O', getResources().getColor(R.color.white));
+        alphabet.put('P', getResources().getColor(R.color.white));
+        alphabet.put('Q', getResources().getColor(R.color.white));
+        alphabet.put('R', getResources().getColor(R.color.white));
+        alphabet.put('S', getResources().getColor(R.color.white));
+        alphabet.put('T', getResources().getColor(R.color.white));
+        alphabet.put('U', getResources().getColor(R.color.white));
+        alphabet.put('V', getResources().getColor(R.color.white));
+        alphabet.put('W', getResources().getColor(R.color.white));
+        alphabet.put('X', getResources().getColor(R.color.white));
+        alphabet.put('Y', getResources().getColor(R.color.white));
+        alphabet.put('Z', getResources().getColor(R.color.white));
 
         return alphabet;
     }
+
+
+
 
     public void initializeTableColors(){
         for (int i = 0; i < tries; i++) {
@@ -419,6 +435,13 @@ public class MainActivity extends AppCompatActivity {
             wordColorInt[i] = getResources().getColor(R.color.gray);
         }
     }
+
+    public void setAlphabetColor(){
+
+
+
+    }
+
 
 
     public Character[] getNewWord(){
