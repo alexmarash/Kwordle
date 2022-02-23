@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class PopCorrect extends Activity {
     //private val windowParams = context.getSystemsService(Context.WINDOW_SERVICE) as WindowManager
     //WindowManager.LayoutParams(PixelFormat.TRANSLUCENT);
-    
+
     @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);
