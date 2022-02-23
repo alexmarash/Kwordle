@@ -9,7 +9,7 @@
         android:gravity="center"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Kwordle">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/title_page"
@@ -22,8 +22,7 @@
         </activity>
         <activity
             android:name=".PopCorrect"
-            android:theme="@style/AppTheme.PopupTheme"
-            android:parentActivityName=".MainActivity">
+            android:theme="@style/AppTheme.popupTheme">
         </activity>
 
 

@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public Integer characterNumber = 0;
     public Character wordEntry[] = new Character[letters];
     //public Integer rowNumber = 0;
-    public Integer currentTry;
+    public static Integer currentTry;
 
     public int[][] tableIds= {
             {R.id.rowOne_columnOne, R.id.rowOne_columnTwo, R.id.rowOne_columnThree, R.id.rowOne_columnFour, R.id.rowOne_columnFive},
@@ -417,7 +418,11 @@ public class MainActivity extends AppCompatActivity {
 
         //showCorrect();
 
+
+
         startActivity(new Intent(MainActivity.this,PopCorrect.class));
+
+
 
         if (correct) {
 

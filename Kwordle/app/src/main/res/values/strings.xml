@@ -3,7 +3,9 @@
     <string name="title_page">Katheryn\'s Wordle</string>
     <string name="newGame">New Game</string>
     <string name="initial_text"> </string>
-    <string name="correctAnswer">You are Correct!!!!</string>
+    <string name="correctAnswer">You are Correct!!!!\nThe answer was:</string>
+    <string name="correctAnswer2">You finished in</string>
     <string name="correctDone">Done</string>
     <string name="answer">Answer goes here</string>
+    <string name="answerTries">Answer goes here</string>
 </resources>

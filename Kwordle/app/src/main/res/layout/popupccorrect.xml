@@ -1,7 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/correctPop"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E42020">
+    android:background="#877F7F">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/correct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/correctBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/correctAnswer"
+            android:textSize="24sp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/answerBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/answer"
+            android:textSize="24sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/correctBox2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/correctAnswer2"
+            android:textSize="24sp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/answerTriesBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/answerTries"
+            android:textSize="24sp"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/correctDone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="doneCorrectClick"
+            android:text="@string/correctDone"
+            android:textSize="24sp"
+            android:gravity="center" />
+
+
+    </LinearLayout>
 </RelativeLayout>
