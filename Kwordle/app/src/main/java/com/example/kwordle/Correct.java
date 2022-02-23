@@ -60,10 +60,10 @@ public class Correct extends DialogFragment {
         setCancelable(false);
 
 
-        @Override
-        public void doneCorrectClick(DialogInterface arg0, int arg1){
-            dialog.dismiss();
-        }
+       // @Override
+        //public void doneCorrectClick(DialogInterface arg0, int arg1){
+        //    dialog.dismiss();
+        //}
 
 
 
@@ -86,10 +86,10 @@ public class Correct extends DialogFragment {
         newFragment.show(getFragmentManager(), "dialog");
     }
 
-    public void doneCorrectClick(View view) {
-        dialog.dismiss();
+    //public void doneCorrectClick(View view) {
+    //    dialog.dismiss();
 
-    }
+    //}
     /*
 
     @Override

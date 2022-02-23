@@ -2,13 +2,16 @@ package com.example.kwordle;
 
 import static android.R.*;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.R.color;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -412,9 +415,13 @@ public class MainActivity extends AppCompatActivity {
         //TextView letterTextView = (TextView) findViewById(tableIds[4][4]);
         //letterTextView.setText(String.valueOf(currentTry));
 
-        showCorrect();
+        //showCorrect();
+
+        startActivity(new Intent(MainActivity.this,PopCorrect.class));
 
         if (correct) {
+
+
 
         }
 
@@ -427,14 +434,14 @@ public class MainActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "dialog");
 
 
-        newFragment.setOndoneCorrectClick(new DialogFragment.onDoneCorrectClick() {
-            @Override
-            public void doneCorrectClick() {
+        //newFragment.setOndoneCorrectClick(new DialogFragment.onDoneCorrectClick() {
+        //    @Override
+        //    public void doneCorrectClick() {
                 //yes or ok clicked
-            }
+        //    }
 
 
-        });
+        //        });
 
 
     }

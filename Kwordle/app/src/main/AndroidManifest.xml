@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Correct"
+            android:name=".PopCorrect"
+            android:theme="@style/AppTheme.PopupTheme"
             android:parentActivityName=".MainActivity">
         </activity>
 
