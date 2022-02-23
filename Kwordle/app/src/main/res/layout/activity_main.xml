@@ -32,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
+                android:onClick="newGameClick"
                 android:text="@string/newGame" />
 
             <ImageButton
@@ -399,10 +400,11 @@
                 android:layout_width="0dip"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.20">
-                        <TextView
-                            android:id="@+id/rowSix_columnOne"
-                            android:background="@color/white"
-                            style="@style/displayGrid"/>
+
+                <TextView
+                    android:id="@+id/rowSix_columnOne"
+                    style="@style/displayGrid"
+                    android:background="@color/white" />
             </RelativeLayout>
 
             <RelativeLayout

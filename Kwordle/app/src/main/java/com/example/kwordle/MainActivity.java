@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             {R.id.rowThree_columnOne, R.id.rowThree_columnTwo, R.id.rowThree_columnThree, R.id.rowThree_columnFour, R.id.rowThree_columnFive},
             {R.id.rowFour_columnOne, R.id.rowFour_columnTwo, R.id.rowFour_columnThree, R.id.rowFour_columnFour, R.id.rowFour_columnFive},
             {R.id.rowFive_columnOne, R.id.rowFive_columnTwo, R.id.rowFive_columnThree, R.id.rowFive_columnFour, R.id.rowFive_columnFive},
+            {R.id.rowSix_columnOne, R.id.rowSix_columnTwo, R.id.rowSix_columnThree, R.id.rowSix_columnFour, R.id.rowSix_columnFive}
     };
 
     public String[][] tableColors = new String[tries][letters];
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public Character[] currentWord = new Character[letters];
     public String[] wordColor = new String[letters];
     public Integer[] wordColorInt = new Integer[letters];
-    public Boolean correct;
+    public static Boolean correct;
     public static String theAnswer = new String();
 
 
@@ -72,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
     //public ImageButton statsButton = findViewById(R.id.stats);
     //public ImageButton settingsButton = findViewById(R.id.settings);
 
-
-
-    //findViewById(ids[0]);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,140 +84,17 @@ public class MainActivity extends AppCompatActivity {
         initializeTableColors();
         initializeWordColor();
         currentTry = 0;
+    }
 
-
-        /*
-        Button aButton = (Button)findViewById(R.id.buttonA);
-        aButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (characterNumber < 5) {
-                    wordEntry[characterNumber] = 'A';
-                    characterNumber += 1;
-
-                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-                    letterTextView.setText('A');
-
-                }
-            }
-
-        });
-
-        Button bButton = (Button)findViewById(R.id.buttonB);
-        bButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (characterNumber < 5) {
-                    wordEntry[characterNumber] = 'B';
-                    characterNumber += 1;
-
-                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-                    letterTextView.setText('B');
-
-                }
-            }
-
-        });
-
-        Button cButton = (Button)findViewById(R.id.buttonC);
-        cButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (characterNumber < 5) {
-                    wordEntry[characterNumber] = 'C';
-                    characterNumber += 1;
-
-                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-                    letterTextView.setText('C');
-
-                }
-            }
-
-        });
-
-        Button dButton = (Button)findViewById(R.id.buttonD);
-        dButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (characterNumber < 5) {
-                    wordEntry[characterNumber] = 'D';
-                    characterNumber += 1;
-
-                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-                    letterTextView.setText('D');
-
-                }
-            }
-
-        });
-
-        Button eButton = (Button)findViewById(R.id.buttonE);
-        eButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (characterNumber < 5) {
-                    wordEntry[characterNumber] = 'E';
-                    characterNumber += 1;
-
-                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-                    letterTextView.setText('E');
-
-                }
-            }
-
-        });
-
-        Button fButton = (Button)findViewById(R.id.buttonF);
-        fButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (characterNumber < 5) {
-                    wordEntry[characterNumber] = 'F';
-                    characterNumber += 1;
-
-                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-                    letterTextView.setText('F');
-
-                }
-            }
-
-        });
-
-        Button gButton = (Button)findViewById(R.id.buttonG);
-        gButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (characterNumber < 5) {
-                    wordEntry[characterNumber] = 'G';
-                    characterNumber += 1;
-
-                    TextView letterTextView = (TextView) findViewById(tableIds[rowNumber][characterNumber]);
-                    letterTextView.setText('G');
-
-                }
-            }
-
-        });
-
-
-        //public void updateTextView(String toThis) {
-        //    TextView textView = (TextView) findViewById(R.id.textView);
-        //    textView.setText(toThis);
-        //}
-
-        */
-
+    public void newGameClick(View view) {
+        startActivity(new Intent(MainActivity.this, MainActivity.class));
     }
 
     public void qClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'Q';
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            //TextView letterTextView = (TextView) findViewById(tableIds[characterNumber][currentTry]);
-            //letterTextView.setText(String.valueOf(currentTry));
-            //letterTextView.setTextColor(Color.parseColor("#bdbdbd"));
             letterTextView.setText("Q");
-
             characterNumber += 1;
         }
     }
@@ -229,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
             wordEntry[characterNumber] = 'W';
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("W");
-
             characterNumber += 1;
         }
     }
@@ -237,11 +111,8 @@ public class MainActivity extends AppCompatActivity {
     public void eClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'E';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("E");
-
             characterNumber += 1;
         }
     }
@@ -249,11 +120,8 @@ public class MainActivity extends AppCompatActivity {
     public void rClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'R';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("R");
-
             characterNumber += 1;
         }
     }
@@ -261,11 +129,8 @@ public class MainActivity extends AppCompatActivity {
     public void tClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'T';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("T");
-
             characterNumber += 1;
         }
     }
@@ -273,11 +138,8 @@ public class MainActivity extends AppCompatActivity {
     public void yClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'Y';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("Y");
-
             characterNumber += 1;
         }
     }
@@ -285,11 +147,8 @@ public class MainActivity extends AppCompatActivity {
     public void uClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'U';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("U");
-
             characterNumber += 1;
         }
     }
@@ -297,11 +156,8 @@ public class MainActivity extends AppCompatActivity {
     public void iClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'I';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("I");
-
             characterNumber += 1;
         }
     }
@@ -309,11 +165,8 @@ public class MainActivity extends AppCompatActivity {
     public void oClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'O';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("O");
-
             characterNumber += 1;
         }
     }
@@ -321,11 +174,155 @@ public class MainActivity extends AppCompatActivity {
     public void pClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'P';
-
-
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText("P");
 
+            characterNumber += 1;
+        }
+    }
+
+    public void aClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'A';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("A");
+
+            characterNumber += 1;
+        }
+    }
+
+    public void sClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'S';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("S");
+
+            characterNumber += 1;
+        }
+    }
+
+    public void dClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'D';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("D");
+            characterNumber += 1;
+        }
+    }
+
+    public void fClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'F';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("F");
+            characterNumber += 1;
+        }
+    }
+
+    public void gClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'G';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("G");
+            characterNumber += 1;
+        }
+    }
+
+    public void hClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'H';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("H");
+            characterNumber += 1;
+        }
+    }
+
+    public void jClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'J';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("J");
+            characterNumber += 1;
+        }
+    }
+
+    public void kClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'K';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("K");
+            characterNumber += 1;
+        }
+    }
+
+    public void lClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'L';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("L");
+            characterNumber += 1;
+        }
+    }
+
+    public void zClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'Z';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("Z");
+            characterNumber += 1;
+        }
+    }
+
+    public void xClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'X';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("X");
+            characterNumber += 1;
+        }
+    }
+
+    public void cClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'C';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("C");
+            characterNumber += 1;
+        }
+    }
+
+    public void vClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'V';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("V");
+            characterNumber += 1;
+        }
+    }
+
+    public void bClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'B';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("B");
+            characterNumber += 1;
+        }
+    }
+
+    public void nClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'N';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("N");
+            characterNumber += 1;
+        }
+    }
+
+    public void mClick(View view) {
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = 'M';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText("M");
             characterNumber += 1;
         }
     }
@@ -388,23 +385,9 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < letters; i++) {
             tableColorsInt[currentTry][i] = currentWordColor[i];
-            //tableIds[i][currentTry].setBackgroundDrawable(getResources().getDrawable(R.drawable.cellborder) );
             TextView currentLetter = findViewById(tableIds[currentTry][i]);
-            //currentLetter.setBackground(context.getResources().getColor(android.R.color.holo_green_light));
-            //currentLetter.setBackgroundColor(getResources().getColor(R.color.black));
-            //currentLetter.setBackgroundColor(tableColorInt[i][currentTry]);
             currentLetter.setBackgroundColor(currentWordColor[i]);
-
-            //set the alphabet color
-            //currentAlphaColor
-            //for (int j = 0; i < letters; j++) {
-             //   if
-                //alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
-                //thisLetter.color = currentWordColor[i];
-                //alphabet.put(wordEntry[i], thisLetter);
         }
-
-
 
 
         currentTry += 1;
@@ -413,45 +396,11 @@ public class MainActivity extends AppCompatActivity {
         setAlphabetColor();
         //resetAlphabetColor();
 
-        //TextView letterTextView = (TextView) findViewById(tableIds[4][4]);
-        //letterTextView.setText(String.valueOf(currentTry));
-
-        //showCorrect();
-
-
-
-        startActivity(new Intent(MainActivity.this,PopCorrect.class));
-
-
-
-        if (correct) {
-
-
-
+        if (correct || currentTry > 5) {
+            startActivity(new Intent(MainActivity.this,PopCorrect.class));
         }
-
-
         return;
     }
-
-    public void showCorrect(){
-        DialogFragment newFragment = Correct.newInstance(theAnswer);
-        newFragment.show(getSupportFragmentManager(), "dialog");
-
-
-        //newFragment.setOndoneCorrectClick(new DialogFragment.onDoneCorrectClick() {
-        //    @Override
-        //    public void doneCorrectClick() {
-                //yes or ok clicked
-        //    }
-
-
-        //        });
-
-
-    }
-
-
 
 
     class alphaWrapper {
@@ -502,34 +451,6 @@ public class MainActivity extends AppCompatActivity {
         alphabet.put('Y', new alphaWrapper(R.id.buttonY, getResources().getColor(R.color.white)));
         alphabet.put('Z', new alphaWrapper(R.id.buttonZ, getResources().getColor(R.color.white)));
 
-        /*
-        alphabet.put('A', getResources().getColor(R.color.white));
-        alphabet.put('B', getResources().getColor(R.color.white));
-        alphabet.put('C', getResources().getColor(R.color.white));
-        alphabet.put('D', getResources().getColor(R.color.white));
-        alphabet.put('E', getResources().getColor(R.color.white));
-        alphabet.put('F', getResources().getColor(R.color.white));
-        alphabet.put('G', getResources().getColor(R.color.white));
-        alphabet.put('H', getResources().getColor(R.color.white));
-        alphabet.put('I', getResources().getColor(R.color.white));
-        alphabet.put('J', getResources().getColor(R.color.white));
-        alphabet.put('K', getResources().getColor(R.color.white));
-        alphabet.put('L', getResources().getColor(R.color.white));
-        alphabet.put('M', getResources().getColor(R.color.white));
-        alphabet.put('N', getResources().getColor(R.color.white));
-        alphabet.put('O', getResources().getColor(R.color.white));
-        alphabet.put('P', getResources().getColor(R.color.white));
-        alphabet.put('Q', getResources().getColor(R.color.white));
-        alphabet.put('R', getResources().getColor(R.color.white));
-        alphabet.put('S', getResources().getColor(R.color.white));
-        alphabet.put('T', getResources().getColor(R.color.white));
-        alphabet.put('U', getResources().getColor(R.color.white));
-        alphabet.put('V', getResources().getColor(R.color.white));
-        alphabet.put('W', getResources().getColor(R.color.white));
-        alphabet.put('X', getResources().getColor(R.color.white));
-        alphabet.put('Y', getResources().getColor(R.color.white));
-        alphabet.put('Z', getResources().getColor(R.color.white));
-        */
         return alphabet;
     }
 
