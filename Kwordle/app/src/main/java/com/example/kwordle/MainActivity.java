@@ -225,8 +225,12 @@ public class MainActivity extends AppCompatActivity {
             else {
                 correct = false;
                 alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
-                thisLetter.color = getResources().getColor(R.color.gray);
-                alphabet.put(wordEntry[i], thisLetter);
+                if (thisLetter.getColor() != getResources().getColor(R.color.yellow) &&
+                        thisLetter.getColor() != getResources().getColor(R.color.green)) {
+                    thisLetter.color = getResources().getColor(R.color.gray);
+                    alphabet.put(wordEntry[i], thisLetter);}
+                //thisLetter.color = getResources().getColor(R.color.gray);
+                //alphabet.put(wordEntry[i], thisLetter);
             }
         }
         for (int i = 0; i < letters; i++) {
