@@ -453,11 +453,14 @@ public class MainActivity extends AppCompatActivity {
             theAnswer = theKeys.get(randomKey);
         }
 
+
         char newWord[] = new char[letters];
 
         for (int i = 0; i < letters; i++) {
             newWord[i] = theAnswer.charAt(i);
         }
+
+
 
         //theAnswer = "START";
         //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
