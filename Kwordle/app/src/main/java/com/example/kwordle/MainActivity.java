@@ -204,17 +204,60 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        char entryCheck[] = currentWord.clone();
+        char answerCheck[] = currentWord.clone();  //This is the answer
+        char entryCheck[] = wordEntry.clone();  //This what was entered
         String currentWordColorString[] = wordColor.clone();
         Integer currentWordColor[] = wordColorInt.clone();
 
+
+        //Loop over the letters and set each of the letters in the entry to Gray or Green
+        for (int i = 0; i < letters; i++) {
+            if (entryCheck[i] == answerCheck[i]) {
+                currentWordColor[i] = getResources().getColor(R.color.green);
+                entryCheck[i] = ' ';
+                answerCheck[i] = '>';
+                currentWordColorString[i] = "green";
+                alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
+                thisLetter.color = getResources().getColor(R.color.green);
+                alphabet.put(wordEntry[i], thisLetter);
+
+            }
+            else {
+                correct = false;
+                alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
+                thisLetter.color = getResources().getColor(R.color.gray);
+                alphabet.put(wordEntry[i], thisLetter);
+            }
+        }
+        for (int i = 0; i < letters; i++) {
+            for (int j = 0; j < letters; j++) {
+                //Loop over the letters to see if they are correct, but in the wrong spot and set to yellow in the alphabet and current guess array
+                //also set the entry check to blank to allow for repeated letters
+                if (entryCheck[i] == answerCheck[j]) {
+                    currentWordColor[i] = getResources().getColor(R.color.yellow);
+                    entryCheck[i] = ' ';
+                    answerCheck[j] = '>';
+                    currentWordColorString[i] = "yellow";
+                    alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
+                    //If the letter is already green do not change it in the alphabet
+                    if (thisLetter.getColor() != getResources().getColor(R.color.green)) {
+                        thisLetter.color = getResources().getColor(R.color.yellow);
+                        alphabet.put(wordEntry[i], thisLetter);
+
+                    }
+                }
+            }
+        }
+        /*
         //Loop over the letters and set each of the letters in the entry to Gray
         for (int i = 0; i < letters; i++) {
             alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
             thisLetter.color = getResources().getColor(R.color.gray);
             alphabet.put(wordEntry[i], thisLetter);
         }
+        */
 
+        /*
         // Loop over the letters in the current entry
         for (int i = 0; i < letters; i++) {
             //Check to see if the letter is in the correct spot and set the letter to green in the alphabet and in the current guess array
@@ -247,6 +290,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+         */
+
 
         //For the current guess set the colors
         for (int i = 0; i < letters; i++) {
@@ -411,7 +456,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //theAnswer = "START";
-        //Character newWord[] = {'S', 'T', 'A', 'R', 'T'};
+        //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
 
         return newWord;
     }
