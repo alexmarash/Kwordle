@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < letters; i++){
             thisAnswer += wordEntry[i];
         }
-        
+
         if (importFiveLetterWord.wordListArray.contains(thisAnswer) == false ) {
             Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
 
