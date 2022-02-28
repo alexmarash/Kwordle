@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static Integer currentTry;
     public static Map<String, Boolean> wordList = new HashMap<>();
 
+
     public int[][] tableIds= {
             {R.id.rowOne_columnOne, R.id.rowOne_columnTwo, R.id.rowOne_columnThree, R.id.rowOne_columnFour, R.id.rowOne_columnFive},
             {R.id.rowTwo_columnOne, R.id.rowTwo_columnTwo, R.id.rowTwo_columnThree, R.id.rowTwo_columnFour, R.id.rowTwo_columnFive},
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public Integer[] wordColorInt = new Integer[letters];
     public static Boolean correct;
     public static String theAnswer = new String();
+    public static List fullWordList = new ArrayList<String>();
 
 
     //public Random rn = new Random();
@@ -83,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
         else {
         */
             //alphabet = initializeAlphabet();
+            //System.out.println("=============================FIRST HERE=================================");
+            //System.out.println("========= context" + this);
+            importFiveLetterWord fiveLetterWord = new importFiveLetterWord(this, letters);
+
+            //fullWordList = importFiveLetterWord.getWordListArray(this);
+            //System.out.println("========= fullize" + fullWordList.size());
+
             initializeAlphabet();
             currentWord = getNewWord();
             initializeTableColors();
@@ -196,13 +206,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void enterClick(View view) {
 
         correct = true;
 
-        if (characterNumber != 5) {
+        if (characterNumber != letters) {
             return;
         }
+
+        String thisAnswer = new String();
+        for (int i = 0; i < letters; i++){
+            thisAnswer += wordEntry[i];
+        }
+        
+        if (importFiveLetterWord.wordListArray.contains(thisAnswer) == false ) {
+            Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
+
+            return;
+        }
+
 
         char answerCheck[] = currentWord.clone();  //This is the answer
         char entryCheck[] = wordEntry.clone();  //This what was entered
@@ -434,11 +457,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public char[] getNewWord(){
 
+        List<String> usedWordList = importFiveLetterWord.getUsedListArray(this);
+
+        Boolean wordUsed = true;
+
+        while (wordUsed) {
+
+            int index = (int) (Math.random() * importFiveLetterWord.startingWords.size());
+
+            //System.out.println("index" + importFiveLetterWord.startingWords.size());
+
+            theAnswer = importFiveLetterWord.startingWords.get(index);
+
+            wordUsed = usedWordList.contains(theAnswer);
+        }
+
+        char newWord[] = new char[letters];
+
+        for (int i = 0; i < letters; i++) {
+            newWord[i] = theAnswer.charAt(i);
+        }
+
+        //theAnswer = "START";
+        //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
+
+        return newWord;
+    }
+
+    public char[] getNewWordOriginal(){
+
         Map<String, Boolean> currentWordList = new HashMap<>();
-        currentWordList = importFiveLetterWord.getWordList(this);
+        //currentWordList = importFiveLetterWord.getWordList(this);
+        //currentWordList = importFiveLetterWord.getWordList(this);
 
         boolean wordUsed = true;
         Random R = new Random();
