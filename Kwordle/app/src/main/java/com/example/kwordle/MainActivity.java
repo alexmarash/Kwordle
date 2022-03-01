@@ -1,6 +1,8 @@
 package com.example.kwordle;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -19,12 +21,10 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    //public static Object theAnswer;
     public static Integer tries = 6;
     public static Integer letters = 5;
     public static Integer characterNumber = 0;
     public static char wordEntry[] = new char[letters];
-    //public Integer rowNumber = 0;
     public static Integer currentTry;
     public static Map<String, Boolean> wordList = new HashMap<>();
 
@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
             {R.id.rowSix_columnOne, R.id.rowSix_columnTwo, R.id.rowSix_columnThree, R.id.rowSix_columnFour, R.id.rowSix_columnFive}
     };
 
-    //public static int[][] tableColors = new int[letters][tries];
-
     public String[][] tableColors = new String[tries][letters];
     public static Integer[][] tableColorsInt = new Integer[tries][letters];
 
@@ -51,18 +49,25 @@ public class MainActivity extends AppCompatActivity {
     public static Boolean correct;
     public static String theAnswer = new String();
     public static List fullWordList = new ArrayList<String>();
-
-
-    //public Random rn = new Random();
-    //public Button newGameButton = findViewById(R.id.newGame);
-    //public ImageButton statsButton = findViewById(R.id.stats);
-    //public ImageButton settingsButton = findViewById(R.id.settings);
-
+    public static SQLiteDatabase archives;
+    public static float Time;
+    public static boolean newGame = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        archives = openOrCreateDatabase("kwordleArchive",MODE_PRIVATE, null );
+
+
+        importFiveLetterWord fiveLetterWord = new importFiveLetterWord(this, letters);
+        initializeAlphabet();
+        currentWord = getNewWord();
+        initializeTableColors();
+        initializeWordColor();
+        initializeWordEntry();
+        currentTry = 0;
 
         /*
         if (savedInstanceState != null){
@@ -88,84 +93,23 @@ public class MainActivity extends AppCompatActivity {
             //alphabet = initializeAlphabet();
             //System.out.println("=============================FIRST HERE=================================");
             //System.out.println("========= context" + this);
-            importFiveLetterWord fiveLetterWord = new importFiveLetterWord(this, letters);
+            //importFiveLetterWord fiveLetterWord = new importFiveLetterWord(this, letters);
 
             //fullWordList = importFiveLetterWord.getWordListArray(this);
             //System.out.println("========= fullize" + fullWordList.size());
 
-            initializeAlphabet();
-            currentWord = getNewWord();
-            initializeTableColors();
-            initializeWordColor();
-            initializeWordEntry();
-            currentTry = 0;
+            //initializeAlphabet();
+            //currentWord = getNewWord();
+            //initializeTableColors();
+            //initializeWordColor();
+            //initializeWordEntry();
+            //currentTry = 0;
         //}
 
         //public void onStart
 
     }
 
-    /*
-    protected void onResume(@NonNull Bundle savedInstanceState){
-        characterNumber = savedInstanceState.getInt("Key_characterNumber");
-        wordEntry = savedInstanceState.getCharArray("Key_wordEntry");
-        theAnswer = savedInstanceState.getString("Key_theAnswer");
-        //alphabet = (Map<Character, alphaWrapper>) savedInstanceState.getSerializable("Key_alphabet");
-        //tableColorsInt = (Integer[][]) savedInstanceState.getSerializable("Key_tablecolor");
-        currentTry = savedInstanceState.getInt("Key_currentTry");
-
-        //setAlphabetColor();
-        //setTableColorsInt();
-
-        initializeAlphabet();
-        initializeTableColors();
-
-        setWordEntry();
-        initializeWordColor();  //TODO not sure about this
-    }
-
-
-     */
-    /*
-    protected void onStart(@NonNull Bundle savedInstanceState){
-        characterNumber = savedInstanceState.getInt("Key_characterNumber");
-        wordEntry = savedInstanceState.getCharArray("Key_wordEntry");
-        theAnswer = savedInstanceState.getString("Key_theAnswer");
-        //alphabet = (Map<Character, alphaWrapper>) savedInstanceState.getSerializable("Key_alphabet");
-        //tableColorsInt = (Integer[][]) savedInstanceState.getSerializable("Key_tablecolor");
-        currentTry = savedInstanceState.getInt("Key_currentTry");
-
-        //setAlphabetColor();
-        //setTableColorsInt();
-
-        initializeAlphabet();
-        initializeTableColors();
-
-        setWordEntry();
-        initializeWordColor();  //TODO not sure about this
-    }
-    */
-
-    /*
-    protected void onRestore(@NonNull Bundle savedInstanceState) {
-        characterNumber = savedInstanceState.getInt("Key_characterNumber");
-        wordEntry = savedInstanceState.getCharArray("Key_wordEntry");
-        theAnswer = savedInstanceState.getString("Key_theAnswer");
-        //alphabet = (Map<Character, alphaWrapper>) savedInstanceState.getSerializable("Key_alphabet");
-        //tableColorsInt = (Integer[][]) savedInstanceState.getSerializable("Key_tablecolor");
-        currentTry = savedInstanceState.getInt("Key_currentTry");
-
-        //setAlphabetColor();
-        //setTableColorsInt();
-
-        initializeAlphabet();
-        initializeTableColors();
-
-        setWordEntry();
-        initializeWordColor();  //TODO not sure about this
-
-    }
-    */
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
@@ -181,39 +125,77 @@ public class MainActivity extends AppCompatActivity {
 
     /*
     public void onViewStateRestored(@NonNull Bundle savedInstanceState){
-        characterNumber = savedInstanceState.getInt("Key_characterNumber");
-        wordEntry = savedInstanceState.getCharArray("Key_wordEntry");
-        theAnswer = savedInstanceState.getString("Key_theAnswer");
-        //alphabet = (Map<Character, alphaWrapper>) savedInstanceState.getSerializable("Key_alphabet");
-        //tableColorsInt = (Integer[][]) savedInstanceState.getSerializable("Key_tablecolor");
-        currentTry = savedInstanceState.getInt("Key_currentTry");
-
-        //setAlphabetColor();
-        //setTableColorsInt();
-
-        initializeAlphabet();
-        initializeTableColors();
-
-        setWordEntry();
-        initializeWordColor();  //TODO not sure about this
-
     }
-
+    protected void onRestore(@NonNull Bundle savedInstanceState) {
+    }
+    protected void onStart(@NonNull Bundle savedInstanceState){
+    }
+    protected void onResume(@NonNull Bundle savedInstanceState){
+    }
      */
 
+
     public void newGameClick(View view) {
+        newGame = true;
         startActivity(new Intent(MainActivity.this, MainActivity.class));
+    }
+
+    public void updateArchive(String correct){
+
+        String finishedTime = String.valueOf((Math.round(System.currentTimeMillis() - Time))/60000);
+        String finishedTry = String.valueOf(currentTry);
+
+        //System.out.println("==================================" + theAnswer + " " + correct + " " + " " + finishedTime + " " + " " +  finishedTry);
+
+
+
+        archives.execSQL("CREATE TABLE IF NOT EXISTS Statistics(Answer VARCHAR, Correct VARCHAR, Time VARCHAR, Trys VARCHAR);");
+
+        Cursor cursor = archives.query("Statistics", null, null, null, null, null, null);
+
+        //System.out.println(cursor.getColumnCount());
+
+        //String SQLinput = "INSERT INTO Statistics VALUES(" + theAnswer +" ," + correct + " ," + finishedTime
+        //        + " ," + finishedTry + ");";
+        String SQLinput = "INSERT INTO Statistics(Answer, Correct, Time, Trys) VALUES(?, ?, ?, ?)";
+        //archives.execSQL("INSERT INTO Statistics(Answer, Correct, Time, Trys) VALUES(theAnswer, correct, finishedTime, finishedTry);");
+        //archives.execSQL(SQLinput);
+        String[] args = {theAnswer, correct, finishedTime, finishedTry};
+        archives.execSQL(SQLinput, args);
+    }
+
+    public Boolean checkIfAnsweredBefore(String possibleWord){
+
+        String[] args = {possibleWord, "true"};
+        Cursor cursor = archives.query("Statistics", null, "Answer=? AND Correct=?", args, null, null, null);
+
+        if (cursor.getCount() > 0){
+            return true;
+        }
+        else { return false;}
+
+
+        //String[] args = { "first string", "second@string.com" };
+        //Cursor cursor = db.query("TABLE_NAME", null, "name=? AND email=?", args, null);
+        //Cursor resultSet = archives.rawQuery("Select * from Statistics", null);
+
+
     }
 
 
 
     public void enterClick(View view) {
-
         correct = true;
 
         if (characterNumber != letters) {
             return;
         }
+
+        if (newGame) {
+            Time = System.currentTimeMillis();
+            newGame = false;
+        }
+
 
         String thisAnswer = new String();
         for (int i = 0; i < letters; i++){
@@ -337,6 +319,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Check if correct or game complete and initiate popup
         if (correct || currentTry > 5) {
+            updateArchive(String.valueOf(correct));
             startActivity(new Intent(MainActivity.this,PopCorrect.class));
         }
         return;
@@ -471,7 +454,11 @@ public class MainActivity extends AppCompatActivity {
 
             theAnswer = importFiveLetterWord.startingWords.get(index);
 
-            wordUsed = usedWordList.contains(theAnswer);
+
+            System.out.println("===========================================the answer" + theAnswer);
+
+            wordUsed = checkIfAnsweredBefore(theAnswer);
+            //wordUsed = usedWordList.contains(theAnswer);
         }
 
         char newWord[] = new char[letters];
@@ -482,6 +469,9 @@ public class MainActivity extends AppCompatActivity {
 
         //theAnswer = "START";
         //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
+
+        //System.out.println("=======================" + checkIfAnsweredBefore(theAnswer));
+
 
         return newWord;
     }
