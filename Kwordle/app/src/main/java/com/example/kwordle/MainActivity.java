@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwordle.Alphabets.alphaWrapper;
 
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static Integer characterNumber = 0;
     public static char wordEntry[] = new char[letters];
     public static Integer currentTry;
-    public static Map<String, Boolean> wordList = new HashMap<>();
+    //public static Map<String, Boolean> wordList = new HashMap<>();
 
 
     public int[][] tableIds= {
@@ -129,6 +128,20 @@ public class MainActivity extends AppCompatActivity {
         else { return false;}
     }
 
+    public Boolean wordIsReal(){
+        String thisAnswer = new String();
+        for (int i = 0; i < letters; i++){
+            thisAnswer += wordEntry[i];
+        }
+
+        if (importFiveLetterWord.wordListArray.contains(thisAnswer) == false ) {
+            Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+        return true;
+    }
+
     public void enterClick(View view) {
         //correct = true;
 
@@ -142,18 +155,8 @@ public class MainActivity extends AppCompatActivity {
             newGame = false;
         }
 
-
-        String thisAnswer = new String();
-        for (int i = 0; i < letters; i++){
-            thisAnswer += wordEntry[i];
-        }
-
-        if (importFiveLetterWord.wordListArray.contains(thisAnswer) == false ) {
-            Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
-
-            return;
-        }
-
+        //Check if this is actually a word
+        if (!wordIsReal()){return;}
 
         //currentWordColor = Play.enter(this, currentWord, wordEntry, wordColorInt, letters, alphabet, correct);
 
@@ -214,13 +217,18 @@ public class MainActivity extends AppCompatActivity {
 
          */
 
-
         //For the current guess set the colors
+        setRowColor(currentWordColor);
+
+
+        /*
         for (int i = 0; i < letters; i++) {
             tableColorsInt[currentTry][i] = currentWordColor[i];
             TextView currentLetter = findViewById(tableIds[currentTry][i]);
             currentLetter.setBackgroundColor(currentWordColor[i]);
         }
+         */
+
 
         //Increment the current try and reset the character number
         currentTry += 1;
@@ -230,29 +238,35 @@ public class MainActivity extends AppCompatActivity {
         setAlphabetColor();
 
         //Check if correct or game complete and initiate popup
+        checkComplete(correct, currentTry);
+
+        /*
         if (correct || currentTry > 5) {
             updateArchive(String.valueOf(correct));
             startActivity(new Intent(MainActivity.this,PopCorrect.class));
         }
+        */
+
         return;
     }
 
 
-    public void enterClickTwo(View view) {
-        if (characterNumber != letters) {
-            return;
+    public void checkComplete(boolean correct, Integer currentTry){
+        if (correct || currentTry > 5) {
+            updateArchive(String.valueOf(correct));
+            startActivity(new Intent(MainActivity.this,PopCorrect.class));
         }
-
-        if (newGame) {
-            Time = System.currentTimeMillis();
-            newGame = false;
-        }
-
-        //correct = Play.entered(this, wordEntry, currentWord, currentTry, characterNumber, letters, Time);
-
-
     }
 
+
+    //For the current guess set the colors
+    public void setRowColor(Integer[] currentWordColor){
+        for (int i = 0; i < letters; i++) {
+            tableColorsInt[currentTry][i] = currentWordColor[i];
+            TextView currentLetter = findViewById(tableIds[currentTry][i]);
+            currentLetter.setBackgroundColor(currentWordColor[i]);
+        }
+    }
 
     public void initializeTableColors(){
         for (int i = 0; i < tries; i++) {
