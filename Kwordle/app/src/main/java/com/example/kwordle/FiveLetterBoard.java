@@ -32,7 +32,7 @@ public class FiveLetterBoard extends Opening {
             {R.id.rowSix_columnOne, R.id.rowSix_columnTwo, R.id.rowSix_columnThree, R.id.rowSix_columnFour, R.id.rowSix_columnFive}
     };
 
-    public String[][] tableColors = new String[tries][letters];
+    //public String[][] tableColors = new String[tries][letters];
     public static Integer[][] tableColorsInt = new Integer[tries][letters];
 
     public char[] currentWord = new char[letters];
@@ -135,13 +135,13 @@ public class FiveLetterBoard extends Opening {
     //Check to see if the word is real
     public Boolean wordIsReal(){
         //Create a word from the characters
-        String thisAnswer = "";
+        StringBuilder thisAnswer = new StringBuilder();
         for (int i = 0; i < letters; i++){
-            thisAnswer += wordEntry[i];
+            thisAnswer.append(wordEntry[i]);
         }
 
         //Check if word is in the word list
-        if (!WordLists.fiveWordListArray.contains(thisAnswer)) {
+        if (!WordLists.fiveWordListArray.contains(thisAnswer.toString())) {
             Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
 
             return false;
@@ -184,7 +184,6 @@ public class FiveLetterBoard extends Opening {
         //Check if correct or game complete and initiate popup
         checkComplete(correct, currentTry);
 
-        return;
     }
 
     //Check to see if the game is complete, and update the archive, and trigger pop up if it is
@@ -223,11 +222,14 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
+    /*
     public void initializeWordEntry(){
         for (int i = 0; i < letters; i++){
             wordEntry[i] = ' ';
         }
     }
+
+     */
 
     /*
     public void setWordEntry(){
