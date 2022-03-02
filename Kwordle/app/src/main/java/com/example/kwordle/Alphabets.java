@@ -47,13 +47,7 @@ public class Alphabets {
 
     }
 
-    /*
-                    alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
-                thisLetter.color = getResources().getColor(R.color.green);
-                alphabet.put(wordEntry[i], thisLetter);
-     */
-
-
+    
     public alphaWrapper get(char thisCharacter){
         return this.alphabet.get(thisCharacter);
     }

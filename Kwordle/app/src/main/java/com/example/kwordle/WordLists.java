@@ -54,7 +54,7 @@ public class WordLists {
     //Get the word list to use as the answers
     public List<String> getStartingWords(String letters, Context context){
         //Create file name based on how many letters
-        String filename = letters + "LetterWords.csv";
+        String filename = letters + "StartWords.csv";
         List<String> startingWords = new ArrayList<>();
 
         //Create asset manager based on context from opening screen

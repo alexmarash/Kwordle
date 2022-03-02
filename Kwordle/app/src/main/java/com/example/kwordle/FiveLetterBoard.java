@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 
 import com.example.kwordle.Alphabets.alphaWrapper;
 
-import java.util.Hashtable;
 import java.util.Map;
 
 
@@ -21,10 +20,8 @@ public class FiveLetterBoard extends Opening {
     public static Integer tries = 6;
     public static Integer letters = 5;
     public static Integer characterNumber = 0;
-    public static char wordEntry[] = new char[letters];
+    public static char[] wordEntry = new char[letters];
     public static Integer currentTry;
-    //public static Map<String, Boolean> wordList = new HashMap<>();
-
 
     public int[][] tableIds= {
             {R.id.rowOne_columnOne, R.id.rowOne_columnTwo, R.id.rowOne_columnThree, R.id.rowOne_columnFour, R.id.rowOne_columnFive},
@@ -38,54 +35,57 @@ public class FiveLetterBoard extends Opening {
     public String[][] tableColors = new String[tries][letters];
     public static Integer[][] tableColorsInt = new Integer[tries][letters];
 
-    public Hashtable entry = new Hashtable();
-    //public static Map<Character, alphaWrapper> alphabet = new HashMap<>();
     public char[] currentWord = new char[letters];
     public String[] wordColor = new String[letters];
     public Integer[] wordColorInt = new Integer[letters];
     public static Boolean correct;
-    public static String theAnswer = new String();
-    //public static SQLiteDatabase archives;
+    public static String theAnswer;
     public static float Time;
     public static boolean newGame = true;
     public static Alphabets alphabet;
 
 
+    //OnCreate of the page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.five_letter_main);
 
-        //archives = openOrCreateDatabase("kwordleArchive",MODE_PRIVATE, null );
+        //Create and initialize the alphabet and all colors and entries
         alphabet = new Alphabets(this);
-
-        //WordLists fiveLetterWord = new WordLists(this, letters);
-        currentWord = getNewWord();
-        initializeTableColors();
+        //initializeTableColors();
         initializeWordColor();
-        initializeWordEntry();
+        //initializeWordEntry();
+
+        //Get current answer
+        currentWord = getNewWord();
+
+        //Set current try to zero
         currentTry = 0;
 
-        /*
+        /* TODO holding for possible use for savedInstances
         if (savedInstanceState != null){} else { }
         */
 
     }
 
-
+    //Save the state of the word entry, what character, what try and what the answer is
     @Override
     public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         savedInstanceState.putInt("Key_characterNumber", characterNumber);
         savedInstanceState.putCharArray("Key_wordEntry", wordEntry);
         savedInstanceState.putString("Key_theAnswer", theAnswer);
-        //savedInstanceState.putSerializable("Key_alphabet", (Serializable) alphabet);  //TODO This may need to do as an intent
-        //savedInstanceState.putSerializable("Key_tablecolor", tableColorsInt);
         savedInstanceState.putInt("Key_currentTry", currentTry);
+
+
+        //TODO may need to call savedStates of the alphabet later
+        //savedInstanceState.putSerializable("Key_alphabet", (Serializable) alphabet);
+        //savedInstanceState.putSerializable("Key_tablecolor", tableColorsInt);
 
         super.onSaveInstanceState(savedInstanceState);
     }
 
-    /*
+    /* TODO holding for possible use for savedInstances
     public void onViewStateRestored(@NonNull Bundle savedInstanceState){
     }
     protected void onRestore(@NonNull Bundle savedInstanceState) {
@@ -96,43 +96,52 @@ public class FiveLetterBoard extends Opening {
     }
      */
 
-
+    //TODO new game start from button on screen, this needs to change to popup
     public void newGameClick(View view) {
         newGame = true;
         startActivity(new Intent(FiveLetterBoard.this, FiveLetterBoard.class));
     }
 
+    //TODO update archive, this needs to move to the database area
+    //TODO need to check if the archive is already populated and if so update the entry instead of adding it
     public void updateArchive(String correct){
 
         String finishedTime = String.valueOf((Math.round(System.currentTimeMillis() - Time))/60000);
         String finishedTry = String.valueOf(currentTry);
 
         archives.execSQL("CREATE TABLE IF NOT EXISTS Statistics(Answer VARCHAR, Correct VARCHAR, Time VARCHAR, Trys VARCHAR);");
+        String SQLInput = "INSERT INTO Statistics(Answer, Correct, Time, Trys) VALUES(?, ?, ?, ?)";
 
-        //Cursor cursor = archives.query("Statistics", null, null, null, null, null, null);
-        String SQLinput = "INSERT INTO Statistics(Answer, Correct, Time, Trys) VALUES(?, ?, ?, ?)";
+        //TODO this has not been checked
+        //if (checkIfAnsweredBefore(theAnswer)){
+        //    SQLInput = "UPDATE Statistics(Answer, Correct, Time, Trys) VALUES(?, ?, ?, ?)";
+        //}
+
         String[] args = {theAnswer, correct, finishedTime, finishedTry};
-        archives.execSQL(SQLinput, args);
+        archives.execSQL(SQLInput, args);
     }
 
+    //TODO update archive, this needs to move to the database area
+    //Check if word is already in the database
     public Boolean checkIfAnsweredBefore(String possibleWord){
 
         String[] args = {possibleWord, "true"};
         Cursor cursor = archives.query("Statistics", null, "Answer=? AND Correct=?", args, null, null, null);
 
-        if (cursor.getCount() > 0){
-            return true;
-        }
-        else { return false;}
+        // if cursor count is 0 then it is not in teh database
+        return cursor.getCount() > 0;
     }
 
+    //Check to see if the word is real
     public Boolean wordIsReal(){
-        String thisAnswer = new String();
+        //Create a word from the characters
+        String thisAnswer = "";
         for (int i = 0; i < letters; i++){
             thisAnswer += wordEntry[i];
         }
 
-        if (wordLists.fiveWordListArray.contains(thisAnswer) == false ) {
+        //Check if word is in the word list
+        if (!WordLists.fiveWordListArray.contains(thisAnswer)) {
             Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
 
             return false;
@@ -140,14 +149,15 @@ public class FiveLetterBoard extends Opening {
         return true;
     }
 
+    //Enter button actions
     public void enterClick(View view) {
-        //correct = true;
 
-
-        if (characterNumber != letters) {
+        //Check to see if there are enough characters selected
+        if (!characterNumber.equals(letters)) {
             return;
         }
 
+        //Check to see if this is a new game and if so start the time
         if (newGame) {
             Time = System.currentTimeMillis();
             newGame = false;
@@ -156,77 +166,13 @@ public class FiveLetterBoard extends Opening {
         //Check if this is actually a word
         if (!wordIsReal()){return;}
 
-        //currentWordColor = Play.enter(this, currentWord, wordEntry, wordColorInt, letters, alphabet, correct);
-
-        //char answerCheck[] = currentWord.clone();  //This is the answer
-        //char entryCheck[] = wordEntry.clone();  //This what was entered
-        //String currentWordColorString[] = wordColor.clone();
-        //Integer[] currentWordColor = wordColorInt.clone();
+        //Creete the tuple of the word colors and correct check
         Pair<Integer[], Boolean> thisPlay = Play.enter(this, currentWord.clone(), wordEntry.clone(), wordColorInt, letters, alphabet);
-        //Integer currentWordColor[] = Play.enter(this, currentWord, wordEntry, wordColorInt, letters, alphabet, correct);
-
         Integer[] currentWordColor = thisPlay.first;
         correct = thisPlay.second;
 
-
-        /*
-
-        //Loop over the letters and set each of the letters in the entry to Gray or Green
-        for (int i = 0; i < letters; i++) {
-            if (entryCheck[i] == answerCheck[i]) {
-                currentWordColor[i] = getResources().getColor(R.color.green);
-                entryCheck[i] = ' ';
-                answerCheck[i] = '>';
-                //currentWordColorString[i] = "green";
-                alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
-                thisLetter.color = getResources().getColor(R.color.green);
-                alphabet.put(wordEntry[i], thisLetter);
-
-            }
-            else {
-                correct = false;
-                alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
-                if (thisLetter.getColor() != getResources().getColor(R.color.yellow) &&
-                        thisLetter.getColor() != getResources().getColor(R.color.green)) {
-                    thisLetter.color = getResources().getColor(R.color.gray);
-                    alphabet.put(wordEntry[i], thisLetter);}
-            }
-        }
-        for (int i = 0; i < letters; i++) {
-            for (int j = 0; j < letters; j++) {
-                //Loop over the letters to see if they are correct, but in the wrong spot and set to yellow in the alphabet and current guess array
-                //also set the entry check to blank to allow for repeated letters
-                if (entryCheck[i] == answerCheck[j]) {
-                    currentWordColor[i] = getResources().getColor(R.color.yellow);
-                    entryCheck[i] = ' ';
-                    answerCheck[j] = '>';
-                    //currentWordColorString[i] = "yellow";
-                    alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
-                    //If the letter is already green do not change it in the alphabet
-                    if (thisLetter.getColor() != getResources().getColor(R.color.green)) {
-                        thisLetter.color = getResources().getColor(R.color.yellow);
-                        alphabet.put(wordEntry[i], thisLetter);
-
-                    }
-                }
-            }
-        }
-
-
-         */
-
-        //For the current guess set the colors
+        //Set the colors for entry row
         setRowColor(currentWordColor);
-
-
-        /*
-        for (int i = 0; i < letters; i++) {
-            tableColorsInt[currentTry][i] = currentWordColor[i];
-            TextView currentLetter = findViewById(tableIds[currentTry][i]);
-            currentLetter.setBackgroundColor(currentWordColor[i]);
-        }
-         */
-
 
         //Increment the current try and reset the character number
         currentTry += 1;
@@ -238,17 +184,10 @@ public class FiveLetterBoard extends Opening {
         //Check if correct or game complete and initiate popup
         checkComplete(correct, currentTry);
 
-        /*
-        if (correct || currentTry > 5) {
-            updateArchive(String.valueOf(correct));
-            startActivity(new Intent(MainActivity.this,PopCorrect.class));
-        }
-        */
-
         return;
     }
 
-
+    //Check to see if the game is complete, and update the archive, and trigger pop up if it is
     public void checkComplete(boolean correct, Integer currentTry){
         if (correct || currentTry > 5) {
             updateArchive(String.valueOf(correct));
@@ -257,7 +196,7 @@ public class FiveLetterBoard extends Opening {
     }
 
 
-    //For the current guess set the colors
+    //For the current entry set the colors in the table
     public void setRowColor(Integer[] currentWordColor){
         for (int i = 0; i < letters; i++) {
             tableColorsInt[currentTry][i] = currentWordColor[i];
@@ -266,6 +205,7 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
+    /*
     public void initializeTableColors(){
         for (int i = 0; i < tries; i++) {
             for (int j = 0; j < letters; j++) {
@@ -274,6 +214,7 @@ public class FiveLetterBoard extends Opening {
             }
         }
     }
+    */
 
     public void initializeWordColor(){
         for (int i = 0; i < letters; i++){
@@ -306,51 +247,27 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
-    /*
-    public void resetAlphabetColor() {
-        for (Map.Entry<Character, alphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
-            alphaWrapper currentValue = entry.getValue();
-            Character currentKey = entry.getKey();
-            if (currentValue.color == getResources().getColor(R.color.yellow) || currentValue.color == getResources().getColor(R.color.green)) {
-                currentValue.color = getResources().getColor(R.color.gray);
-                alphabet.put(currentKey, currentValue);
-            }
-        }
-    }
-
-    public void setTableColorsInt() {
-        for (int i = 0; i < tries; i++){
-            for (int j = 0; j < letters; j++){
-                TextView currentSquare = findViewById(tableIds[j][i]);
-                currentSquare.setBackgroundColor(tableColorsInt[j][i]);
-            }
-        }
-
-
-    }
-    */
-
+    //Get a new word
     public char[] getNewWord(){
 
-        //List<String> usedWordList = importFiveLetterWord.getUsedListArray(this);
-
+        //While the word chosen has already been used, choose another word
         Boolean wordUsed = true;
-
         while (wordUsed) {
-
-            int index = (int) (Math.random() * wordLists.fiveStartingWords.size());
-            theAnswer = wordLists.fiveStartingWords.get(index);
+            int index = (int) (Math.random() * WordLists.fiveStartingWords.size());
+            theAnswer = WordLists.fiveStartingWords.get(index);
             wordUsed = checkIfAnsweredBefore(theAnswer);
         }
 
-        char newWord[] = new char[letters];
-
+        //Create the character array to check against
+        char[] newWord = new char[letters];
         for (int i = 0; i < letters; i++) {
             newWord[i] = theAnswer.charAt(i);
         }
 
+        //TODO Debugging items
         //theAnswer = "START";
         //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
+        System.out.println("===============================" + theAnswer);
 
         return newWord;
     }
