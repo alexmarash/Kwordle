@@ -10,25 +10,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class importFiveLetterWord {
+public class WordLists {
 
 
-    public static Map<String, Boolean> wordList = new HashMap<>();
-    private static DBHandler dbHandler;
+    //public static Map<String, Boolean> wordList = new HashMap<>();
+    //private static DBHandler dbHandler;
     //public static String[][] wordListArray = new String[20000][2];
-    public static List<String> wordListArray = new ArrayList<String>();
-    public static List<String> usedWords = new ArrayList<String>();
-    public static List<String> startingWords = new ArrayList<String>();
+    public static List<String> fiveWordListArray = new ArrayList<String>();
+    //public static List<String> usedWords = new ArrayList<String>();
+    public static List<String> fiveStartingWords = new ArrayList<String>();
     public static int numberOfLetters;
-    public AssetManager assetManager;
+    //public AssetManager assetManager;
     public Context fromContext;
 
 
-    importFiveLetterWord(Context context, int letters){
+    WordLists(Context context, int letters){
         this.numberOfLetters = letters;
         //String wordListName = new String();
         //String startListName = new String();
@@ -38,9 +36,9 @@ public class importFiveLetterWord {
         //if (letters == 5){
         //    this.word
         //}
-        this.wordListArray = getWordListArray();
+        this.fiveWordListArray = getWordListArray("five");
         //System.out.println("========= Word List" + wordListArray.size());
-        this.startingWords = getStartingWords();
+        this.fiveStartingWords = getStartingWords("five");
         //System.out.println("========= Starting" + startingWords.size());
 
         //this.context = context;
@@ -48,7 +46,7 @@ public class importFiveLetterWord {
 
     }
 
-
+    /*
 
     public static Map getWordListDBOriginal(Context context) {
 
@@ -123,7 +121,14 @@ public class importFiveLetterWord {
     }
 
 
-    public List getWordListArray() {
+
+
+     */
+    public List getWordListArray(String letters) {
+
+        String filename = letters + "LetterWords.csv";
+
+        List<String> wordListArray = new ArrayList<String>();
 
         AssetManager assetManager = fromContext.getAssets();
         //assetManager = inm.assetManager.getAssets();
@@ -131,7 +136,7 @@ public class importFiveLetterWord {
         //System.out.println("========= context" + context);
         try {
             //InputStream csvInputStream = getResources().openRawResource(R.raw.calendario_bolsa);
-            InputStream csvStream = assetManager.open("fiveLetterWords.csv");
+            InputStream csvStream = assetManager.open(filename);
             InputStreamReader csvStreamReader = new        InputStreamReader(csvStream);
             CSVReader reader = new CSVReader(csvStreamReader);
             //CSVReader reader = new CSVReader(new FileReader("fiveLeterWords.csv"));
@@ -145,7 +150,7 @@ public class importFiveLetterWord {
         }
         return wordListArray;
     }
-
+    /*
     public static List getWordListArrayOut(Context context) {
 
         AssetManager assetManager = context.getAssets();
@@ -168,7 +173,9 @@ public class importFiveLetterWord {
         }
         return wordListArray;
     }
+    */
 
+    /*
 
     public static List getUsedListArray(Context context) {
         AssetManager assetManager = context.getAssets();
@@ -189,13 +196,21 @@ public class importFiveLetterWord {
         }
         return usedWords;
     }
+     */
 
-    public List getStartingWords(){
+
+    public List getStartingWords(String letters){
         //AssetManager assetManager = context.getAssets();
+
+        String filename = letters + "LetterWords.csv";
+
+
+        List<String> startingWords = new ArrayList<String>();
+
         AssetManager assetManager = fromContext.getAssets();
 
         try {
-            InputStream csvStream = assetManager.open("startWords.csv");
+            InputStream csvStream = assetManager.open(filename);
             InputStreamReader csvStreamReader = new  InputStreamReader(csvStream);
             CSVReader reader = new CSVReader(csvStreamReader);
             String[] nextLine;
@@ -204,11 +219,13 @@ public class importFiveLetterWord {
                 startingWords.add(nextLine[0]);
             }
         } catch (IOException | CsvValidationException e) {
-            System.out.println("=============================HERE=================================");
+            //System.out.println("=============================HERE=================================");
         }
         return startingWords;
     }
 
+
+    /*
     public static CSVReader getWordReader(Context context) {
 
         AssetManager assetManager = context.getAssets();
@@ -227,7 +244,7 @@ public class importFiveLetterWord {
   
         return reader;
     }
-
+    */
 
 
 }

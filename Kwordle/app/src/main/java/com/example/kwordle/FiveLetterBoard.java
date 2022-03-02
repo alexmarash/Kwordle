@@ -2,7 +2,6 @@ package com.example.kwordle;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwordle.Alphabets.alphaWrapper;
 
@@ -18,7 +16,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 
-public class FiveLetterBoard extends AppCompatActivity {
+public class FiveLetterBoard extends Opening {
 
     public static Integer tries = 6;
     public static Integer letters = 5;
@@ -47,7 +45,7 @@ public class FiveLetterBoard extends AppCompatActivity {
     public Integer[] wordColorInt = new Integer[letters];
     public static Boolean correct;
     public static String theAnswer = new String();
-    public static SQLiteDatabase archives;
+    //public static SQLiteDatabase archives;
     public static float Time;
     public static boolean newGame = true;
     public static Alphabets alphabet;
@@ -58,10 +56,10 @@ public class FiveLetterBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.five_letter_main);
 
-        archives = openOrCreateDatabase("kwordleArchive",MODE_PRIVATE, null );
+        //archives = openOrCreateDatabase("kwordleArchive",MODE_PRIVATE, null );
         alphabet = new Alphabets(this);
 
-        importFiveLetterWord fiveLetterWord = new importFiveLetterWord(this, letters);
+        WordLists fiveLetterWord = new WordLists(this, letters);
         currentWord = getNewWord();
         initializeTableColors();
         initializeWordColor();
@@ -134,7 +132,7 @@ public class FiveLetterBoard extends AppCompatActivity {
             thisAnswer += wordEntry[i];
         }
 
-        if (importFiveLetterWord.wordListArray.contains(thisAnswer) == false ) {
+        if (WordLists.fiveWordListArray.contains(thisAnswer) == false ) {
             Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
 
             return false;
@@ -340,8 +338,8 @@ public class FiveLetterBoard extends AppCompatActivity {
 
         while (wordUsed) {
 
-            int index = (int) (Math.random() * importFiveLetterWord.startingWords.size());
-            theAnswer = importFiveLetterWord.startingWords.get(index);
+            int index = (int) (Math.random() * WordLists.fiveStartingWords.size());
+            theAnswer = WordLists.fiveStartingWords.get(index);
             wordUsed = checkIfAnsweredBefore(theAnswer);
         }
 
