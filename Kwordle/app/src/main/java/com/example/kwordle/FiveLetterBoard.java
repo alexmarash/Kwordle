@@ -59,7 +59,7 @@ public class FiveLetterBoard extends Opening {
         //archives = openOrCreateDatabase("kwordleArchive",MODE_PRIVATE, null );
         alphabet = new Alphabets(this);
 
-        WordLists fiveLetterWord = new WordLists(this, letters);
+        //WordLists fiveLetterWord = new WordLists(this, letters);
         currentWord = getNewWord();
         initializeTableColors();
         initializeWordColor();
@@ -132,7 +132,7 @@ public class FiveLetterBoard extends Opening {
             thisAnswer += wordEntry[i];
         }
 
-        if (WordLists.fiveWordListArray.contains(thisAnswer) == false ) {
+        if (wordLists.fiveWordListArray.contains(thisAnswer) == false ) {
             Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
 
             return false;
@@ -338,8 +338,8 @@ public class FiveLetterBoard extends Opening {
 
         while (wordUsed) {
 
-            int index = (int) (Math.random() * WordLists.fiveStartingWords.size());
-            theAnswer = WordLists.fiveStartingWords.get(index);
+            int index = (int) (Math.random() * wordLists.fiveStartingWords.size());
+            theAnswer = wordLists.fiveStartingWords.get(index);
             wordUsed = checkIfAnsweredBefore(theAnswer);
         }
 

@@ -23,25 +23,25 @@ public class WordLists {
     public static List<String> fiveStartingWords = new ArrayList<String>();
     public static int numberOfLetters;
     //public AssetManager assetManager;
-    public Context fromContext;
+    //public Context fromContext;
 
 
-    WordLists(Context context, int letters){
-        this.numberOfLetters = letters;
+    WordLists(Context context){
+        //this.numberOfLetters = letters;
         //String wordListName = new String();
         //String startListName = new String();
-        this.fromContext = context;
+        //this.fromContext = context;
         //System.out.println("========= context 2" + context);
         //this.assetManager = context.getAssets();
         //if (letters == 5){
         //    this.word
         //}
-        this.fiveWordListArray = getWordListArray("five");
+        this.fiveWordListArray = getWordListArray("five", context);
         //System.out.println("========= Word List" + wordListArray.size());
-        this.fiveStartingWords = getStartingWords("five");
+        this.fiveStartingWords = getStartingWords("five", context);
         //System.out.println("========= Starting" + startingWords.size());
 
-        //this.context = context;
+        //this.fromContext = context;
 
 
     }
@@ -124,13 +124,14 @@ public class WordLists {
 
 
      */
-    public List getWordListArray(String letters) {
+    public List getWordListArray(String letters, Context context) {
 
         String filename = letters + "LetterWords.csv";
 
         List<String> wordListArray = new ArrayList<String>();
 
-        AssetManager assetManager = fromContext.getAssets();
+        //AssetManager assetManager = fromContext.getAssets();
+        AssetManager assetManager = context.getAssets();
         //assetManager = inm.assetManager.getAssets();
         //assetManager = this.assetManager;
         //System.out.println("========= context" + context);
@@ -199,7 +200,7 @@ public class WordLists {
      */
 
 
-    public List getStartingWords(String letters){
+    public List getStartingWords(String letters, Context context){
         //AssetManager assetManager = context.getAssets();
 
         String filename = letters + "LetterWords.csv";
@@ -207,7 +208,8 @@ public class WordLists {
 
         List<String> startingWords = new ArrayList<String>();
 
-        AssetManager assetManager = fromContext.getAssets();
+        //AssetManager assetManager = fromContext.getAssets();
+        AssetManager assetManager = context.getAssets();
 
         try {
             InputStream csvStream = assetManager.open(filename);
