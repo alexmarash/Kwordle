@@ -7,13 +7,11 @@ import android.view.View;
 import android.widget.TextView;
 
 public class PopCorrect extends Activity {
-    //private val windowParams = context.getSystemsService(Context.WINDOW_SERVICE) as WindowManager
-    //WindowManager.LayoutParams(PixelFormat.TRANSLUCENT);
 
+    //@SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);
-        //overridePendingTransition(1, 1);
         setContentView(R.layout.popupccorrect);
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -33,18 +31,18 @@ public class PopCorrect extends Activity {
         TextView answerTriesTextView = (TextView) findViewById(R.id.answerTriesBox);
 
         if (FiveLetterBoard.correct) {
-            correctTextView.setText("Congratulations you are Correct!!!! \n The answer was:");
+            correctTextView.setText(R.string.congrats);
             if (FiveLetterBoard.currentTry > 1) {
-                answerTriesTextView.setText(String.valueOf(FiveLetterBoard.currentTry) + " tries");
+                answerTriesTextView.setText(String.valueOf(FiveLetterBoard.currentTry) + getString(R.string.tries));
             }
             else {
-                answerTriesTextView.setText("1 try");
+                answerTriesTextView.setText(R.string.oneTry);
             }
         }
         else{
-            correctTextView.setText("Sorry you were wrong \n The answer was:");
-            wrongTriesTextView.setText("You blew your " + String.valueOf(FiveLetterBoard.currentTry) + " tries");
-            answerTriesTextView.setText("You suck");
+            correctTextView.setText(R.string.wrongAnswer);
+            wrongTriesTextView.setText(getString(R.string.blewIt) + String.valueOf(FiveLetterBoard.currentTry) + getString(R.string.tries));
+            answerTriesTextView.setText(R.string.youSuck);
         }
     }
 
