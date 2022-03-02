@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kwordle.Alphabets.alphaWrapper;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public static Integer[][] tableColorsInt = new Integer[tries][letters];
 
     public Hashtable entry = new Hashtable();
-    public static Map<Character, alphaWrapper> alphabet = new HashMap<>();
+    //public static Map<Character, alphaWrapper> alphabet = new HashMap<>();
     public char[] currentWord = new char[letters];
     public String[] wordColor = new String[letters];
     public Integer[] wordColorInt = new Integer[letters];
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public static SQLiteDatabase archives;
     public static float Time;
     public static boolean newGame = true;
+    public static Alphabets alphabet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         archives = openOrCreateDatabase("kwordleArchive",MODE_PRIVATE, null );
-
+        alphabet = new Alphabets(this);
 
         importFiveLetterWord fiveLetterWord = new importFiveLetterWord(this, letters);
-        initializeAlphabet();
+        //initializeAlphabet();
         currentWord = getNewWord();
         initializeTableColors();
         initializeWordColor();
@@ -209,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
+
         char answerCheck[] = currentWord.clone();  //This is the answer
         char entryCheck[] = wordEntry.clone();  //This what was entered
         String currentWordColorString[] = wordColor.clone();
@@ -326,6 +331,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void enterClickTwo(View view) {
+        if (characterNumber != letters) {
+            return;
+        }
+
+        if (newGame) {
+            Time = System.currentTimeMillis();
+            newGame = false;
+        }
+
+        //correct = Play.entered(this, wordEntry, currentWord, currentTry, characterNumber, letters, Time);
+
+
+    }
+
+    /*
     class alphaWrapper {
         //private final int letter;
         //private final int color;
@@ -341,8 +362,9 @@ public class MainActivity extends AppCompatActivity {
         private int letter;
         private int color;
     }
+    */
 
-
+    /*
     //Initialize alphabet
     public Map initializeAlphabet() {
         //Map<Character, alphaWrapper> alphabet = new HashMap<>();
@@ -377,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
         return alphabet;
     }
 
-
+    */
 
 
     public void initializeTableColors(){
@@ -410,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setAlphabetColor() {
-        for (Map.Entry<Character, alphaWrapper> entry : alphabet.entrySet()  ){
+        for (Map.Entry<Character, alphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
                 alphaWrapper currentValue = entry.getValue();
                 TextView currentLetter = findViewById(currentValue.letter);
                 currentLetter.setBackgroundColor(currentValue.color);
@@ -418,7 +440,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void resetAlphabetColor() {
-        for (Map.Entry<Character, alphaWrapper> entry : alphabet.entrySet()  ){
+        for (Map.Entry<Character, alphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
             alphaWrapper currentValue = entry.getValue();
             Character currentKey = entry.getKey();
             if (currentValue.color == getResources().getColor(R.color.yellow) || currentValue.color == getResources().getColor(R.color.green)) {
