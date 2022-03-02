@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Kwordle</string>
     <string name="title_page">Katheryn\'s Wordle</string>
+    <string name="title_page2Line">Katheryn\'s \nWordle</string>
     <string name="newGame">New Game</string>
     <string name="initial_text"> </string>
     <string name="correctAnswer">You are Correct!!!!\nThe answer was:</string>

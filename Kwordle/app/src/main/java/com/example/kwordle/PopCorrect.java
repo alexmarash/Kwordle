@@ -1,13 +1,9 @@
 package com.example.kwordle;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class PopCorrect extends Activity {
@@ -32,14 +28,14 @@ public class PopCorrect extends Activity {
         TextView wrongTriesTextView = (TextView) findViewById(R.id.correctBox2);
 
         TextView answerTextView = (TextView) findViewById(R.id.answerBox);
-        answerTextView.setText(MainActivity.theAnswer);
+        answerTextView.setText(FiveLetterBoard.theAnswer);
 
         TextView answerTriesTextView = (TextView) findViewById(R.id.answerTriesBox);
 
-        if (MainActivity.correct) {
+        if (FiveLetterBoard.correct) {
             correctTextView.setText("Congratulations you are Correct!!!! \n The answer was:");
-            if (MainActivity.currentTry > 1) {
-                answerTriesTextView.setText(String.valueOf(MainActivity.currentTry) + " tries");
+            if (FiveLetterBoard.currentTry > 1) {
+                answerTriesTextView.setText(String.valueOf(FiveLetterBoard.currentTry) + " tries");
             }
             else {
                 answerTriesTextView.setText("1 try");
@@ -47,7 +43,7 @@ public class PopCorrect extends Activity {
         }
         else{
             correctTextView.setText("Sorry you were wrong \n The answer was:");
-            wrongTriesTextView.setText("You blew your " + String.valueOf(MainActivity.currentTry) + " tries");
+            wrongTriesTextView.setText("You blew your " + String.valueOf(FiveLetterBoard.currentTry) + " tries");
             answerTriesTextView.setText("You suck");
         }
     }

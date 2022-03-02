@@ -18,7 +18,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 
-public class MainActivity extends AppCompatActivity {
+public class FiveLetterBoard extends AppCompatActivity {
 
     public static Integer tries = 6;
     public static Integer letters = 5;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.five_letter_main);
 
         archives = openOrCreateDatabase("kwordleArchive",MODE_PRIVATE, null );
         alphabet = new Alphabets(this);
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void newGameClick(View view) {
         newGame = true;
-        startActivity(new Intent(MainActivity.this, MainActivity.class));
+        startActivity(new Intent(FiveLetterBoard.this, FiveLetterBoard.class));
     }
 
     public void updateArchive(String correct){
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
     public void checkComplete(boolean correct, Integer currentTry){
         if (correct || currentTry > 5) {
             updateArchive(String.valueOf(correct));
-            startActivity(new Intent(MainActivity.this,PopCorrect.class));
+            startActivity(new Intent(FiveLetterBoard.this,PopCorrect.class));
         }
     }
 
