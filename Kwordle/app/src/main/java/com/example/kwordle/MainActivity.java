@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,12 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kwordle.Alphabets.alphaWrapper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -50,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
     public Integer[] wordColorInt = new Integer[letters];
     public static Boolean correct;
     public static String theAnswer = new String();
-    public static List fullWordList = new ArrayList<String>();
     public static SQLiteDatabase archives;
     public static float Time;
     public static boolean newGame = true;
     public static Alphabets alphabet;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         alphabet = new Alphabets(this);
 
         importFiveLetterWord fiveLetterWord = new importFiveLetterWord(this, letters);
-        //initializeAlphabet();
         currentWord = getNewWord();
         initializeTableColors();
         initializeWordColor();
@@ -73,43 +70,8 @@ public class MainActivity extends AppCompatActivity {
         currentTry = 0;
 
         /*
-        if (savedInstanceState != null){
-            characterNumber = savedInstanceState.getInt("Key_characterNumber");
-            wordEntry = savedInstanceState.getCharArray("Key_wordEntry");
-            theAnswer = savedInstanceState.getString("Key_theAnswer");
-            //alphabet = (Map<Character, alphaWrapper>) savedInstanceState.getSerializable("Key_alphabet");
-            //tableColorsInt = (Integer[][]) savedInstanceState.getSerializable("Key_tablecolor");
-            currentTry = savedInstanceState.getInt("Key_currentTry");
-
-            //setAlphabetColor();
-            //setTableColorsInt();
-
-            initializeAlphabet();
-            initializeTableColors();
-
-
-            setWordEntry();
-            initializeWordColor();  //TODO not sure about this
-        }
-        else {
+        if (savedInstanceState != null){} else { }
         */
-            //alphabet = initializeAlphabet();
-            //System.out.println("=============================FIRST HERE=================================");
-            //System.out.println("========= context" + this);
-            //importFiveLetterWord fiveLetterWord = new importFiveLetterWord(this, letters);
-
-            //fullWordList = importFiveLetterWord.getWordListArray(this);
-            //System.out.println("========= fullize" + fullWordList.size());
-
-            //initializeAlphabet();
-            //currentWord = getNewWord();
-            //initializeTableColors();
-            //initializeWordColor();
-            //initializeWordEntry();
-            //currentTry = 0;
-        //}
-
-        //public void onStart
 
     }
 
@@ -148,21 +110,10 @@ public class MainActivity extends AppCompatActivity {
         String finishedTime = String.valueOf((Math.round(System.currentTimeMillis() - Time))/60000);
         String finishedTry = String.valueOf(currentTry);
 
-        //System.out.println("==================================" + theAnswer + " " + correct + " " + " " + finishedTime + " " + " " +  finishedTry);
-
-
-
         archives.execSQL("CREATE TABLE IF NOT EXISTS Statistics(Answer VARCHAR, Correct VARCHAR, Time VARCHAR, Trys VARCHAR);");
 
-        Cursor cursor = archives.query("Statistics", null, null, null, null, null, null);
-
-        //System.out.println(cursor.getColumnCount());
-
-        //String SQLinput = "INSERT INTO Statistics VALUES(" + theAnswer +" ," + correct + " ," + finishedTime
-        //        + " ," + finishedTry + ");";
+        //Cursor cursor = archives.query("Statistics", null, null, null, null, null, null);
         String SQLinput = "INSERT INTO Statistics(Answer, Correct, Time, Trys) VALUES(?, ?, ?, ?)";
-        //archives.execSQL("INSERT INTO Statistics(Answer, Correct, Time, Trys) VALUES(theAnswer, correct, finishedTime, finishedTry);");
-        //archives.execSQL(SQLinput);
         String[] args = {theAnswer, correct, finishedTime, finishedTry};
         archives.execSQL(SQLinput, args);
     }
@@ -176,19 +127,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else { return false;}
-
-
-        //String[] args = { "first string", "second@string.com" };
-        //Cursor cursor = db.query("TABLE_NAME", null, "name=? AND email=?", args, null);
-        //Cursor resultSet = archives.rawQuery("Select * from Statistics", null);
-
-
     }
 
-
-
     public void enterClick(View view) {
-        correct = true;
+        //correct = true;
+
 
         if (characterNumber != letters) {
             return;
@@ -212,13 +155,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        //currentWordColor = Play.enter(this, currentWord, wordEntry, wordColorInt, letters, alphabet, correct);
+
+        //char answerCheck[] = currentWord.clone();  //This is the answer
+        //char entryCheck[] = wordEntry.clone();  //This what was entered
+        //String currentWordColorString[] = wordColor.clone();
+        //Integer[] currentWordColor = wordColorInt.clone();
+        Pair<Integer[], Boolean> thisPlay = Play.enter(this, currentWord.clone(), wordEntry.clone(), wordColorInt, letters, alphabet);
+        //Integer currentWordColor[] = Play.enter(this, currentWord, wordEntry, wordColorInt, letters, alphabet, correct);
+
+        Integer[] currentWordColor = thisPlay.first;
+        correct = thisPlay.second;
 
 
-        char answerCheck[] = currentWord.clone();  //This is the answer
-        char entryCheck[] = wordEntry.clone();  //This what was entered
-        String currentWordColorString[] = wordColor.clone();
-        Integer currentWordColor[] = wordColorInt.clone();
-
+        /*
 
         //Loop over the letters and set each of the letters in the entry to Gray or Green
         for (int i = 0; i < letters; i++) {
@@ -226,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 currentWordColor[i] = getResources().getColor(R.color.green);
                 entryCheck[i] = ' ';
                 answerCheck[i] = '>';
-                currentWordColorString[i] = "green";
+                //currentWordColorString[i] = "green";
                 alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
                 thisLetter.color = getResources().getColor(R.color.green);
                 alphabet.put(wordEntry[i], thisLetter);
@@ -239,8 +189,6 @@ public class MainActivity extends AppCompatActivity {
                         thisLetter.getColor() != getResources().getColor(R.color.green)) {
                     thisLetter.color = getResources().getColor(R.color.gray);
                     alphabet.put(wordEntry[i], thisLetter);}
-                //thisLetter.color = getResources().getColor(R.color.gray);
-                //alphabet.put(wordEntry[i], thisLetter);
             }
         }
         for (int i = 0; i < letters; i++) {
@@ -251,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     currentWordColor[i] = getResources().getColor(R.color.yellow);
                     entryCheck[i] = ' ';
                     answerCheck[j] = '>';
-                    currentWordColorString[i] = "yellow";
+                    //currentWordColorString[i] = "yellow";
                     alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
                     //If the letter is already green do not change it in the alphabet
                     if (thisLetter.getColor() != getResources().getColor(R.color.green)) {
@@ -262,48 +210,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        /*
-        //Loop over the letters and set each of the letters in the entry to Gray
-        for (int i = 0; i < letters; i++) {
-            alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
-            thisLetter.color = getResources().getColor(R.color.gray);
-            alphabet.put(wordEntry[i], thisLetter);
-        }
-        */
 
-        /*
-        // Loop over the letters in the current entry
-        for (int i = 0; i < letters; i++) {
-            //Check to see if the letter is in the correct spot and set the letter to green in the alphabet and in the current guess array
-            //also set the entry check to blank to allow for repeated letters
-            if (wordEntry[i] == currentWord[i]) {
-                currentWordColor[i] = getResources().getColor(R.color.green);
-                entryCheck[i] = ' ';
-                currentWordColorString[i] = "green";
-                alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
-                thisLetter.color = getResources().getColor(R.color.green);
-                alphabet.put(wordEntry[i], thisLetter);
 
-            //If not in the correct spot set the correct flag to false
-            } else {
-                correct = false;
-                //Loop over the letters to see if they are correct, but in the wrong spot and set to yellow in the alphabet and current guess array
-                //also set the entry check to blank to allow for repeated letters
-                for (int j = 0; j < letters; j++) {
-                    if (wordEntry[i] == entryCheck[j]) {
-                        currentWordColor[i] = getResources().getColor(R.color.yellow);
-                        entryCheck[j] = ' ';
-                        currentWordColorString[i] = "yellow";
-                        alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
-                        //If the letter is already green do not change it in the alphabet
-                        if (thisLetter.getColor() != getResources().getColor(R.color.green)) {
-                            thisLetter.color = getResources().getColor(R.color.yellow);
-                            alphabet.put(wordEntry[i], thisLetter);
-                        }
-                    }
-                }
-            }
-        }
          */
 
 
@@ -320,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Set the alphabet colors for the entry
         setAlphabetColor();
-        //resetAlphabetColor();
 
         //Check if correct or game complete and initiate popup
         if (correct || currentTry > 5) {
@@ -346,61 +253,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
-    class alphaWrapper {
-        //private final int letter;
-        //private final int color;
-
-        public alphaWrapper(int letter, int color) {
-            this.letter = letter;
-            this.color = color;
-        }
-
-        public int getColor() {return this.color;}
-        public int getLetter() {return this.letter;}
-
-        private int letter;
-        private int color;
-    }
-    */
-
-    /*
-    //Initialize alphabet
-    public Map initializeAlphabet() {
-        //Map<Character, alphaWrapper> alphabet = new HashMap<>();
-
-        alphabet.put('A', new alphaWrapper(R.id.buttonA, getResources().getColor(R.color.white)));
-        alphabet.put('B', new alphaWrapper(R.id.buttonB, getResources().getColor(R.color.white)));
-        alphabet.put('C', new alphaWrapper(R.id.buttonC, getResources().getColor(R.color.white)));
-        alphabet.put('D', new alphaWrapper(R.id.buttonD, getResources().getColor(R.color.white)));
-        alphabet.put('E', new alphaWrapper(R.id.buttonE, getResources().getColor(R.color.white)));
-        alphabet.put('F', new alphaWrapper(R.id.buttonF, getResources().getColor(R.color.white)));
-        alphabet.put('G', new alphaWrapper(R.id.buttonG, getResources().getColor(R.color.white)));
-        alphabet.put('H', new alphaWrapper(R.id.buttonH, getResources().getColor(R.color.white)));
-        alphabet.put('I', new alphaWrapper(R.id.buttonI, getResources().getColor(R.color.white)));
-        alphabet.put('J', new alphaWrapper(R.id.buttonJ, getResources().getColor(R.color.white)));
-        alphabet.put('K', new alphaWrapper(R.id.buttonK, getResources().getColor(R.color.white)));
-        alphabet.put('L', new alphaWrapper(R.id.buttonL, getResources().getColor(R.color.white)));
-        alphabet.put('M', new alphaWrapper(R.id.buttonM, getResources().getColor(R.color.white)));
-        alphabet.put('N', new alphaWrapper(R.id.buttonN, getResources().getColor(R.color.white)));
-        alphabet.put('O', new alphaWrapper(R.id.buttonO, getResources().getColor(R.color.white)));
-        alphabet.put('P', new alphaWrapper(R.id.buttonP, getResources().getColor(R.color.white)));
-        alphabet.put('Q', new alphaWrapper(R.id.buttonQ, getResources().getColor(R.color.white)));
-        alphabet.put('R', new alphaWrapper(R.id.buttonR, getResources().getColor(R.color.white)));
-        alphabet.put('S', new alphaWrapper(R.id.buttonS, getResources().getColor(R.color.white)));
-        alphabet.put('T', new alphaWrapper(R.id.buttonT, getResources().getColor(R.color.white)));
-        alphabet.put('U', new alphaWrapper(R.id.buttonU, getResources().getColor(R.color.white)));
-        alphabet.put('V', new alphaWrapper(R.id.buttonV, getResources().getColor(R.color.white)));
-        alphabet.put('W', new alphaWrapper(R.id.buttonW, getResources().getColor(R.color.white)));
-        alphabet.put('X', new alphaWrapper(R.id.buttonX, getResources().getColor(R.color.white)));
-        alphabet.put('Y', new alphaWrapper(R.id.buttonY, getResources().getColor(R.color.white)));
-        alphabet.put('Z', new alphaWrapper(R.id.buttonZ, getResources().getColor(R.color.white)));
-
-        return alphabet;
-    }
-
-    */
-
 
     public void initializeTableColors(){
         for (int i = 0; i < tries; i++) {
@@ -424,12 +276,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
     public void setWordEntry(){
         for (int i = 0; i < letters; i++){
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][i]);
             letterTextView.setText(wordEntry[i]);
         }
     }
+    */
+
 
     public void setAlphabetColor() {
         for (Map.Entry<Character, alphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
@@ -439,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
     public void resetAlphabetColor() {
         for (Map.Entry<Character, alphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
             alphaWrapper currentValue = entry.getValue();
@@ -460,27 +316,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    */
 
     public char[] getNewWord(){
 
-        List<String> usedWordList = importFiveLetterWord.getUsedListArray(this);
+        //List<String> usedWordList = importFiveLetterWord.getUsedListArray(this);
 
         Boolean wordUsed = true;
 
         while (wordUsed) {
 
             int index = (int) (Math.random() * importFiveLetterWord.startingWords.size());
-
-            //System.out.println("index" + importFiveLetterWord.startingWords.size());
-
             theAnswer = importFiveLetterWord.startingWords.get(index);
-
-
-            System.out.println("===========================================the answer" + theAnswer);
-
             wordUsed = checkIfAnsweredBefore(theAnswer);
-            //wordUsed = usedWordList.contains(theAnswer);
         }
 
         char newWord[] = new char[letters];
@@ -488,43 +336,6 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < letters; i++) {
             newWord[i] = theAnswer.charAt(i);
         }
-
-        //theAnswer = "START";
-        //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
-
-        //System.out.println("=======================" + checkIfAnsweredBefore(theAnswer));
-
-
-        return newWord;
-    }
-
-    public char[] getNewWordOriginal(){
-
-        Map<String, Boolean> currentWordList = new HashMap<>();
-        //currentWordList = importFiveLetterWord.getWordList(this);
-        //currentWordList = importFiveLetterWord.getWordList(this);
-
-        boolean wordUsed = true;
-        Random R = new Random();
-        //Set<String> theKeys = currentWordList.keySet();
-        //String[] keyArray = theKeys.toArray();
-
-        List<String> theKeys = new ArrayList<>(currentWordList.keySet());
-
-        while (wordUsed){
-            int randomKey = R.nextInt(theKeys.size());
-            wordUsed = currentWordList.get(theKeys.get(randomKey));
-            theAnswer = theKeys.get(randomKey);
-        }
-
-
-        char newWord[] = new char[letters];
-
-        for (int i = 0; i < letters; i++) {
-            newWord[i] = theAnswer.charAt(i);
-        }
-
-
 
         //theAnswer = "START";
         //char newWord[] = {'S', 'T', 'A', 'R', 'T'};

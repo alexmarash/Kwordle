@@ -1,7 +1,67 @@
 package com.example.kwordle;
 
 
+import android.content.Context;
+import android.util.Pair;
+
 public class Play  {
+
+
+    public static Pair<Integer[], Boolean> enter(Context context, char[] currentWord, char[] wordEntry, Integer[] wordColorInt,
+                                Integer letters, Alphabets alphabet)
+    {
+        Boolean correct = true;
+
+        char answerCheck[] = currentWord.clone();  //This is the answer
+        char entryCheck[] = wordEntry.clone();  //This what was entered
+        Integer currentWordColor[] = wordColorInt.clone();
+
+
+        //Loop over the letters and set each of the letters in the entry to Gray or Green
+        for (int i = 0; i < letters; i++) {
+            if (entryCheck[i] == answerCheck[i]) {
+                currentWordColor[i] = context.getResources().getColor(R.color.green);
+                entryCheck[i] = ' ';
+                answerCheck[i] = '>';
+                //currentWordColorString[i] = "green";
+                Alphabets.alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
+                thisLetter.color = context.getResources().getColor(R.color.green);
+                alphabet.put(wordEntry[i], thisLetter);
+
+            }
+            else {
+                correct = false;
+                Alphabets.alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
+                if (thisLetter.getColor() != context.getResources().getColor(R.color.yellow) &&
+                        thisLetter.getColor() != context.getResources().getColor(R.color.green)) {
+                    thisLetter.color = context.getResources().getColor(R.color.gray);
+                    alphabet.put(wordEntry[i], thisLetter);}
+            }
+        }
+        for (int i = 0; i < letters; i++) {
+            for (int j = 0; j < letters; j++) {
+                //Loop over the letters to see if they are correct, but in the wrong spot and set to yellow in the alphabet and current guess array
+                //also set the entry check to blank to allow for repeated letters
+                if (entryCheck[i] == answerCheck[j]) {
+                    currentWordColor[i] = context.getResources().getColor(R.color.yellow);
+                    entryCheck[i] = ' ';
+                    answerCheck[j] = '>';
+                    //currentWordColorString[i] = "yellow";
+                    Alphabets.alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
+                    //If the letter is already green do not change it in the alphabet
+                    if (thisLetter.getColor() != context.getResources().getColor(R.color.green)) {
+                        thisLetter.color = context.getResources().getColor(R.color.yellow);
+                        alphabet.put(wordEntry[i], thisLetter);
+
+                    }
+                }
+            }
+        }
+
+        return new Pair<Integer[], Boolean>(currentWordColor, correct);
+
+
+    }
 
     /*
 
