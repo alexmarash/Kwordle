@@ -15,4 +15,5 @@
     <string name="congrats">Congratulations you are Correct!!!! \n The answer was:</string>
     <string name="tries">\ tries</string>
     <string name="blewIt">You blew your\ </string>
+    <string name="fiveLetterStart">New \nFive Letter Game</string>
 </resources>

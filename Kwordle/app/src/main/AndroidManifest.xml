@@ -41,6 +41,10 @@
             android:theme="@style/AppTheme.popupTheme">
         </activity>
 
+        <activity
+            android:name=".NewGamePopUp"
+            android:theme="@style/AppTheme.popupTheme">
+        </activity>
 
 
 

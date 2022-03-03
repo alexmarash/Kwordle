@@ -62,6 +62,7 @@ public class FiveLetterBoard extends Opening {
 
         //Set current try to zero
         currentTry = 0;
+        newGame = true;
 
         /* TODO holding for possible use for savedInstances
         if (savedInstanceState != null){} else { }
@@ -98,43 +99,10 @@ public class FiveLetterBoard extends Opening {
 
     //TODO new game start from button on screen, this needs to change to popup
     public void newGameClick(View view) {
-        newGame = true;
-        startActivity(new Intent(FiveLetterBoard.this, FiveLetterBoard.class));
+        //newGame = true;
+        //startActivity(new Intent(FiveLetterBoard.this, FiveLetterBoard.class));
+        startActivity(new Intent(this,NewGamePopUp.class));
     }
-
-
-    /*
-    //TODO update archive, this needs to move to the database area
-    //TODO need to check if the archive is already populated and if so update the entry instead of adding it
-    public void updateArchive(String correct){
-
-        String finishedTime = String.valueOf((Math.round(System.currentTimeMillis() - Time))/60000);
-        String finishedTry = String.valueOf(currentTry);
-        String numberOfLetters = String.valueOf(letters);
-
-        archives.execSQL("CREATE TABLE IF NOT EXISTS Statistics(Answer VARCHAR, Correct VARCHAR, Time VARCHAR, Trys VARCHAR, Letters VARCHAR);");
-        String SQLInput = "INSERT INTO Statistics(Answer, Correct, Time, Trys, Letters) VALUES(?, ?, ?, ?, ?)";
-
-        //TODO this has not been checked
-        //if (checkIfAnsweredBefore(theAnswer)){
-        //    SQLInput = "UPDATE Statistics(Answer, Correct, Time, Trys) VALUES(?, ?, ?, ?)";
-        //}
-
-        String[] args = {theAnswer, correct, finishedTime, finishedTry, numberOfLetters};
-        archives.execSQL(SQLInput, args);
-    }
-
-    //TODO update archive, this needs to move to the database area
-    //Check if word is already in the database
-    public Boolean checkIfAnsweredBefore(String possibleWord){
-
-        String[] args = {possibleWord, "true"};
-        Cursor cursor = archives.query("Statistics", null, "Answer=? AND Correct=?", args, null, null, null);
-
-        // if cursor count is 0 then it is not in teh database
-        return cursor.getCount() > 0;
-    }
-     */
 
 
     //Check to see if the word is real
@@ -316,30 +284,18 @@ public class FiveLetterBoard extends Opening {
     public void wClick(View view) {
         if (characterNumber < 5) {
             letterClick('W');
-            //wordEntry[characterNumber] = 'W';
-            //TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            //letterTextView.setText("W");
-            //characterNumber += 1;
         }
     }
 
     public void eClick(View view) {
         if (characterNumber < 5) {
             letterClick('E');
-            //wordEntry[characterNumber] = 'E';
-            //TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            //letterTextView.setText("E");
-            //characterNumber += 1;
         }
     }
 
     public void rClick(View view) {
         if (characterNumber < 5) {
             letterClick('R');
-            //wordEntry[characterNumber] = 'R';
-            //TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            //letterTextView.setText("R");
-            //characterNumber += 1;
         }
     }
 
