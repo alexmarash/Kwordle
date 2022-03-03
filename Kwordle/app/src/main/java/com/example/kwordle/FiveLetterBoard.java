@@ -288,7 +288,20 @@ public class FiveLetterBoard extends Opening {
     }
 
 
+    public void letterClick(char let){
+        wordEntry[characterNumber] = let;
+        TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+        letterTextView.setText(String.valueOf(let));
+        characterNumber += 1;
 
+    }
+    public void qClick(View view) {
+        if (characterNumber < 5) {
+            letterClick('Q');
+        }
+    }
+
+    /*
     public void qClick(View view) {
         if (characterNumber < 5) {
             wordEntry[characterNumber] = 'Q';
@@ -298,232 +311,167 @@ public class FiveLetterBoard extends Opening {
         }
 
     }
+     */
 
     public void wClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'W';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("W");
-            characterNumber += 1;
+            letterClick('W');
+            //wordEntry[characterNumber] = 'W';
+            //TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            //letterTextView.setText("W");
+            //characterNumber += 1;
         }
     }
 
     public void eClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'E';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("E");
-            characterNumber += 1;
+            letterClick('E');
+            //wordEntry[characterNumber] = 'E';
+            //TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            //letterTextView.setText("E");
+            //characterNumber += 1;
         }
     }
 
     public void rClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'R';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("R");
-            characterNumber += 1;
+            letterClick('R');
+            //wordEntry[characterNumber] = 'R';
+            //TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            //letterTextView.setText("R");
+            //characterNumber += 1;
         }
     }
 
     public void tClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'T';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("T");
-            characterNumber += 1;
+            letterClick('T');
         }
     }
 
     public void yClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'Y';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("Y");
-            characterNumber += 1;
+            letterClick('Y');
         }
     }
 
     public void uClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'U';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("U");
-            characterNumber += 1;
+            letterClick('U');
         }
     }
 
     public void iClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'I';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("I");
-            characterNumber += 1;
+            letterClick('I');
         }
     }
 
     public void oClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'O';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("O");
-            characterNumber += 1;
+            letterClick('O');
         }
     }
 
     public void pClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'P';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("P");
-
-            characterNumber += 1;
+            letterClick('P');
         }
     }
 
     public void aClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'A';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("A");
-
-            characterNumber += 1;
+            letterClick('A');
         }
     }
 
     public void sClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'S';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("S");
-
-            characterNumber += 1;
+            letterClick('S');
         }
     }
 
     public void dClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'D';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("D");
-            characterNumber += 1;
+            letterClick('D');
         }
     }
 
     public void fClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'F';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("F");
-            characterNumber += 1;
+            letterClick('F');
         }
     }
 
     public void gClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'G';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("G");
-            characterNumber += 1;
+            letterClick('G');
         }
     }
 
     public void hClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'H';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("H");
-            characterNumber += 1;
+            letterClick('H');
         }
     }
 
     public void jClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'J';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("J");
-            characterNumber += 1;
+            letterClick('J');
         }
     }
 
     public void kClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'K';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("K");
-            characterNumber += 1;
+            letterClick('K');
         }
     }
 
     public void lClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'L';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("L");
-            characterNumber += 1;
+            letterClick('L');
         }
     }
 
     public void zClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'Z';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("Z");
-            characterNumber += 1;
+            letterClick('Z');
         }
     }
 
     public void xClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'X';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("X");
-            characterNumber += 1;
+            letterClick('X');
         }
     }
 
     public void cClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'C';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("C");
-            characterNumber += 1;
+            letterClick('C');
         }
     }
 
     public void vClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'V';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("V");
-            characterNumber += 1;
+            letterClick('V');
         }
     }
 
     public void bClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'B';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("B");
-            characterNumber += 1;
+            letterClick('B');
         }
     }
 
     public void nClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'N';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("N");
-            characterNumber += 1;
+            letterClick('N');
         }
     }
 
     public void mClick(View view) {
         if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'M';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("M");
-            characterNumber += 1;
+            letterClick('M');
         }
     }
 
