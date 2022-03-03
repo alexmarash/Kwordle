@@ -1,7 +1,6 @@
 package com.example.kwordle;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -12,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.example.kwordle.Alphabets.alphaWrapper;
 
+import java.sql.SQLException;
 import java.util.Map;
 
 
@@ -102,22 +102,25 @@ public class FiveLetterBoard extends Opening {
         startActivity(new Intent(FiveLetterBoard.this, FiveLetterBoard.class));
     }
 
+
+    /*
     //TODO update archive, this needs to move to the database area
     //TODO need to check if the archive is already populated and if so update the entry instead of adding it
     public void updateArchive(String correct){
 
         String finishedTime = String.valueOf((Math.round(System.currentTimeMillis() - Time))/60000);
         String finishedTry = String.valueOf(currentTry);
+        String numberOfLetters = String.valueOf(letters);
 
-        archives.execSQL("CREATE TABLE IF NOT EXISTS Statistics(Answer VARCHAR, Correct VARCHAR, Time VARCHAR, Trys VARCHAR);");
-        String SQLInput = "INSERT INTO Statistics(Answer, Correct, Time, Trys) VALUES(?, ?, ?, ?)";
+        archives.execSQL("CREATE TABLE IF NOT EXISTS Statistics(Answer VARCHAR, Correct VARCHAR, Time VARCHAR, Trys VARCHAR, Letters VARCHAR);");
+        String SQLInput = "INSERT INTO Statistics(Answer, Correct, Time, Trys, Letters) VALUES(?, ?, ?, ?, ?)";
 
         //TODO this has not been checked
         //if (checkIfAnsweredBefore(theAnswer)){
         //    SQLInput = "UPDATE Statistics(Answer, Correct, Time, Trys) VALUES(?, ?, ?, ?)";
         //}
 
-        String[] args = {theAnswer, correct, finishedTime, finishedTry};
+        String[] args = {theAnswer, correct, finishedTime, finishedTry, numberOfLetters};
         archives.execSQL(SQLInput, args);
     }
 
@@ -131,6 +134,8 @@ public class FiveLetterBoard extends Opening {
         // if cursor count is 0 then it is not in teh database
         return cursor.getCount() > 0;
     }
+     */
+
 
     //Check to see if the word is real
     public Boolean wordIsReal(){
@@ -189,7 +194,12 @@ public class FiveLetterBoard extends Opening {
     //Check to see if the game is complete, and update the archive, and trigger pop up if it is
     public void checkComplete(boolean correct, Integer currentTry){
         if (correct || currentTry > 5) {
-            updateArchive(String.valueOf(correct));
+            try {
+                archives.updateArchive(String.valueOf(correct), Time, currentTry, letters, theAnswer);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            //updateArchive(String.valueOf(correct));
             startActivity(new Intent(FiveLetterBoard.this,PopCorrect.class));
         }
     }
@@ -257,8 +267,9 @@ public class FiveLetterBoard extends Opening {
         while (wordUsed) {
             int index = (int) (Math.random() * WordLists.fiveStartingWords.size());
             theAnswer = WordLists.fiveStartingWords.get(index);
-            wordUsed = checkIfAnsweredBefore(theAnswer);
+            wordUsed = archives.checkIfAnsweredBefore(theAnswer);
         }
+
 
         //Create the character array to check against
         char[] newWord = new char[letters];
@@ -266,10 +277,12 @@ public class FiveLetterBoard extends Opening {
             newWord[i] = theAnswer.charAt(i);
         }
 
+
+
         //TODO Debugging items
         //theAnswer = "START";
         //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
-        System.out.println("===============================" + theAnswer);
+        //System.out.println("===============================" + theAnswer);
 
         return newWord;
     }
