@@ -163,7 +163,7 @@ public class FiveLetterBoard extends Opening {
         if (correct || currentTry > 5) {
 
             double finishedTime = (Math.round(System.currentTimeMillis() - Time))/60000.0;
-            dbHandler.addWord(theAnswer, String.valueOf(correct), finishedTime, currentTry, letters);
+            archiveHandler.addWord(theAnswer, String.valueOf(correct), finishedTime, currentTry, letters);
             /*
             try {
                 archives.updateArchive(String.valueOf(correct), Time, currentTry, letters, theAnswer);
@@ -240,7 +240,11 @@ public class FiveLetterBoard extends Opening {
         while (wordUsed) {
             int index = (int) (Math.random() * WordLists.fiveStartingWords.size());
             theAnswer = WordLists.fiveStartingWords.get(index);
-            wordUsed = archives.checkIfAnsweredBefore(theAnswer);
+
+            wordUsed = archiveHandler.checkIfUsed(theAnswer);
+
+
+            //wordUsed = archives.checkIfAnsweredBefore(theAnswer);
         }
 
 

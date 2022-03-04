@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import java.sql.SQLException;
 
 public class Settings extends Activity {
 
@@ -23,8 +22,15 @@ public class Settings extends Activity {
 
     }
 
-    public void resetWordsClick(View view) throws SQLException {
-        Opening.archives.resetAnswers();
+    public void resetWordsClick(View view) {
+        //System.out.println("=========================BEFORE==============================================");
+        //Opening.archiveHandler.displayArchive();
+
+        Opening.archiveHandler.deleteAllAnswers();
+
+        //System.out.println("=========================AFTER==============================================");
+        //Opening.archiveHandler.displayArchive();
+
 
     }
 

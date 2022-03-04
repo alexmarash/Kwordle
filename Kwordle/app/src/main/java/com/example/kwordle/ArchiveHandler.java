@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 // https://www.geeksforgeeks.org/how-to-read-data-from-sqlite-database-in-android/
 
-public class DBHandler extends SQLiteOpenHelper {
+public class ArchiveHandler extends SQLiteOpenHelper {
 
     // creating a constant variables for our database.
     // below variable is for our database name.
@@ -41,7 +41,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     // creating a constructor for our database handler.
-    public DBHandler(Context context) {
+    public ArchiveHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -66,6 +66,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // this method is use to add new course to our sqlite database.
     public void addWord(String theAnswer, String ifCorrect, double time, Integer trys, Integer letters) {
+
+        if (checkIfUsed(theAnswer)){
+            deleteWord(theAnswer);
+        }
+
+
+        //System.out.println(theAnswer + " " + ifCorrect + " " + time + " " + trys + " " + letters);
 
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
@@ -108,8 +115,8 @@ public class DBHandler extends SQLiteOpenHelper {
         //Move to first position
         if (cursorArchive.moveToFirst()) {
             do {
-                archiveModalArrayList.add(new ArchiveModal(cursorArchive.getString(1), cursorArchive.getString(2),
-                        cursorArchive.getDouble(3), cursorArchive.getInt(4), cursorArchive.getInt(5)));
+                archiveModalArrayList.add(new ArchiveModal(cursorArchive.getString(0), cursorArchive.getString(1),
+                        cursorArchive.getDouble(2), cursorArchive.getInt(3), cursorArchive.getInt(4)));
             } while (cursorArchive.moveToNext());
         }
 
@@ -128,7 +135,7 @@ public class DBHandler extends SQLiteOpenHelper {
             ArchiveModal item = archiveModalArrayList.get(i);
             System.out.println("-----------------------------------------------------------------------------------");
             System.out.println(item.getTheAnswer() + " | " + item.getIfCorrect() + " | " + String.valueOf(item.getFinishedTime())
-            + " | " + String.valueOf(item.getAmountOftrys()) + " | " + String.valueOf(item.getAmountOfLetters()));
+            + " | " + item.getAmountOftrys() + " | " + String.valueOf(item.getAmountOfLetters()));
 
         }
         System.out.println("===========================================END========================================");
@@ -151,6 +158,17 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         db.close();
     }
+
+    public boolean checkIfUsed(String possibleWord){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] args = {possibleWord, "true"};
+        //Cursor query
+        Cursor cursor = db.query("Statistics", null, "Answer=? AND Correct=?", args, null, null, null);
+
+        return cursor.getCount() > 0;
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
