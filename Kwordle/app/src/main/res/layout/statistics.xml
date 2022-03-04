@@ -4,12 +4,190 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/statsDone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Done"
-        android:onClick="doneStats"
-        tools:layout_editor_absoluteX="380dp"
-        tools:layout_editor_absoluteY="1041dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <TextView
+            android:id="@+id/statsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/statisticsTitle"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="24dp"
+            android:layout_constraintTop_toTopOf="parent"/>
+
+
+        <LinearLayout
+            android:id="@+id/statsDataBlock"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_constraintTop_toBottomOf="@id/statsTitle">
+
+            <TextView
+                android:id="@+id/played"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/played"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+            <TextView
+                android:id="@+id/winPercent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/wins"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+
+            <TextView
+                android:id="@+id/currentStreak"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/currentStreak"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+            <TextView
+                android:id="@+id/maxStreak"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/maxStreak"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+            <TextView
+                android:id="@+id/minTime"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/minTime"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+            <TextView
+                android:id="@+id/maxTime"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/maxTime"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/statsTitleBlock"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_constraintTop_toBottomOf="@id/statsTitle">
+
+            <TextView
+                android:id="@+id/playedTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/played"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+            <TextView
+                android:id="@+id/winPercentTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/wins"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+
+            <TextView
+                android:id="@+id/currentStreakTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/currentStreak"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+            <TextView
+                android:id="@+id/maxStreakTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/maxStreak"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+            <TextView
+                android:id="@+id/minTimeTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/minTime"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+            <TextView
+                android:id="@+id/maxTimeTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/maxTime"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/idBarChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+
+
+
+        <Button
+            android:id="@+id/statsDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:onClick="doneStats"
+            android:text="Done"
+            tools:layout_editor_absoluteX="380dp"
+            tools:layout_editor_absoluteY="1041dp" />
+
+
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
