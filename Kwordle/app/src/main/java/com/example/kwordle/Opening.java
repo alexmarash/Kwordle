@@ -22,7 +22,17 @@ public class Opening extends AppCompatActivity {
     }
 
     public void newGameClick(View view){
-        startActivity(new Intent(Opening.this, FiveLetterBoard.class));
+        startActivity(new Intent(this,NewGamePopUp.class));
     }
+
+    public void stats(View view){
+        startActivity(new Intent(this, Statistics.class));
+    }
+
+    public void settings(View view){
+        startActivity(new Intent(this, Settings.class));
+
+    }
+
 
 }

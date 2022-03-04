@@ -7,7 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Archive {
 
@@ -38,9 +41,9 @@ public class Archive {
 
             String SQLUpdate = "UPDATE Statistics SET Answer = " + theAnswer + "Correct = ? , " + "Time = ?";
             String url = archives.getPath();
-            Connection conn = null;
+            //Connection conn = null;
             try {
-                conn = DriverManager.getConnection(url);
+                Connection conn = DriverManager.getConnection(url);
                 PreparedStatement pstmt = conn.prepareStatement(SQLUpdate);
                 pstmt.setString(1, "true");
                 pstmt.setString(2, finishedTime);
@@ -73,8 +76,61 @@ public class Archive {
         return cursor.getCount() > 0;
     }
 
+    public void resetAnswers() throws SQLException {
+
+        System.out.println("========================before===============================");
+        this.printSqlTable();
+
+        String SQLUpdate = "UPDATE Statistics Correct = ?";
+        String url = archives.getPath();
 
 
+
+        //Connection conn = null;
+        try {
+            Connection conn = DriverManager.getConnection(url);
+            PreparedStatement pstmt = conn.prepareStatement(SQLUpdate);
+            pstmt.setString(1, "false");
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("========================after===============================");
+        this.printSqlTable();
+
+
+    }
+
+
+
+    public void printSqlTable() throws SQLException {
+        //String url = "jdbc:sqlite:" + archives.getPath() +".db";
+
+        String url = "jdbc:sqlite:kwordleArchive.db";
+        System.out.println("=============url " + url);
+
+        //DriverManager.registerDriver(new org.sqlite.JDBC());
+        //String dbURL = "jdbc:sqlite:product.db";
+        //Connection conn = null;
+        Connection conn = DriverManager.getConnection(url);
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT Answer, Correct FROM Statistics");
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+
+        while (rs.next()) {
+            for(int i = 1 ; i <= columnsNumber; i++){
+
+                System.out.print(rs.getString(i) + " "); //Print one element of a row
+
+            }
+
+            System.out.println();//Move to the next line to print the next row.
+
+        }
+    }
 
 
 

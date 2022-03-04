@@ -250,7 +250,7 @@ public class FiveLetterBoard extends Opening {
         //TODO Debugging items
         //theAnswer = "START";
         //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
-        //System.out.println("===============================" + theAnswer);
+        System.out.println("===============================" + theAnswer);
 
         return newWord;
     }
@@ -441,6 +441,11 @@ public class FiveLetterBoard extends Opening {
     }
 
 
+    public void stats(View view) {
+        startActivity((new Intent(this, Statistics.class)));
+    }
 
-
+    public void settings(View view) {
+        startActivity((new Intent(this, Settings.class)));
+    }
 }
