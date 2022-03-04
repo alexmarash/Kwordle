@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 
 import com.example.kwordle.Alphabets.alphaWrapper;
 
-import java.sql.SQLException;
 import java.util.Map;
 
 
@@ -162,11 +161,17 @@ public class FiveLetterBoard extends Opening {
     //Check to see if the game is complete, and update the archive, and trigger pop up if it is
     public void checkComplete(boolean correct, Integer currentTry){
         if (correct || currentTry > 5) {
+
+            double finishedTime = (Math.round(System.currentTimeMillis() - Time))/60000.0;
+            dbHandler.addWord(theAnswer, String.valueOf(correct), finishedTime, currentTry, letters);
+            /*
             try {
                 archives.updateArchive(String.valueOf(correct), Time, currentTry, letters, theAnswer);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+
+             */
             //updateArchive(String.valueOf(correct));
             startActivity(new Intent(FiveLetterBoard.this,PopCorrect.class));
         }

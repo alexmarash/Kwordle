@@ -44,9 +44,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:adjustViewBounds="true"
+                android:onClick="stats"
                 android:padding="20dp"
                 android:scaleType="fitCenter"
-                android:onClick="stats"
                 app:srcCompat="@drawable/statistics" />
 
 
@@ -56,11 +56,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="20dp"
+                android:adjustViewBounds="true"
                 android:gravity="right"
+                android:onClick="settings"
                 android:padding="20dp"
                 android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:onClick="settings"
                 app:srcCompat="@drawable/gear" />
 
         </LinearLayout>
@@ -487,8 +487,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="60dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/row_six">

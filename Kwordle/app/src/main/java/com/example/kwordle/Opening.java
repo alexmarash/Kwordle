@@ -11,6 +11,7 @@ public class Opening extends AppCompatActivity {
     //public static SQLiteDatabase archivest;
     public static Archive archives;
     public static WordLists wordLists ;
+    public static DBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,9 @@ public class Opening extends AppCompatActivity {
         archives = new Archive(this);
         //archivest = openOrCreateDatabase("kwordleArchive",MODE_PRIVATE, null );
         wordLists = new WordLists(this);
+
+        dbHandler = new DBHandler(Opening.this);
+
     }
 
     public void newGameClick(View view){

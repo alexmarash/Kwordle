@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Archive {
 
@@ -78,7 +80,14 @@ public class Archive {
 
     public void resetAnswers() throws SQLException {
 
+
+
         System.out.println("========================before===============================");
+
+        getListOfAnswers();
+
+        /*
+
         this.printSqlTable();
 
         String SQLUpdate = "UPDATE Statistics Correct = ?";
@@ -96,11 +105,34 @@ public class Archive {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        */
 
         System.out.println("========================after===============================");
-        this.printSqlTable();
+        //this.printSqlTable();
 
 
+    }
+
+    public List<Integer> getListOfAnswers(){
+        List<Integer> results = new ArrayList<Integer>();
+        List<String> answers = new ArrayList<String>();
+
+        String [] columns = {"Answer"};
+
+        Cursor cursor = archives.query("Statistics", columns, null, null, null, null, null);
+       // for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
+       //     {
+                //Integer rowId = cursor.getInt(iAnswer);
+                //results.add(rowId);
+       //         answers.add(rowId);
+
+        //    }
+
+        System.out.println(cursor);
+
+        cursor.close();
+        //archives.close();
+        return  results;
     }
 
 
