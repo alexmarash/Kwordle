@@ -14,6 +14,8 @@ public class Statistics extends Opening {
     }
 
 
+
+
     public void doneStats(View view) {
         //startActivity(new Intent(this, Opening.class));
         finish();
