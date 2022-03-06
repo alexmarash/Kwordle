@@ -37,4 +37,5 @@
     <string name="minTime">Quickest</string>
     <string name="maxTime">Longest</string>
     <string name="minutes">Minutes</string>
+    <string name="player">Player</string>
 </resources>

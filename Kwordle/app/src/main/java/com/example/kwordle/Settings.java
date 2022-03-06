@@ -26,7 +26,8 @@ public class Settings extends Activity {
         //System.out.println("=========================BEFORE==============================================");
         //Opening.archiveHandler.displayArchive();
 
-        Opening.archiveHandler.deleteAllAnswers();
+        //Opening.archiveHandler.deleteAllAnswers();
+        Opening.archiveHandler.deleteAllAnswersForPlayer(Opening.currentPlayer);
 
         //System.out.println("=========================AFTER==============================================");
         //Opening.archiveHandler.displayArchive();

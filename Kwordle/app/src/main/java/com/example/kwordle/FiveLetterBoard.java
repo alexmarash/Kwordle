@@ -42,6 +42,7 @@ public class FiveLetterBoard extends Opening {
     public static float Time;
     public static boolean newGame = true;
     public static Alphabets alphabet;
+    public static String thePlayer = "Katheryn";
 
 
     //OnCreate of the page
@@ -163,7 +164,7 @@ public class FiveLetterBoard extends Opening {
         if (correct || currentTry > 5) {
 
             double finishedTime = (Math.round(System.currentTimeMillis() - Time))/60000.0;
-            archiveHandler.addWord(theAnswer, String.valueOf(correct), finishedTime, currentTry, letters);
+            archiveHandler.addWord(thePlayer, theAnswer, String.valueOf(correct), finishedTime, currentTry, letters);
             /*
             try {
                 archives.updateArchive(String.valueOf(correct), Time, currentTry, letters, theAnswer);

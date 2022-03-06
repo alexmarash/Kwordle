@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class StatsHandler extends SQLiteOpenHelper {
+public abstract class StatsHandler extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "statsdb";
 
@@ -32,8 +32,8 @@ public class StatsHandler extends SQLiteOpenHelper {
     public StatsHandler(Context context) {super(context, DB_NAME, null, DB_VERSION);}
 
     @Override
-    public void onCreate(SQLiteDatabase db){SQLiteDatabase db) {
-        String query = "CREATE TABLE" + TABLE_NAME + " ("
+    public void onCreate(SQLiteDatabase db) {
+        String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + player_COL + " TEXT, "
                 + numberOfLetters_Col + " INTEGER, "
                 + played_COL + " INTERGER, "
@@ -52,4 +52,4 @@ public class StatsHandler extends SQLiteOpenHelper {
 
     }
 
-}
+

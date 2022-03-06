@@ -16,19 +16,41 @@
             android:id="@+id/gameTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/title_page2Line"
             android:textAlignment="center"
             android:textColor="#0E0E0E"
             android:textSize="24sp" />
 
+        <TextView
+            android:id="@+id/newPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/player"
+            android:textAlignment="center"
+            android:textColor="#0E0E0E"
+            android:textSize="24sp" />
+
+
+        <Spinner
+            android:id="@+id/playerSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"/>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="200dp"
             android:orientation="horizontal"
+            android:layout_gravity="bottom"
             android:gravity="center">
+
+
+
 
             <Button
                 android:id="@+id/newGameOpening"
@@ -64,5 +86,7 @@
                 app:srcCompat="@drawable/gear" />
 
         </LinearLayout>
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

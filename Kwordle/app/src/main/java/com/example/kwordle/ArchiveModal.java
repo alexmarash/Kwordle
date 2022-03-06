@@ -3,6 +3,7 @@ package com.example.kwordle;
 public class ArchiveModal {
 
     //Variables to recieve from Archive
+    private String player;
     private String theAnswer;
     private String ifCorrect;
     private double finishedTime;
@@ -50,13 +51,24 @@ public class ArchiveModal {
         this.amountOfLetters = amountOfLetters;
     }
 
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
+    }
+
     //Constructor
-    public ArchiveModal(String theAnswer, String ifCorrect, double finishedTime, Integer amountOftrys, Integer amountOfLetters){
+    public ArchiveModal(String player, String theAnswer, String ifCorrect, double finishedTime, Integer amountOftrys, Integer amountOfLetters){
+        this.player = player;
         this.theAnswer = theAnswer;
         this.amountOfLetters = amountOfLetters;
         this.amountOftrys = amountOftrys;
         this.finishedTime = finishedTime;
         this.ifCorrect = ifCorrect;
     }
+
 
 }
