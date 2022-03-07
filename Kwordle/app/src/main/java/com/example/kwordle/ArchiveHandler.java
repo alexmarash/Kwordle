@@ -96,8 +96,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
         String queryPLAYER = "CREATE TABLE " + TABLE_NAME_PLAYED + " ("
                 + player_COL + " TEXT, "
-                + "placeholder INTEGER, "
-                + letters_COL + " INTEGER, "
+                + letters_COL + " TEXT, "
                 + played_COL + " INTEGER, "
                 + won_COL + " INTEGER, "
                 + curr_Streak_COL + " INTEGER,"
@@ -249,8 +248,8 @@ public class ArchiveHandler extends SQLiteOpenHelper {
             // on below line we are passing all values
             // along with its key and value pair.
             values.put(player_COL, player);
-            values.put("placeholder", 0);
-            values.put(letters_COL, 4);
+            //values.put("placeholder", 0);
+            values.put(letters_COL, "4");
             values.put(played_COL, 6);
             values.put(won_COL, 7);
             values.put(curr_Streak_COL, 8);
