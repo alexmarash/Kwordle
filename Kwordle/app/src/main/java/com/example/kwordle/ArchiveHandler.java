@@ -48,7 +48,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
     //private static final String player_COL = "player";
 
-    private static final String numberOfLetters_Col = "numOfLetters";
+    private static final String numberOfLetters_COL = "numOfLetters";
 
     private static final String played_COL = "played";
 
@@ -96,8 +96,9 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
         String queryPLAYER = "CREATE TABLE " + TABLE_NAME_PLAYED + " ("
                 + player_COL + " TEXT, "
+                + "placeholder INTEGER, "
                 + letters_COL + " INTEGER, "
-                + played_COL + " INTERGER, "
+                + played_COL + " INTEGER, "
                 + won_COL + " INTEGER, "
                 + curr_Streak_COL + " INTEGER,"
                 + max_Streak_COL + " INTEGER, "
@@ -159,7 +160,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         Integer maxTime = 7;
 
 
-        PlayedModal playedList = readPlayedForPlayer(player);
+        PlayedModal playedList = readPlayedForPlayer(player, numbOfLetters);
 
         Integer numberPlayed = playedList.getPlayed() + 1;
         Integer numberWon = playedList.getAmountWon();
@@ -210,7 +211,9 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
         // after adding all values we are passing
         // content values to our table.
-        db.insert(TABLE_NAME_PLAYED, null, values);
+        //db.insert(TABLE_NAME_PLAYED, null, values);
+        String[] args = {player, String.valueOf(numbOfLetters)};
+        db.update(TABLE_NAME_PLAYED, values, played_COL + "=? AND " + letters_COL + "=?", args);
 
         // at last we are closing our
         // database after adding database.
@@ -237,7 +240,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-        for (int i = 4; i < 10; i++){
+        for (Integer i = 4; i < 10; i++){
 
             // on below line we are creating a
             // variable for content values.
@@ -246,13 +249,14 @@ public class ArchiveHandler extends SQLiteOpenHelper {
             // on below line we are passing all values
             // along with its key and value pair.
             values.put(player_COL, player);
-            values.put(letters_COL, i);
-            values.put(played_COL, 0);
-            values.put(won_COL, 0);
-            values.put(curr_Streak_COL, 0);
-            values.put(max_Streak_COL, 0);
-            values.put(min_Time_COL, 0.0);
-            values.put(max_Time_COL, 0.0);
+            values.put("placeholder", 0);
+            values.put(letters_COL, 4);
+            values.put(played_COL, 6);
+            values.put(won_COL, 7);
+            values.put(curr_Streak_COL, 8);
+            values.put(max_Streak_COL, 9);
+            values.put(min_Time_COL, 0.1);
+            values.put(max_Time_COL, 0.2);
 
             // after adding all values we are passing
             // content values to our table.
@@ -290,7 +294,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         //Move to first position
         if (cursorArchive.moveToFirst()) {
             do {
-                playedArrayList.add(new PlayedModal(cursorArchive.getString(player), cursorArchive.getInt(letters),
+                playedArrayList.add(new PlayedModal(cursorArchive.getString(player), cursorArchive.getInt(0),
                         cursorArchive.getInt(played), cursorArchive.getInt(amountWon),
                         cursorArchive.getInt(currentStreak), cursorArchive.getInt(maxStreak),
                         cursorArchive.getDouble(minTime), cursorArchive.getDouble(maxTime)));
@@ -349,15 +353,18 @@ public class ArchiveHandler extends SQLiteOpenHelper {
     }
 
 
-    public PlayedModal readPlayedForPlayer(String player){
+    public PlayedModal readPlayedForPlayer(String player, Integer theLetters ){
         //Create the db for reading
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] args = {player};
+        String[] args = {player, String.valueOf(theLetters)};
         //Cursor query
-        Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED + " WHERE ? ", args);
+        //Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED + " WHERE ? ", args);
 
-        //Integer player = 0;
+        Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED + " WHERE " + played_COL + " =? AND "
+                + letters_COL + " =?", args);
+
+        Integer thePlayer = 0;
         Integer letters = 1;
         Integer played = 2;
         Integer amountWon = 3;
@@ -369,7 +376,16 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         //Create new array list to hold query
         //ArrayList<PlayedModal> playedArrayList = new ArrayList<>();
 
-        PlayedModal thisPlayerModal = new PlayedModal(player, cursorArchive.getInt(letters),
+
+        System.out.println("===================coutn"+ cursorArchive.getCount());
+
+
+        displayArchivePlayed();
+
+        System.out.println("==============================" + player + cursorArchive.getInt(letters));
+        System.out.println("==============================" + player + cursorArchive.getDouble(maxTime));
+
+        PlayedModal thisPlayerModal = new PlayedModal(cursorArchive.getString(thePlayer), cursorArchive.getInt(letters),
                 cursorArchive.getInt(played), cursorArchive.getInt(amountWon),
                 cursorArchive.getInt(currentStreak), cursorArchive.getInt(maxStreak),
                 cursorArchive.getDouble(minTime), cursorArchive.getDouble(maxTime));
@@ -476,6 +492,23 @@ public class ArchiveHandler extends SQLiteOpenHelper {
             System.out.println("-----------------------------------------------------------------------------------");
             System.out.println(item.getPlayer() + " | " + item.getTheAnswer() + " | " + item.getIfCorrect() + " | " + String.valueOf(item.getFinishedTime())
             + " | " + item.getAmountOftrys() + " | " + String.valueOf(item.getAmountOfLetters()));
+
+        }
+        System.out.println("===========================================END========================================");
+    }
+
+
+    public void displayArchivePlayed(){
+        ArrayList<PlayedModal> playedModalList = readPlayed();
+
+        System.out.println("=========================START==============================================");
+        System.out.println("Player | Letters | Played | Won | Currnet Streat | MAx streat | Min time | max time");
+
+        for (int i = 0; i < playedModalList.size(); i++){
+            PlayedModal item = playedModalList.get(i);
+            System.out.println("-----------------------------------------------------------------------------------");
+            System.out.println(item.getPlayer() + " | " + item.getLetters() + " | " + item.getPlayed() + " | " + String.valueOf(item.getAmountWon())
+                    + " | " + item.getCurrentStreak() + " | " + String.valueOf(item.getMaxStreak()) + " | " + String.valueOf(item.getMinTime()) + " | " + String.valueOf(item.getMaxTime()) );
 
         }
         System.out.println("===========================================END========================================");

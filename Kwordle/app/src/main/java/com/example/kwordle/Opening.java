@@ -34,6 +34,7 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
         System.out.println("===========================HERE================================");
         System.out.println(thesePlayers.length);
 
+        archiveHandler.newPlayer("Test");
 
         if (thesePlayers.length == 0){
 
@@ -47,7 +48,7 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
             thesePlayers = archiveHandler.getListOfPlayers();
 
-            System.out.println("===========================THERE================================");
+            System.out.println("===========================ADDED NEW PLAYERS================================");
 
             System.out.println(thesePlayers.length);
         }
