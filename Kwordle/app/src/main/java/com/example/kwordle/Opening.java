@@ -31,7 +31,6 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
         //String[] players = new String[archiveHandler.getCountOfPlayers()];
         thesePlayers = archiveHandler.getListOfPlayers();
-        //System.out.println("===========================HERE================================");
         //System.out.println(thesePlayers.length);
 
         //archiveHandler.newPlayer("Test");

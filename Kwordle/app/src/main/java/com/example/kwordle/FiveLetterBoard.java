@@ -113,6 +113,12 @@ public class FiveLetterBoard extends Opening {
             thisAnswer.append(wordEntry[i]);
         }
 
+
+
+
+        System.out.println("----------------------------" + Opening.wordLists.fiveWordListArray.size());
+
+
         //Check if word is in the word list
         if (!WordLists.fiveWordListArray.contains(thisAnswer.toString())) {
             Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();

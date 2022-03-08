@@ -38,7 +38,6 @@ public class WordLists {
             InputStream csvStream = assetManager.open(filename);
             InputStreamReader csvStreamReader = new InputStreamReader(csvStream);
             CSVReader reader = new CSVReader(csvStreamReader);
-
             //Read each line until null and add the word to the array
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
@@ -47,6 +46,8 @@ public class WordLists {
         } catch (IOException | CsvValidationException e) {
             return wordListArray;
         }
+
+
         //Return completed array
         return wordListArray;
     }
@@ -75,6 +76,10 @@ public class WordLists {
             return startingWords;
         }
         //Return completed array
+
+
+
+
         return startingWords;
     }
 }
