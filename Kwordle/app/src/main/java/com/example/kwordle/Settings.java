@@ -1,6 +1,7 @@
 package com.example.kwordle;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -22,6 +23,8 @@ public class Settings extends Activity {
 
     }
 
+
+
     public void resetWordsClick(View view) {
         //System.out.println("=========================BEFORE==============================================");
         //Opening.archiveHandler.displayArchive();
@@ -37,5 +40,12 @@ public class Settings extends Activity {
 
     public void doneSettingsClick(View view) {
         finish();
+    }
+
+    public void changePlayerClick(View view) {
+        startActivity(new Intent(this,Opening.class));
+
+
+
     }
 }

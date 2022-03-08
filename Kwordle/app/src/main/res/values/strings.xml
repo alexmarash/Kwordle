@@ -21,8 +21,9 @@
     <string name="resetWords">Reset Answers</string>
     <string name="played">Played</string>
     <string name="wins">Win %</string>
-    <string name="currentStreak">Current /nStreak</string>
-    <string name="maxStreak">Max \nStreak></string>
+    <string name="changePlayer">Change \nPlayer</string>
+    <string name="currentStreak">Current \nStreak</string>
+    <string name="maxStreak">Max \nStreak</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="ten">10</string>

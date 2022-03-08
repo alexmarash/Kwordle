@@ -60,6 +60,9 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
         //set simple layout resource file for each item
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+
+        //TODO need to default to player with most games played
+
         //Set adapter date to bind spinner data to spinner
         players.setAdapter(ad);
 

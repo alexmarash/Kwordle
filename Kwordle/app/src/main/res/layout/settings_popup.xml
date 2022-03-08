@@ -20,14 +20,31 @@
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/resetWords"
+        android:id="@+id/changePlayer"
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_below="@id/settingsTitle"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:onClick="changePlayerClick"
+        android:text="@string/changePlayer"
+        android:textSize="12sp"
+        tools:ignore="UsingOnClickInXml" />
+
+
+
+    <Button
+        android:id="@+id/resetWords"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/changePlayer"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:onClick="resetWordsClick"
         android:text="@string/resetWords"
@@ -41,7 +58,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:onClick="doneSettingsClick"
         android:text="@string/correctDone"

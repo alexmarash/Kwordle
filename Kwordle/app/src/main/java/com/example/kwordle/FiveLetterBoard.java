@@ -53,6 +53,7 @@ public class FiveLetterBoard extends Opening {
 
         thePlayer = Opening.currentPlayer;
 
+
         //Create and initialize the alphabet and all colors and entries
         alphabet = new Alphabets(this);
         //initializeTableColors();
