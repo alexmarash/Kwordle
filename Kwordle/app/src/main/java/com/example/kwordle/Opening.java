@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -59,13 +60,17 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
         //set simple layout resource file for each item
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        //Set adapter date to bind spineer data to spinner
+        //Set adapter date to bind spinner data to spinner
         players.setAdapter(ad);
+
+        //currentPlayer = players.getSelectedItem().toString();
+
 
     }
 
 
     public void newGameClick(View view){
+        //currentPlayer = players.getSelectedItem().toString();
         startActivity(new Intent(this,NewGamePopUp.class));
     }
 
@@ -82,11 +87,15 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
+
+
+
+        this.currentPlayer = thesePlayers[position];
+
         //TODO this is for DEBUG
-        //Toast.makeText(getApplicationContext(), thesePlayers[position], Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), currentPlayer, Toast.LENGTH_LONG).show();
 
 
-        currentPlayer = thesePlayers[position];
         if (currentPlayer == "New Player") {
             startActivity(new Intent(this, PlayerEntry.class));
         }

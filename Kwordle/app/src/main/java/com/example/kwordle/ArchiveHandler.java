@@ -174,11 +174,16 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
         // at last we are closing our
         // database after adding database.
+
+
+
+
+
         db.close();
     }
 
 
-    public void addGame(String player, Integer numbOfLetters, Boolean ifWon, float time, Integer numbOfTrys){
+    public void addGame(String player, Integer numbOfLetters, Boolean ifWon, double time, Integer numbOfTrys){
 
         /*
         Integer theplayer = 0;
@@ -190,6 +195,10 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         Integer minTime = 6;
         Integer maxTime = 7;
         */
+
+        System.out.println("adding game " + player + " " + String.valueOf(numbOfLetters) + " " +
+                String.valueOf(ifWon) + " " + String.valueOf(time) + " " + String.valueOf(numbOfTrys));
+
 
         PlayedGameModal playedList = readPlayedForPlayer(player, numbOfLetters);
 
@@ -252,6 +261,9 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         }
 
 
+        System.out.println("adding game 2 " + player + " " + String.valueOf(numbOfLetters) + " " +
+                String.valueOf(ifWon) + " " + String.valueOf(time) + " " + String.valueOf(numbOfTrys));
+
 
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
@@ -261,29 +273,6 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         // on below line we are creating a
         // variable for content values.
         ContentValues values = new ContentValues();
-
-
-        String queryPLAYEDGAME = "CREATE TABLE " + TABLE_NAME_PLAYED_GAME + " ("
-                + player_COL + " TEXT, "
-                + played_COL + " INTEGER, "
-                + won_COL + " INTEGER, "
-                + curr_Streak_COL + " INTEGER, "
-                + max_Streak_COL + " INTEGER, "
-                + min_Time_COL + " REAL, "
-                + max_Time_COL + " REAL, "
-                + numbOfLetters_COL + " INTEGER, "
-                + oneWon_COL + " INTEGER, "
-                + twoWon_COL + " INTEGER, "
-                + threeWon_COL + " INTEGER, "
-                + fourWon_COL + " INTEGER, "
-                + fiveWon_COL + " INTEGER, "
-                + sixWon_COL + " INTEGER, "
-                + sevenWon_COL + " INTEGER, "
-                + eightWon_COL + " INTEGER, "
-                + nineWon_COL + " INTEGER, "
-                + tenWon_COL + " INTEGER)";
-
-
 
 
         // on below line we are passing all values
@@ -311,10 +300,13 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         // content values to our table.
         //db.insert(TABLE_NAME_PLAYED, null, values);
         String[] args = {player, String.valueOf(numbOfLetters)};
-        db.update(TABLE_NAME_PLAYED_GAME, values, played_COL + "=? AND " + numbOfLetters_COL + "=?", args);
+        db.update(TABLE_NAME_PLAYED_GAME, values, player_COL + "=? AND " + numbOfLetters_COL + "=?", args);
 
         // at last we are closing our
         // database after adding database.
+
+        displayArchivePlayed();
+
         db.close();
     }
 
@@ -547,7 +539,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         //System.out.println("===================coutn"+ cursorArchive.getCount());
 
 
-        displayArchivePlayed();
+        //displayArchivePlayed();
 
         //System.out.println("==============================" + player + cursorArchive.getInt(numbLetters));
         //System.out.println("==============================" + player + cursorArchive.getDouble(maxTime));

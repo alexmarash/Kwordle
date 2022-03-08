@@ -51,6 +51,8 @@ public class FiveLetterBoard extends Opening {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.five_letter_main);
 
+        thePlayer = Opening.currentPlayer;
+
         //Create and initialize the alphabet and all colors and entries
         alphabet = new Alphabets(this);
         //initializeTableColors();
@@ -114,11 +116,6 @@ public class FiveLetterBoard extends Opening {
         }
 
 
-
-
-        System.out.println("----------------------------" + Opening.wordLists.fiveWordListArray.size());
-
-
         //Check if word is in the word list
         if (!WordLists.fiveWordListArray.contains(thisAnswer.toString())) {
             Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
@@ -169,8 +166,12 @@ public class FiveLetterBoard extends Opening {
     public void checkComplete(boolean correct, Integer currentTry){
         if (correct || currentTry > 5) {
 
+            System.out.println("COMPLETE -             --  ");
             double finishedTime = (Math.round(System.currentTimeMillis() - Time))/60000.0;
             archiveHandler.addWord(thePlayer, theAnswer, String.valueOf(correct), finishedTime, currentTry, letters);
+            archiveHandler.addGame(thePlayer, letters, correct, finishedTime, currentTry);
+
+
             /*
             try {
                 archives.updateArchive(String.valueOf(correct), Time, currentTry, letters, theAnswer);
