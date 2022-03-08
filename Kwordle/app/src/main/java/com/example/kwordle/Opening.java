@@ -31,14 +31,12 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
         //String[] players = new String[archiveHandler.getCountOfPlayers()];
         thesePlayers = archiveHandler.getListOfPlayers();
-        System.out.println("===========================HERE================================");
-        System.out.println(thesePlayers.length);
+        //System.out.println("===========================HERE================================");
+        //System.out.println(thesePlayers.length);
 
-        archiveHandler.newPlayer("Test");
+        //archiveHandler.newPlayer("Test");
 
         if (thesePlayers.length == 0){
-
-
 
             archiveHandler.newPlayer("New Player");
 
@@ -48,9 +46,8 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
             thesePlayers = archiveHandler.getListOfPlayers();
 
-            System.out.println("===========================ADDED NEW PLAYERS================================");
-
-            System.out.println(thesePlayers.length);
+            //System.out.println("===========================ADDED NEW PLAYERS================================");
+            //System.out.println(thesePlayers.length);
         }
 
         //Create spinner, and listener for spinner click

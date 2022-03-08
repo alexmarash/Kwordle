@@ -20,9 +20,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
     // below int is our database version
     private static final int DB_VERSION = 1;
 
-
     // Table for the game word statistics
-
     // below variable is for our table name.
     private static final String TABLE_NAME_WORD = "WORDSTATS";
 
@@ -43,12 +41,11 @@ public class ArchiveHandler extends SQLiteOpenHelper {
     // below variable is for our if correct column
     private static final String correct_COL = "Correct";
 
-
-    private static final String TABLE_NAME_PLAYED = "PLAYERSTATS";
+    private static final String TABLE_NAME_PLAYED_GAME = "PLAYEDGAMESTATS";
 
     //private static final String player_COL = "player";
 
-    private static final String numberOfLetters_COL = "numOfLetters";
+    //private static final String numberOfLetters_COL = "numOfLetters";
 
     private static final String played_COL = "played";
 
@@ -62,13 +59,26 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
     private static final String max_Time_COL = "maxTime";
 
+    private static final String oneWon_COL = "oneWon";
+
+    private static final String twoWon_COL = "twoWon";
+
+    private static final String threeWon_COL = "threeWon";
+    private static final String fourWon_COL = "fourWon";
+    private static final String fiveWon_COL = "fiveWon";
+    private static final String sixWon_COL = "sixWon";
+    private static final String sevenWon_COL = "sevenWon";
+    private static final String eightWon_COL = "eightWon";
+    private static final String nineWon_COL = "nineWon";
+    private static final String tenWon_COL = "tenWon";
+
 
     // Shared columns
     // Who is the player
     private static final String player_COL = "player";
 
     // below variable is for our how many letters column
-    private static final String letters_COL = "Letters";
+    private static final String numbOfLetters_COL = "numbLetters";
 
     // creating a constructor for our database handler.
     public ArchiveHandler(Context context) { super(context, DB_NAME, null, DB_VERSION);
@@ -88,24 +98,46 @@ public class ArchiveHandler extends SQLiteOpenHelper {
                 + correct_COL + " TEXT, "
                 + time_COL + " REAL, "
                 + trys_COL + " INTEGER, "
-                + letters_COL + " INTEGER)";
+                + numbOfLetters_COL + " INTEGER)";
 
         // at last we are calling a exec sql
         // method to execute above sql query
         db.execSQL(queryWORD);
 
+
+        String queryPLAYEDGAME = "CREATE TABLE " + TABLE_NAME_PLAYED_GAME + " ("
+                + player_COL + " TEXT, "
+                + played_COL + " INTEGER, "
+                + won_COL + " INTEGER, "
+                + curr_Streak_COL + " INTEGER, "
+                + max_Streak_COL + " INTEGER, "
+                + min_Time_COL + " REAL, "
+                + max_Time_COL + " REAL, "
+                + numbOfLetters_COL + " INTEGER, "
+                + oneWon_COL + " INTEGER, "
+                + twoWon_COL + " INTEGER, "
+                + threeWon_COL + " INTEGER, "
+                + fourWon_COL + " INTEGER, "
+                + fiveWon_COL + " INTEGER, "
+                + sixWon_COL + " INTEGER, "
+                + sevenWon_COL + " INTEGER, "
+                + eightWon_COL + " INTEGER, "
+                + nineWon_COL + " INTEGER, "
+                + tenWon_COL + " INTEGER)";
+
+        /*
         String queryPLAYER = "CREATE TABLE " + TABLE_NAME_PLAYED + " ("
                 + player_COL + " TEXT, "
-                + letters_COL + " TEXT, "
+                + "asdf" + " INTEGER, "
                 + played_COL + " INTEGER, "
                 + won_COL + " INTEGER, "
                 + curr_Streak_COL + " INTEGER,"
                 + max_Streak_COL + " INTEGER, "
                 + min_Time_COL + " REAL, "
                 + max_Time_COL + " REAL)";
-
+        */
         // method to execute above sql query
-        db.execSQL(queryPLAYER);
+        db.execSQL(queryPLAYEDGAME);
     }
 
     // this method is use to add new course to our sqlite database.
@@ -134,7 +166,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         values.put(correct_COL, ifCorrect);
         values.put(time_COL, time);
         values.put(trys_COL, trys);
-        values.put(letters_COL, letters);
+        values.put(numbOfLetters_COL, letters);
 
         // after adding all values we are passing
         // content values to our table.
@@ -146,9 +178,9 @@ public class ArchiveHandler extends SQLiteOpenHelper {
     }
 
 
-    public void addGame(String player, Integer numbOfLetters, Boolean ifWon, float time){
+    public void addGame(String player, Integer numbOfLetters, Boolean ifWon, float time, Integer numbOfTrys){
 
-
+        /*
         Integer theplayer = 0;
         Integer theletters = 1;
         Integer played = 2;
@@ -157,9 +189,9 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         Integer maxStreak = 5;
         Integer minTime = 6;
         Integer maxTime = 7;
+        */
 
-
-        PlayedModal playedList = readPlayedForPlayer(player, numbOfLetters);
+        PlayedGameModal playedList = readPlayedForPlayer(player, numbOfLetters);
 
         Integer numberPlayed = playedList.getPlayed() + 1;
         Integer numberWon = playedList.getAmountWon();
@@ -167,6 +199,16 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         Integer newMaxStreak = playedList.getMaxStreak();
         double newMinTime = playedList.getMinTime();
         double newMaxTime = playedList.getMaxTime();
+        Integer oneWon = playedList.getOneWon();
+        Integer twoWon = playedList.getTwoWon();
+        Integer threeWon = playedList.getThreeWon();
+        Integer fourWon = playedList.getFourWon();
+        Integer fiveWon = playedList.getFiveWon();
+        Integer sixWon = playedList.getSixWon();
+        Integer sevenWon = playedList.getSevenWon();
+        Integer eightWon = playedList.getEightWon();
+        Integer nineWon = playedList.getNineWon();
+        Integer tenWon = playedList.getTenWon();
 
 
         if (ifWon) {
@@ -186,6 +228,29 @@ public class ArchiveHandler extends SQLiteOpenHelper {
             newMinTime = time;
         }
 
+        switch (numbOfTrys) {
+            case 1: oneWon += 1;
+            break;
+            case 2: twoWon += 1;
+            break;
+            case 3: threeWon += 1;
+            break;
+            case 4: fourWon += 1;
+            break;
+            case 5: fiveWon +=1;
+            break;
+            case 6: sixWon +=1;
+            break;
+            case 7: sevenWon +=1;
+            break;
+            case 8: eightWon +=1;
+            break;
+            case 9: nineWon +=1;
+            break;
+            case 10: tenWon +=1;
+            break;
+        }
+
 
 
         // on below line we are creating a variable for
@@ -197,22 +262,56 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         // variable for content values.
         ContentValues values = new ContentValues();
 
+
+        String queryPLAYEDGAME = "CREATE TABLE " + TABLE_NAME_PLAYED_GAME + " ("
+                + player_COL + " TEXT, "
+                + played_COL + " INTEGER, "
+                + won_COL + " INTEGER, "
+                + curr_Streak_COL + " INTEGER, "
+                + max_Streak_COL + " INTEGER, "
+                + min_Time_COL + " REAL, "
+                + max_Time_COL + " REAL, "
+                + numbOfLetters_COL + " INTEGER, "
+                + oneWon_COL + " INTEGER, "
+                + twoWon_COL + " INTEGER, "
+                + threeWon_COL + " INTEGER, "
+                + fourWon_COL + " INTEGER, "
+                + fiveWon_COL + " INTEGER, "
+                + sixWon_COL + " INTEGER, "
+                + sevenWon_COL + " INTEGER, "
+                + eightWon_COL + " INTEGER, "
+                + nineWon_COL + " INTEGER, "
+                + tenWon_COL + " INTEGER)";
+
+
+
+
         // on below line we are passing all values
         // along with its key and value pair.
         values.put(player_COL, player);
-        values.put(letters_COL, numbOfLetters);
         values.put(played_COL, numberPlayed);
         values.put(won_COL, numberWon);
         values.put(curr_Streak_COL, newStreak);
         values.put(max_Streak_COL, newMaxStreak);
         values.put(min_Time_COL, newMinTime);
         values.put(max_Time_COL, newMaxTime);
+        values.put(numbOfLetters_COL, numbOfLetters);
+        values.put(oneWon_COL, oneWon);
+        values.put(twoWon_COL, twoWon);
+        values.put(threeWon_COL, threeWon);
+        values.put(fourWon_COL, fourWon);
+        values.put(fiveWon_COL, fiveWon);
+        values.put(sixWon_COL, sixWon);
+        values.put(sevenWon_COL, sevenWon);
+        values.put(eightWon_COL, eightWon);
+        values.put(nineWon_COL, nineWon);
+        values.put(tenWon_COL, tenWon);
 
         // after adding all values we are passing
         // content values to our table.
         //db.insert(TABLE_NAME_PLAYED, null, values);
         String[] args = {player, String.valueOf(numbOfLetters)};
-        db.update(TABLE_NAME_PLAYED, values, played_COL + "=? AND " + letters_COL + "=?", args);
+        db.update(TABLE_NAME_PLAYED_GAME, values, played_COL + "=? AND " + numbOfLetters_COL + "=?", args);
 
         // at last we are closing our
         // database after adding database.
@@ -222,7 +321,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
     public void newPlayer(String player){
 
-
+        /*
         Integer theplayer = 0;
         Integer theletters = 1;
         Integer played = 2;
@@ -231,13 +330,34 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         Integer maxStreak = 5;
         Integer minTime = 6;
         Integer maxTime = 7;
-
+        */
 
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
         // as we are writing data in our database.
         SQLiteDatabase db = this.getWritableDatabase();
 
+
+        /*
+                        + player_COL + " TEXT, "
+                + played_COL + " INTEGER, "
+                + won_COL + " INTEGER, "
+                + curr_Streak_COL + " INTEGER, "
+                + max_Streak_COL + " INTEGER, "
+                + min_Time_COL + " REAL, "
+                + max_Time_COL + " REAL, "
+                + numberOfLetters_COL + " INTEGER, "
+                + oneWon_COL + " INTEGER, "
+                + twoWon_COL + " INTEGER, "
+                + threeWon_COL + " INTEGER, "
+                + fourWon_COL + " INTEGER, "
+                + fiveWon_COL + " INTEGER, "
+                + sixWon_COL + " INTEGER, "
+                + sevenWon_COL + " INTEGER, "
+                + eightWon_COL + " INTEGER, "
+                + nineWon_COL + " INTEGER, "
+                + tenWon_COL + " INTEGER)";
+         */
 
         for (Integer i = 4; i < 10; i++){
 
@@ -248,18 +368,27 @@ public class ArchiveHandler extends SQLiteOpenHelper {
             // on below line we are passing all values
             // along with its key and value pair.
             values.put(player_COL, player);
-            //values.put("placeholder", 0);
-            values.put(letters_COL, "4");
-            values.put(played_COL, 6);
-            values.put(won_COL, 7);
-            values.put(curr_Streak_COL, 8);
-            values.put(max_Streak_COL, 9);
-            values.put(min_Time_COL, 0.1);
-            values.put(max_Time_COL, 0.2);
+            values.put(played_COL, 0);
+            values.put(won_COL, 0);
+            values.put(curr_Streak_COL, 0);
+            values.put(max_Streak_COL, 0);
+            values.put(min_Time_COL, 0.0);
+            values.put(max_Time_COL, 0.0);
+            values.put(numbOfLetters_COL, i);
+            values.put(oneWon_COL, 0);
+            values.put(twoWon_COL, 0);
+            values.put(threeWon_COL, 0);
+            values.put(fourWon_COL, 0);
+            values.put(fiveWon_COL, 0);
+            values.put(sixWon_COL, 0);
+            values.put(sevenWon_COL, 0);
+            values.put(eightWon_COL, 0);
+            values.put(nineWon_COL, 0);
+            values.put(tenWon_COL, 0);
 
             // after adding all values we are passing
             // content values to our table.
-            db.insert(TABLE_NAME_PLAYED, null, values);
+            db.insert(TABLE_NAME_PLAYED_GAME, null, values);
 
         }
 
@@ -271,32 +400,49 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
 
 
-    public ArrayList<PlayedModal> readPlayed(){
+    public ArrayList<PlayedGameModal> readPlayed(){
         //Create the db for reading
         SQLiteDatabase db = this.getReadableDatabase();
 
         //Cursor query
-        Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED, null);
+        Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED_GAME, null);
 
         Integer player = 0;
-        Integer letters = 1;
-        Integer played = 2;
-        Integer amountWon = 3;
-        Integer currentStreak = 4;
-        Integer maxStreak = 5;
-        Integer minTime = 6;
-        Integer maxTime = 7;
+        Integer played = 1;
+        Integer amountWon = 2;
+        Integer currentStreak = 3;
+        Integer maxStreak = 4;
+        Integer minTime = 5;
+        Integer maxTime = 6;
+        Integer numbLetters = 7;
+        Integer oneWon = 8;
+        Integer twoWon = 9;
+        Integer threeWon = 10;
+        Integer fourWon = 11;
+        Integer fiveWon = 12;
+        Integer sixWon = 13;
+        Integer sevenWon = 14;
+        Integer eightWon = 15;
+        Integer nineWon = 16;
+        Integer tenWon = 17;
+
 
         //Create new array list to hold query
-        ArrayList<PlayedModal> playedArrayList = new ArrayList<>();
+        ArrayList<PlayedGameModal> playedArrayList = new ArrayList<>();
 
         //Move to first position
         if (cursorArchive.moveToFirst()) {
             do {
-                playedArrayList.add(new PlayedModal(cursorArchive.getString(player), cursorArchive.getInt(0),
+                playedArrayList.add(new PlayedGameModal(cursorArchive.getString(player),
                         cursorArchive.getInt(played), cursorArchive.getInt(amountWon),
                         cursorArchive.getInt(currentStreak), cursorArchive.getInt(maxStreak),
-                        cursorArchive.getDouble(minTime), cursorArchive.getDouble(maxTime)));
+                        cursorArchive.getDouble(minTime), cursorArchive.getDouble(maxTime),
+                        cursorArchive.getInt(numbLetters), cursorArchive.getInt(oneWon),
+                        cursorArchive.getInt(twoWon), cursorArchive.getInt(threeWon),
+                        cursorArchive.getInt(fourWon), cursorArchive.getInt(fiveWon),
+                        cursorArchive.getInt(sixWon), cursorArchive.getInt(sevenWon),
+                        cursorArchive.getInt(eightWon), cursorArchive.getInt(nineWon),
+                        cursorArchive.getInt(tenWon)));
 
             } while (cursorArchive.moveToNext());
         }
@@ -312,16 +458,9 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         //Cursor query
-        Cursor cursorArchive = db.rawQuery("SELECT DISTINCT " + player_COL + " FROM " + TABLE_NAME_PLAYED, null);
+        Cursor cursorArchive = db.rawQuery("SELECT DISTINCT " + player_COL + " FROM " + TABLE_NAME_PLAYED_GAME, null);
 
         Integer player = 0;
-        Integer letters = 1;
-        Integer played = 2;
-        Integer amountWon = 3;
-        Integer currentStreak = 4;
-        Integer maxStreak = 5;
-        Integer minTime = 6;
-        Integer maxTime = 7;
 
         //Create new array list to hold query
         String[] thePlayers = new String[cursorArchive.getCount()];
@@ -341,18 +480,20 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         return thePlayers;
     }
 
+    /*
     public int getCountOfPlayers(){
         //Create the db for reading
         SQLiteDatabase db = this.getReadableDatabase();
 
         //Cursor query
-        Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED, null);
+        Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED_GAME, null);
 
         return cursorArchive.getCount();
     }
+     */
 
 
-    public PlayedModal readPlayedForPlayer(String player, Integer theLetters ){
+    public PlayedGameModal readPlayedForPlayer(String player, Integer theLetters ){
         //Create the db for reading
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -360,34 +501,62 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         //Cursor query
         //Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED + " WHERE ? ", args);
 
-        Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED + " WHERE " + played_COL + " =? AND "
-                + letters_COL + " =?", args);
+        Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED_GAME + " WHERE " + player_COL + "=? AND " +
+                numbOfLetters_COL + "=?", args);
 
-        Integer thePlayer = 0;
-        Integer letters = 1;
-        Integer played = 2;
-        Integer amountWon = 3;
-        Integer currentStreak = 4;
-        Integer maxStreak = 5;
-        Integer minTime = 6;
-        Integer maxTime = 7;
+
+        Integer thisplayer = 0;
+        Integer played = 1;
+        Integer amountWon = 2;
+        Integer currentStreak = 3;
+        Integer maxStreak = 4;
+        Integer minTime = 5;
+        Integer maxTime = 6;
+        Integer numbLetters = 7;
+        Integer oneWon = 8;
+        Integer twoWon = 9;
+        Integer threeWon = 10;
+        Integer fourWon = 11;
+        Integer fiveWon = 12;
+        Integer sixWon = 13;
+        Integer sevenWon = 14;
+        Integer eightWon = 15;
+        Integer nineWon = 16;
+        Integer tenWon = 17;
+
+        //System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + player + " " + " " +  theLetters + " " + cursorArchive.getCount());
+        cursorArchive.moveToFirst();
+        //System.out.println("========================" + cursorArchive.getString(0));
+        //System.out.println("++++++++++++++++++++++++" + cursorArchive.getInt(1));
+
+
 
         //Create new array list to hold query
-        //ArrayList<PlayedModal> playedArrayList = new ArrayList<>();
+        PlayedGameModal thisPlayedGameModal = new PlayedGameModal(cursorArchive.getString(thisplayer),
+                        cursorArchive.getInt(played), cursorArchive.getInt(amountWon),
+                        cursorArchive.getInt(currentStreak), cursorArchive.getInt(maxStreak),
+                        cursorArchive.getDouble(minTime), cursorArchive.getDouble(maxTime),
+                        cursorArchive.getInt(numbLetters), cursorArchive.getInt(oneWon),
+                        cursorArchive.getInt(twoWon), cursorArchive.getInt(threeWon),
+                        cursorArchive.getInt(fourWon), cursorArchive.getInt(fiveWon),
+                        cursorArchive.getInt(sixWon), cursorArchive.getInt(sevenWon),
+                        cursorArchive.getInt(eightWon), cursorArchive.getInt(nineWon),
+                        cursorArchive.getInt(tenWon));
 
 
-        System.out.println("===================coutn"+ cursorArchive.getCount());
+        //System.out.println("===================coutn"+ cursorArchive.getCount());
 
 
         displayArchivePlayed();
 
-        System.out.println("==============================" + player + cursorArchive.getInt(letters));
-        System.out.println("==============================" + player + cursorArchive.getDouble(maxTime));
+        //System.out.println("==============================" + player + cursorArchive.getInt(numbLetters));
+        //System.out.println("==============================" + player + cursorArchive.getDouble(maxTime));
 
-        PlayedModal thisPlayerModal = new PlayedModal(cursorArchive.getString(thePlayer), cursorArchive.getInt(letters),
-                cursorArchive.getInt(played), cursorArchive.getInt(amountWon),
-                cursorArchive.getInt(currentStreak), cursorArchive.getInt(maxStreak),
-                cursorArchive.getDouble(minTime), cursorArchive.getDouble(maxTime));
+        //PlayedModal thisPlayerModal = new PlayedModal(cursorArchive.getString(thisplayer), cursorArchive.getInt(numbLetters),
+
+        //        cursorArchive.getInt(played), cursorArchive.getInt(amountWon),
+        //        cursorArchive.getInt(currentStreak), cursorArchive.getInt(maxStreak),
+        //        cursorArchive.getDouble(minTime), cursorArchive.getDouble(maxTime));
 
         /*
         //Move to first position
@@ -402,8 +571,8 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         }
         */
         cursorArchive.close();
-
-        return thisPlayerModal;
+        return thisPlayedGameModal;
+        //return thisPlayerModal;
         //return playedArrayList;
     }
 
@@ -498,16 +667,17 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
 
     public void displayArchivePlayed(){
-        ArrayList<PlayedModal> playedModalList = readPlayed();
+        ArrayList<PlayedGameModal> playedGameModalArrayList = readPlayed();
 
         System.out.println("=========================START==============================================");
-        System.out.println("Player | Letters | Played | Won | Currnet Streat | MAx streat | Min time | max time");
+        System.out.println("Player | Played | Won | Currnet Streat | MAx streat | Min time | max time | Letters | tenwon");
 
-        for (int i = 0; i < playedModalList.size(); i++){
-            PlayedModal item = playedModalList.get(i);
+        for (int i = 0; i < playedGameModalArrayList.size(); i++){
+            PlayedGameModal item = playedGameModalArrayList.get(i);
             System.out.println("-----------------------------------------------------------------------------------");
-            System.out.println(item.getPlayer() + " | " + item.getLetters() + " | " + item.getPlayed() + " | " + String.valueOf(item.getAmountWon())
-                    + " | " + item.getCurrentStreak() + " | " + String.valueOf(item.getMaxStreak()) + " | " + String.valueOf(item.getMinTime()) + " | " + String.valueOf(item.getMaxTime()) );
+            System.out.println(item.getPlayer() + " | " + item.getPlayed() + " | " + item.getAmountWon()
+                    + " | " + item.getCurrentStreak() + " | " + String.valueOf(item.getMaxStreak()) + " | " + String.valueOf(item.getMinTime()) + " | " + String.valueOf(item.getMaxTime())
+            + " | " + item.getLetters() + " | " + item.getTenWon());
 
         }
         System.out.println("===========================================END========================================");
@@ -558,7 +728,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // this method is called to check if the table exists already.
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_WORD);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PLAYED);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PLAYED_GAME);
         onCreate(db);
     }
 

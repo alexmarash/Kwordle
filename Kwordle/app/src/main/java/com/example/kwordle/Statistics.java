@@ -21,20 +21,23 @@ public class Statistics extends Opening {
 
 
 
-        PlayedModal playerStats = archiveHandler.readPlayedForPlayer(currentPlayer, theLetters);
+        PlayedGameModal playerStats = archiveHandler.readPlayedForPlayer(currentPlayer, theLetters);
 
         TextView gamedPlayed = (TextView) findViewById(R.id.played);
         gamedPlayed.setText(String.valueOf(playerStats.getPlayed()));
         TextView wins = (TextView) findViewById(R.id.winPercent);
 
-        double winPrecentage = Math.round(100 * playerStats.getAmountWon()/playerStats.getPlayed());
+        double winPrecentage = 0.0;
+        if (playerStats.getAmountWon() > 0){
+                winPrecentage = Math.round(100 * playerStats.getAmountWon() / playerStats.getPlayed());
+            }
         wins.setText(String.valueOf(winPrecentage) + "%");
 
         TextView currentStreak = (TextView) findViewById(R.id.currentStreak);
-        currentStreak.setText(playerStats.getCurrentStreak());
+        currentStreak.setText(String.valueOf(playerStats.getCurrentStreak()));
 
         TextView maxStreak = (TextView) findViewById(R.id.maxStreak);
-        maxStreak.setText(playerStats.getMaxStreak());
+        maxStreak.setText(String.valueOf(playerStats.getMaxStreak()));
 
         TextView quickestGame = (TextView) findViewById(R.id.minTime);
         quickestGame.setText(String.valueOf(playerStats.getMinTime()));
