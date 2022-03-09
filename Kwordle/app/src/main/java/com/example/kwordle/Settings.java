@@ -8,6 +8,8 @@ import android.view.View;
 
 public class Settings extends Activity {
 
+    public static Boolean hardMode = true;
+
     @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);

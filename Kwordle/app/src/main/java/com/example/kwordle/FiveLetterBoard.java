@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.example.kwordle.Alphabets.alphaWrapper;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 
@@ -43,6 +44,9 @@ public class FiveLetterBoard extends Opening {
     public static boolean newGame = true;
     public static Alphabets alphabet;
     public static String thePlayer = "Katheryn";
+    public static char[] hints = new char[letters];
+    public static ArrayList<Character> hintList = new ArrayList<Character>();
+
 
 
     //OnCreate of the page
@@ -58,6 +62,8 @@ public class FiveLetterBoard extends Opening {
         alphabet = new Alphabets(this);
         //initializeTableColors();
         initializeWordColor();
+        initializeHints();
+        hintList = new ArrayList<Character>();
         //initializeWordEntry();
 
         //Get current answer
@@ -143,6 +149,23 @@ public class FiveLetterBoard extends Opening {
         //Check if this is actually a word
         if (!wordIsReal()){return;}
 
+        Boolean hardCheck = true;
+        String hardCheckString = new String(wordEntry);
+        if (Settings.hardMode) {
+            for (int i = 0; i < hintList.size(); i++) {
+                if (!hardCheckString.contains(String.valueOf(hintList.get(i)))) {
+                    hardCheck = false;
+                }
+            }
+
+            if (!hardCheck) {
+                Toast.makeText(getApplicationContext(), "DID NOT USE ALL THE HINTS YOU DUMMY!!!", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+        }
+
+
         //Creete the tuple of the word colors and correct check
         Pair<Integer[], Boolean> thisPlay = Play.enter(this, currentWord.clone(), wordEntry.clone(), wordColorInt, letters, alphabet);
         Integer[] currentWordColor = thisPlay.first;
@@ -150,6 +173,15 @@ public class FiveLetterBoard extends Opening {
 
         //Set the colors for entry row
         setRowColor(currentWordColor);
+
+
+
+        hintList = new ArrayList<Character>();
+        for (int i = 0; i< letters; i++){
+            if (!currentWordColor[i].equals(this.getResources().getColor(R.color.gray))){
+                hintList.add(wordEntry[i]);
+            }
+        }
 
         //Increment the current try and reset the character number
         currentTry += 1;
@@ -211,6 +243,12 @@ public class FiveLetterBoard extends Opening {
         for (int i = 0; i < letters; i++){
             wordColor[i] = "gray";
             wordColorInt[i] = getResources().getColor(R.color.gray);
+        }
+    }
+
+    public void initializeHints(){
+        for (int i = 0; i < letters; i++){
+            hints[i] = '-';
         }
     }
 
