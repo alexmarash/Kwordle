@@ -49,13 +49,19 @@ public class FiveLetterBoard extends Opening {
 
 
 
+
     //OnCreate of the page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.five_letter_main);
 
+
+
+
         thePlayer = Opening.currentPlayer;
+
+
 
 
         //Create and initialize the alphabet and all colors and entries
@@ -151,7 +157,7 @@ public class FiveLetterBoard extends Opening {
 
         Boolean hardCheck = true;
         String hardCheckString = new String(wordEntry);
-        if (Settings.hardMode) {
+        if (hardMode) {
             for (int i = 0; i < hintList.size(); i++) {
                 if (!hardCheckString.contains(String.valueOf(hintList.get(i)))) {
                     hardCheck = false;

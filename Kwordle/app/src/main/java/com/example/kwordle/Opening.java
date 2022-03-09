@@ -20,6 +20,8 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     public static ArchiveHandler archiveHandler;
     public String[] thesePlayers;
     public static String currentPlayer;
+    public static Boolean hardMode;
+    public static PlayedGameModal playedGameModal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +80,12 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
     public void newGameClick(View view){
         //currentPlayer = players.getSelectedItem().toString();
-        startActivity(new Intent(this,NewGamePopUp.class));
+        if (!currentPlayer.equals("     ")) {
+            startActivity(new Intent(this, NewGamePopUp.class));
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER \nYOUR GLOW IS TOO RADIANT FOR ME TO SEE YOUR FACE", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void stats(View view){
@@ -102,6 +109,11 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
         //TODO this is for DEBUG
         Toast.makeText(getApplicationContext(), currentPlayer, Toast.LENGTH_LONG).show();
 
+        if (!currentPlayer.equals("     ") && !currentPlayer.equals("New Player")) {
+
+            playedGameModal = archiveHandler.readPlayedForPlayer(currentPlayer, 5);
+            hardMode = archiveHandler.isThisHardMode(playedGameModal);
+        }
 
         if (currentPlayer.equals("New Player")) {
             //startActivity(new Intent(this, PlayerEntry.class));
@@ -117,7 +129,7 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
                 fm.beginTransaction()
                         .add(R.id.new_player_container, fragment)
                         .commit();
-                System.out.println("888888888888888888888888888888888888888888");
+                //System.out.println("888888888888888888888888888888888888888888");
 
             }
 

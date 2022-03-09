@@ -20,12 +20,13 @@ public class PlayedGameModal {
     private Integer eightWon;
     private Integer nineWon;
     private Integer tenWon;
+    private String hardMode;
 
 
     //Constructor
     public PlayedGameModal(String player, Integer played, Integer amountWon, Integer currentStreak, Integer maxStreak,
                            double minTime, double maxTime, Integer letters, Integer oneWon, Integer twoWon, Integer threeWon, Integer fourWon,
-                            Integer fiveWon, Integer sixWon, Integer sevenWon, Integer eightWon, Integer nineWon, Integer tenWon){
+                            Integer fiveWon, Integer sixWon, Integer sevenWon, Integer eightWon, Integer nineWon, Integer tenWon, String hardMode){
         this.player = player;
         this.played = played;
         this.amountWon = amountWon;
@@ -44,6 +45,7 @@ public class PlayedGameModal {
         this.eightWon = eightWon;
         this.nineWon = nineWon;
         this.tenWon = tenWon;
+        this.hardMode = hardMode;
 
     }
 
@@ -189,5 +191,13 @@ public class PlayedGameModal {
 
     public void setTenWon(Integer tenWon) {
         this.tenWon = tenWon;
+    }
+
+    public String getHardMode() {
+        return hardMode;
+    }
+
+    public void setHardMode(String hardMode) {
+        this.hardMode = hardMode;
     }
 }

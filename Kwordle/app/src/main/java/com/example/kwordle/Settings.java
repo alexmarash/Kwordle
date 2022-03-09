@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 public class Settings extends Activity {
-
-    public static Boolean hardMode = true;
 
     @Override
     protected void onCreate(Bundle savedInstantState) {
@@ -21,11 +21,33 @@ public class Settings extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width * 0.6),(int)(height * 0.6));
+        getWindow().setLayout((int) (width * 0.6), (int) (height * 0.6));
+
+        //RelativeLayout layout = (RelativeLayout)findViewById(R.id.r_layout);
+        //Switch hardSet = new Switch(this);
+        //hardSet.setTextOff("OFF");
+        //hardSet.setTextOn("ON");
+
+        Switch hard = (Switch) findViewById(R.id.hardSwitch);
+        hard.setChecked(Boolean.valueOf(Opening.playedGameModal.getHardMode()));
+        //layout.addView(sb);
+
+
+
+    //Switch hard = (Switch) findViewById(R.id.hardSwitch);
+    hard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+
+        {
+            public void onCheckedChanged (CompoundButton buttonView,boolean isChecked){
+            if (isChecked) {
+                Opening.playedGameModal.setHardMode("true");
+            } else {
+                Opening.playedGameModal.setHardMode("false");
+            }
+        }
+        });
 
     }
-
-
 
     public void resetWordsClick(View view) {
         //System.out.println("=========================BEFORE==============================================");

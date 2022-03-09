@@ -19,11 +19,23 @@
         android:text="@string/settingTitle"
         android:textSize="24sp" />
 
+
+
+    <Switch
+        android:id="@+id/hardSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch"
+        android:layout_below="@id/settingsTitle"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
     <Button
         android:id="@+id/changePlayer"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/settingsTitle"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/hardSwitch"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
@@ -38,8 +50,8 @@
 
     <Button
         android:id="@+id/resetWords"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_below="@id/changePlayer"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
@@ -53,8 +65,8 @@
 
     <Button
         android:id="@+id/settingsDone"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
@@ -63,5 +75,8 @@
         android:onClick="doneSettingsClick"
         android:text="@string/correctDone"
         android:textSize="12sp" />
+
+
+
 
 </RelativeLayout>
