@@ -109,6 +109,7 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
             //startActivity(new Intent(Opening.this, PlayerEntry.class));
 
             FragmentManager fm = getSupportFragmentManager();
+            //Fragment fragment = fm.findFragmentById(R.id.new_player_container);
             Fragment fragment = fm.findFragmentById(R.id.new_player_container);
 
             if (fragment == null) {
