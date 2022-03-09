@@ -455,20 +455,29 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         Integer player = 0;
 
         //Create new array list to hold query
-        String[] thePlayers = new String[cursorArchive.getCount()];
+        String[] thePlayers = new String[cursorArchive.getCount() + 2];
 
+        thePlayers[0] = "     ";
         //Move to first position
 
-        Integer i = 0;
+        Integer i = 1;
         if (cursorArchive.moveToFirst()) {
             do {
                 thePlayers[i] = cursorArchive.getString(player);
                 i++;
 
+                //System.out.println("---------------------------------" + player);
+
             } while (cursorArchive.moveToNext());
         }
 
         cursorArchive.close();
+
+        thePlayers[i] = "New Player";
+
+
+
+
         return thePlayers;
     }
 

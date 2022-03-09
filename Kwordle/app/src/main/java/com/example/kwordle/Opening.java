@@ -9,6 +9,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class Opening extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -32,24 +34,26 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
         //String[] players = new String[archiveHandler.getCountOfPlayers()];
         thesePlayers = archiveHandler.getListOfPlayers();
-        //System.out.println(thesePlayers.length);
+
+        System.out.println(thesePlayers.length);
+        System.out.println(thesePlayers);
 
         //archiveHandler.newPlayer("Test");
-
+        /*
         if (thesePlayers.length == 0){
 
             archiveHandler.newPlayer("New Player");
 
             //TODO remove when you can add new players
-            archiveHandler.newPlayer("Katheryn");
-            archiveHandler.newPlayer("Alex");
+            //archiveHandler.newPlayer("Katheryn");
+            //archiveHandler.newPlayer("Alex");
 
             thesePlayers = archiveHandler.getListOfPlayers();
 
             //System.out.println("===========================ADDED NEW PLAYERS================================");
             //System.out.println(thesePlayers.length);
         }
-
+        */
         //Create spinner, and listener for spinner click
         Spinner players = findViewById(R.id.playerSpinner);
         players.setOnItemSelectedListener(this);
@@ -99,9 +103,28 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
         Toast.makeText(getApplicationContext(), currentPlayer, Toast.LENGTH_LONG).show();
 
 
-        if (currentPlayer == "New Player") {
-            startActivity(new Intent(this, PlayerEntry.class));
+        if (currentPlayer.equals("New Player")) {
+            //startActivity(new Intent(this, PlayerEntry.class));
+            //startActivity(new Intent(this.getApplicationContext(), PlayerEntry.class));
+            //startActivity(new Intent(Opening.this, PlayerEntry.class));
+
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment fragment = fm.findFragmentById(R.id.new_player_container);
+
+            if (fragment == null) {
+                fragment = new PlayerEntry();
+                fm.beginTransaction()
+                        .add(R.id.new_player_container, fragment)
+                        .commit();
+                System.out.println("888888888888888888888888888888888888888888");
+
+            }
+
+
         }
+
+
+
 
     }
 

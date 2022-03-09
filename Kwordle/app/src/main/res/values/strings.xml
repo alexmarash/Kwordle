@@ -39,4 +39,7 @@
     <string name="maxTime">Longest</string>
     <string name="minutes">Minutes</string>
     <string name="player">Player</string>
+    <string name="newPlayer">Enter New Player</string>
+    <string name="newPlayerEntry">New Player</string>
+    <string name="submit">Submit</string>
 </resources>
