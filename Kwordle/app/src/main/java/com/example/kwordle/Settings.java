@@ -15,6 +15,7 @@ public class Settings extends Activity  {
         super.onCreate(savedInstantState);
         setContentView(R.layout.settings_popup);
 
+        //Set window size
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -23,64 +24,43 @@ public class Settings extends Activity  {
 
         getWindow().setLayout((int) (width * 0.6), (int) (height * 0.6));
 
-        //RelativeLayout layout = (RelativeLayout)findViewById(R.id.r_layout);
-        //Switch hardSet = new Switch(this);
-        //hardSet.setTextOff("OFF");
-        //hardSet.setTextOn("ON");
-
+        //Initialize switch
         Switch hard = (Switch) findViewById(R.id.hardSwitch);
-        //hard.setChecked(Boolean.valueOf(Opening.playedGameModal.getHardMode()));
-        hard.setChecked(Boolean.valueOf(Opening.hardMode));
-        //layout.addView(sb);
 
+        //Set switch based on hardmode
+        hard.setChecked(Opening.hardMode);
 
-
-    //Switch hard = (Switch) findViewById(R.id.hardSwitch);
-    hard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-
+        //Create listener for switch
+        hard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
+            //Based on swtich set hard mode in modal, opening and update player in database
             public void onCheckedChanged (CompoundButton buttonView,boolean isChecked){
             if (isChecked) {
                 Opening.playedGameModal.setHardMode("true");
                 Opening.hardMode = true;
                 Opening.archiveHandler.setPlayerHardMode(Opening.playedGameModal, true);
-
-                //System.out.println("=========set hard true");
-
-
             } else {
                 Opening.playedGameModal.setHardMode("false");
                 Opening.hardMode = false;
                 Opening.archiveHandler.setPlayerHardMode(Opening.playedGameModal, false);
 
-                //System.out.println("=========set hard false");
             }
         }
         });
-
     }
 
+    //Reset all words buttong
     public void resetWordsClick(View view) {
-        //System.out.println("=========================BEFORE==============================================");
-        //Opening.archiveHandler.displayArchive();
-
-        //Opening.archiveHandler.deleteAllAnswers();
         Opening.archiveHandler.deleteAllAnswersForPlayer(Opening.currentPlayer);
-
-        //System.out.println("=========================AFTER==============================================");
-        //Opening.archiveHandler.displayArchive();
-
-
     }
 
-    public void doneSettingsClick(View view) {
-        finish();
-    }
-
+    //Change player button
     public void changePlayerClick(View view) {
         startActivity(new Intent(this,Opening.class));
+    }
 
-
-
+    //Return button
+    public void doneSettingsClick(View view) {
+        finish();
     }
 }

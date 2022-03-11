@@ -32,9 +32,7 @@ public class FiveLetterBoard extends Opening {
             {R.id.rowSix_columnOne, R.id.rowSix_columnTwo, R.id.rowSix_columnThree, R.id.rowSix_columnFour, R.id.rowSix_columnFive}
     };
 
-    //public String[][] tableColors = new String[tries][letters];
     public static Integer[][] tableColorsInt = new Integer[tries][letters];
-
     public char[] currentWord = new char[letters];
     public String[] wordColor = new String[letters];
     public Integer[] wordColorInt = new Integer[letters];
@@ -43,12 +41,9 @@ public class FiveLetterBoard extends Opening {
     public static float Time;
     public static boolean newGame = true;
     public static Alphabets alphabet;
-    public static String thePlayer = "Katheryn";
-    public static char[] hints = new char[letters];
+    public static String thePlayer;
+    //public static char[] hints = new char[letters];
     public static ArrayList<Character> hintList = new ArrayList<Character>();
-
-
-
 
     //OnCreate of the page
     @Override
@@ -56,21 +51,14 @@ public class FiveLetterBoard extends Opening {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.five_letter_main);
 
-
-
-
+        //Set teh player
         thePlayer = Opening.currentPlayer;
-
-
-
 
         //Create and initialize the alphabet and all colors and entries
         alphabet = new Alphabets(this);
-        //initializeTableColors();
         initializeWordColor();
-        initializeHints();
+        //initializeHints();
         hintList = new ArrayList<Character>();
-        //initializeWordEntry();
 
         //Get current answer
         currentWord = getNewWord();
@@ -93,7 +81,6 @@ public class FiveLetterBoard extends Opening {
         savedInstanceState.putString("Key_theAnswer", theAnswer);
         savedInstanceState.putInt("Key_currentTry", currentTry);
 
-
         //TODO may need to call savedStates of the alphabet later
         //savedInstanceState.putSerializable("Key_alphabet", (Serializable) alphabet);
         //savedInstanceState.putSerializable("Key_tablecolor", tableColorsInt);
@@ -112,13 +99,10 @@ public class FiveLetterBoard extends Opening {
     }
      */
 
-    //TODO new game start from button on screen, this needs to change to popup
+    //Opening new game popup
     public void newGameClick(View view) {
-        //newGame = true;
-        //startActivity(new Intent(FiveLetterBoard.this, FiveLetterBoard.class));
         startActivity(new Intent(this,NewGamePopUp.class));
     }
-
 
     //Check to see if the word is real
     public Boolean wordIsReal(){
@@ -127,7 +111,6 @@ public class FiveLetterBoard extends Opening {
         for (int i = 0; i < letters; i++){
             thisAnswer.append(wordEntry[i]);
         }
-
 
         //Check if word is in the word list
         if (!WordLists.fiveWordListArray.contains(thisAnswer.toString())) {
@@ -155,8 +138,7 @@ public class FiveLetterBoard extends Opening {
         //Check if this is actually a word
         if (!wordIsReal()){return;}
 
-        System.out.println("=================hard check " +  hardMode + "  " + Opening.hardMode);
-
+        //Check if hardmode, and if so check to see if all hints are used
         Boolean hardCheck = true;
         String hardCheckString = new String(wordEntry);
         if (hardMode) {
@@ -166,13 +148,12 @@ public class FiveLetterBoard extends Opening {
                 }
             }
 
+            //If failed hard check send toast
             if (!hardCheck) {
                 Toast.makeText(getApplicationContext(), "DID NOT USE ALL THE HINTS YOU DUMMY!!!", Toast.LENGTH_LONG).show();
                 return;
             }
-
         }
-
 
         //Creete the tuple of the word colors and correct check
         Pair<Integer[], Boolean> thisPlay = Play.enter(this, currentWord.clone(), wordEntry.clone(), wordColorInt, letters, alphabet);
@@ -182,8 +163,7 @@ public class FiveLetterBoard extends Opening {
         //Set the colors for entry row
         setRowColor(currentWordColor);
 
-
-
+        //Clear hintlist
         hintList = new ArrayList<Character>();
         for (int i = 0; i< letters; i++){
             if (!currentWordColor[i].equals(this.getResources().getColor(R.color.gray))){
@@ -206,22 +186,11 @@ public class FiveLetterBoard extends Opening {
     //Check to see if the game is complete, and update the archive, and trigger pop up if it is
     public void checkComplete(boolean correct, Integer currentTry){
         if (correct || currentTry > 5) {
-
-            System.out.println("COMPLETE -             --  ");
+            //Set the finished time
             double finishedTime = (Math.round(System.currentTimeMillis() - Time))/60000.0;
             archiveHandler.addWord(thePlayer, theAnswer, String.valueOf(correct), finishedTime, currentTry, letters);
             archiveHandler.addGame(thePlayer, letters, correct, finishedTime, currentTry);
 
-
-            /*
-            try {
-                archives.updateArchive(String.valueOf(correct), Time, currentTry, letters, theAnswer);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-
-             */
-            //updateArchive(String.valueOf(correct));
             startActivity(new Intent(FiveLetterBoard.this,PopCorrect.class));
         }
     }
@@ -236,16 +205,6 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
-    /*
-    public void initializeTableColors(){
-        for (int i = 0; i < tries; i++) {
-            for (int j = 0; j < letters; j++) {
-                tableColors[i][j] = "gray";
-                tableColorsInt[i][j] = getResources().getColor(R.color.gray);
-            }
-        }
-    }
-    */
 
     public void initializeWordColor(){
         for (int i = 0; i < letters; i++){
@@ -254,26 +213,10 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
+    /*
     public void initializeHints(){
         for (int i = 0; i < letters; i++){
             hints[i] = '-';
-        }
-    }
-
-    /*
-    public void initializeWordEntry(){
-        for (int i = 0; i < letters; i++){
-            wordEntry[i] = ' ';
-        }
-    }
-
-     */
-
-    /*
-    public void setWordEntry(){
-        for (int i = 0; i < letters; i++){
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][i]);
-            letterTextView.setText(wordEntry[i]);
         }
     }
     */
@@ -290,8 +233,10 @@ public class FiveLetterBoard extends Opening {
     //Get a new word
     public char[] getNewWord(){
 
+        //Get size of starting word list
         Integer sizeOfStartingWords = WordLists.fiveStartingWords.size();
 
+        //If all words are used reset the list
         archiveHandler.resetIfAllUsed(sizeOfStartingWords, thePlayer);
 
         //While the word chosen has already been used, choose another word
@@ -301,11 +246,7 @@ public class FiveLetterBoard extends Opening {
             theAnswer = WordLists.fiveStartingWords.get(index);
 
             wordUsed = archiveHandler.checkIfUsed(theAnswer);
-
-
-            //wordUsed = archives.checkIfAnsweredBefore(theAnswer);
         }
-
 
         //Create the character array to check against
         char[] newWord = new char[letters];
@@ -313,17 +254,15 @@ public class FiveLetterBoard extends Opening {
             newWord[i] = theAnswer.charAt(i);
         }
 
-
-
         //TODO Debugging items
         //theAnswer = "START";
         //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
-        System.out.println("===============================" + theAnswer);
+        //System.out.println("===============================" + theAnswer);
 
         return newWord;
     }
 
-
+    //Do for each letter click
     public void letterClick(char let){
         wordEntry[characterNumber] = let;
         TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
@@ -337,17 +276,6 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
-    /*
-    public void qClick(View view) {
-        if (characterNumber < 5) {
-            wordEntry[characterNumber] = 'Q';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText("Q");
-            characterNumber += 1;
-        }
-
-    }
-     */
 
     public void wClick(View view) {
         if (characterNumber < 5) {
@@ -508,11 +436,12 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
-
+    //Goto stats page
     public void stats(View view) {
         startActivity((new Intent(this, Statistics.class)));
     }
 
+    //Goto settings popup
     public void settings(View view) {
         startActivity((new Intent(this, Settings.class)));
     }
