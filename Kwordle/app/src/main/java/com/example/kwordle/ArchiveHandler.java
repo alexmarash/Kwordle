@@ -259,7 +259,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
             values.put(won_COL, 0);
             values.put(curr_Streak_COL, 0);
             values.put(max_Streak_COL, 0);
-            values.put(min_Time_COL, 0.0);
+            values.put(min_Time_COL, Double.POSITIVE_INFINITY);
             values.put(max_Time_COL, 0.0);
             values.put(numbOfLetters_COL, i);
             values.put(oneWon_COL, 0);

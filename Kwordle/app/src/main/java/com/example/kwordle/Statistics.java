@@ -83,11 +83,6 @@ public class Statistics extends Opening {
         double maxMinutes = playerStats.getMaxTime() - (playerStats.getMaxTime() %1);
 
 
-        System.out.println("=======================================================");
-        System.out.println(playerStats.getMinTime());
-        System.out.println(maxSeconds);
-        System.out.println(playerStats.getMaxTime() %1);
-
         TextView longestGame = (TextView) findViewById(R.id.maxTime);
         longestGame.setText(String.valueOf((int)maxMinutes) + "\'" + String.valueOf((int)maxSeconds) +"\"");
         //longestGame.setText(String.valueOf(playerStats.getMaxTime()));
