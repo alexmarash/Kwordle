@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-public class Settings extends Activity {
+public class Settings extends Activity  {
 
     @Override
     protected void onCreate(Bundle savedInstantState) {
@@ -29,7 +29,8 @@ public class Settings extends Activity {
         //hardSet.setTextOn("ON");
 
         Switch hard = (Switch) findViewById(R.id.hardSwitch);
-        hard.setChecked(Boolean.valueOf(Opening.playedGameModal.getHardMode()));
+        //hard.setChecked(Boolean.valueOf(Opening.playedGameModal.getHardMode()));
+        hard.setChecked(Boolean.valueOf(Opening.hardMode));
         //layout.addView(sb);
 
 
@@ -41,8 +42,16 @@ public class Settings extends Activity {
             public void onCheckedChanged (CompoundButton buttonView,boolean isChecked){
             if (isChecked) {
                 Opening.playedGameModal.setHardMode("true");
+                Opening.hardMode = true;
+
+                //System.out.println("=========set hard true");
+
+
             } else {
                 Opening.playedGameModal.setHardMode("false");
+                Opening.hardMode = false;
+
+                //System.out.println("=========set hard false");
             }
         }
         });

@@ -20,7 +20,7 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     public static ArchiveHandler archiveHandler;
     public String[] thesePlayers;
     public static String currentPlayer;
-    public static Boolean hardMode;
+    public static Boolean hardMode = true;
     public static PlayedGameModal playedGameModal;
 
     @Override

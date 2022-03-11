@@ -227,6 +227,10 @@ public class ArchiveHandler extends SQLiteOpenHelper {
             numberWon = playedList.getAmountWon() + 1;
             newStreak = playedList.getCurrentStreak() + 1;
         }
+        else {
+            newStreak = 0;
+        }
+
 
         if (newMaxStreak < newStreak){
             newMaxStreak = newStreak;
@@ -793,6 +797,18 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
         }
         db.close();
+    }
+
+    public void resetIfAllUsed(Integer startingWords, String player){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] args = {"true"};
+        //Cursor query
+        Cursor cursor = db.query(TABLE_NAME_WORD, null, "Correct=?", args, null, null, null);
+
+        if (cursor.getCount() == startingWords){
+            deleteAllAnswersForPlayer(player);
+
+        }
     }
 
 

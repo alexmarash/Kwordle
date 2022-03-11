@@ -155,6 +155,8 @@ public class FiveLetterBoard extends Opening {
         //Check if this is actually a word
         if (!wordIsReal()){return;}
 
+        System.out.println("=================hard check " +  hardMode + "  " + Opening.hardMode);
+
         Boolean hardCheck = true;
         String hardCheckString = new String(wordEntry);
         if (hardMode) {
@@ -288,10 +290,14 @@ public class FiveLetterBoard extends Opening {
     //Get a new word
     public char[] getNewWord(){
 
+        Integer sizeOfStartingWords = WordLists.fiveStartingWords.size();
+
+        archiveHandler.resetIfAllUsed(sizeOfStartingWords, thePlayer);
+
         //While the word chosen has already been used, choose another word
         Boolean wordUsed = true;
         while (wordUsed) {
-            int index = (int) (Math.random() * WordLists.fiveStartingWords.size());
+            int index = (int) (Math.random() * sizeOfStartingWords);
             theAnswer = WordLists.fiveStartingWords.get(index);
 
             wordUsed = archiveHandler.checkIfUsed(theAnswer);
