@@ -77,9 +77,6 @@ public class WordLists {
         }
         //Return completed array
 
-
-
-
         return startingWords;
     }
 }

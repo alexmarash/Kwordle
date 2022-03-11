@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 public class PopCorrect extends Activity {
 
-    //@SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);
@@ -45,8 +44,6 @@ public class PopCorrect extends Activity {
             answerTriesTextView.setText(R.string.youSuck);
         }
     }
-
-
 
 
     public void doneCorrectClick(View view) {

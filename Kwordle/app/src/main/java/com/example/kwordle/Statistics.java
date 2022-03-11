@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -37,7 +38,7 @@ public class Statistics extends Opening {
         super.onCreate(savedInstantState);
         setContentView(R.layout.statistics);
 
-
+        //TODO add in a spinner for the amount of letters  - Do when added new number of letter games
         Integer theLetters = 5;
 
         TextView playerText = (TextView) findViewById(R.id.currentPlayer);
@@ -45,8 +46,7 @@ public class Statistics extends Opening {
         TextView lettersText = (TextView) findViewById(R.id.numberOfLetters);
         lettersText.setText(String.valueOf(theLetters) + " Letter Words");
 
-
-
+        //Pull the stats for the players
         playerStats = archiveHandler.readPlayedForPlayer(currentPlayer, theLetters);
 
         TextView gamedPlayed = (TextView) findViewById(R.id.played);
@@ -57,7 +57,11 @@ public class Statistics extends Opening {
         if (playerStats.getAmountWon() > 0){
                 winPrecentage = Math.round(100 * playerStats.getAmountWon() / playerStats.getPlayed());
             }
-        wins.setText(String.valueOf(winPrecentage) + "%");
+
+        DecimalFormat f = new DecimalFormat("##.00");
+
+        //wins.setText(String.format("%.2f", winPrecentage) + "%");
+        wins.setText(String.valueOf(f.format(winPrecentage)) + "%");
 
         TextView currentStreak = (TextView) findViewById(R.id.currentStreak);
         currentStreak.setText(String.valueOf(playerStats.getCurrentStreak()));
@@ -65,12 +69,28 @@ public class Statistics extends Opening {
         TextView maxStreak = (TextView) findViewById(R.id.maxStreak);
         maxStreak.setText(String.valueOf(playerStats.getMaxStreak()));
 
+
+        double minSeconds = Math.round((playerStats.getMinTime() %1) * 60);
+        double minMinutes = playerStats.getMinTime() - (playerStats.getMinTime() %1);
+
+
         TextView quickestGame = (TextView) findViewById(R.id.minTime);
-        quickestGame.setText(String.valueOf(playerStats.getMinTime()));
+        quickestGame.setText(String.valueOf((int)minMinutes) + "\'" + String.valueOf((int)minSeconds) +"\"");
+        //quickestGame.setText(String.valueOf(playerStats.getMinTime()));
+
+
+        double maxSeconds = Math.round((playerStats.getMaxTime() %1) * 60);
+        double maxMinutes = playerStats.getMaxTime() - (playerStats.getMaxTime() %1);
+
+
+        System.out.println("=======================================================");
+        System.out.println(playerStats.getMinTime());
+        System.out.println(maxSeconds);
+        System.out.println(playerStats.getMaxTime() %1);
 
         TextView longestGame = (TextView) findViewById(R.id.maxTime);
-        longestGame.setText(String.valueOf(playerStats.getMaxTime()));
-
+        longestGame.setText(String.valueOf((int)maxMinutes) + "\'" + String.valueOf((int)maxSeconds) +"\"");
+        //longestGame.setText(String.valueOf(playerStats.getMaxTime()));
 
 
         // initializing variable for bar chart.
@@ -100,20 +120,11 @@ public class Statistics extends Opening {
         barDataSet.setValueTextSize(16f);
         barChart.getDescription().setEnabled(false);
 
-
-
-
-
     }
-
-
 
     private void getBarEntries() {
         // creating a new array list
         barEntriesArrayList = new ArrayList<>();
-
-
-
 
         // adding new entry to our array list with bar
         // entry and passing x and y axis value to it.
@@ -124,10 +135,6 @@ public class Statistics extends Opening {
         barEntriesArrayList.add(new BarEntry(5f, playerStats.getFiveWon()));
         barEntriesArrayList.add(new BarEntry(6f, playerStats.getSixWon()));
     }
-
-
-
-
 
     public void doneStats(View view) {
         //startActivity(new Intent(this, Opening.class));

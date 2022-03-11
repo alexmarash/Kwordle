@@ -25,23 +25,6 @@ public class PlayedModal {
         this.maxTime = maxTime;
 
     }
-    /*
-    //Constructor
-    public PlayedModal(Integer letters, Integer played, Integer amountWon, Integer currentStreak, Integer maxStreak,
-                       double minTime, double maxTime){
-        this.letters = letters;
-        this.played = played;
-        this.amountWon = amountWon;
-        this.currentStreak = currentStreak;
-        this.maxStreak = maxStreak;
-        this.minTime = minTime;
-        this.maxTime = maxTime;
-
-    }
-    */
-
-
-
 
     public String getPlayer() {
         return player;
