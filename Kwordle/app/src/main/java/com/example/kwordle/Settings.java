@@ -43,6 +43,7 @@ public class Settings extends Activity  {
             if (isChecked) {
                 Opening.playedGameModal.setHardMode("true");
                 Opening.hardMode = true;
+                Opening.archiveHandler.setPlayerHardMode(Opening.playedGameModal, true);
 
                 //System.out.println("=========set hard true");
 
@@ -50,6 +51,7 @@ public class Settings extends Activity  {
             } else {
                 Opening.playedGameModal.setHardMode("false");
                 Opening.hardMode = false;
+                Opening.archiveHandler.setPlayerHardMode(Opening.playedGameModal, false);
 
                 //System.out.println("=========set hard false");
             }

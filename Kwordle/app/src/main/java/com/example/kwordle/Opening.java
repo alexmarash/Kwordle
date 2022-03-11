@@ -56,22 +56,36 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
             startActivity(new Intent(this, NewGamePopUp.class));
         }
         else {
-            Toast toast = Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER! YOUR GLOW IS TOO RADIANT FOR ME TO SEE YOUR FACE", Toast.LENGTH_LONG);
-            LinearLayout layout = (LinearLayout) toast.getView();
-            layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-            toast.show();
+            noPlayerSelected(view);
         }
     }
 
+    public void noPlayerSelected(View view){
+        Toast toast = Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER! YOUR GLOW IS TOO RADIANT FOR ME TO SEE YOUR FACE", Toast.LENGTH_LONG);
+        LinearLayout layout = (LinearLayout) toast.getView();
+        layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        toast.show();
+    }
+
+
     // Go to stats page
     public void stats(View view){
-        startActivity(new Intent(this, Statistics.class));
+        if (!currentPlayer.equals("     ") && !currentPlayer.equals("New Player")) {
+            startActivity(new Intent(this, Statistics.class));
+        }
+        else {
+            noPlayerSelected(view);
+        }
     }
 
     // Go to Settings page
     public void settings(View view){
-        startActivity(new Intent(this, Settings.class));
-
+        if (!currentPlayer.equals("     ") && !currentPlayer.equals("New Player")) {
+            startActivity(new Intent(this, Settings.class));
+        }
+        else {
+            noPlayerSelected(view);
+        }
     }
 
     //Selecting a player
