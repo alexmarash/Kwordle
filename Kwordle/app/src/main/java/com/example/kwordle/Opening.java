@@ -2,11 +2,9 @@ package com.example.kwordle;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -61,10 +59,11 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     }
 
     public void noPlayerSelected(View view){
-        Toast toast = Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER! I CANT SEE YOUR LOVELY FACE", Toast.LENGTH_LONG);
-        LinearLayout layout = (LinearLayout) toast.getView();
-        layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-        toast.show();
+        Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER! I CANT SEE YOUR LOVELY FACE", Toast.LENGTH_LONG).show();
+        //Toast toast = Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER! I CANT SEE YOUR LOVELY FACE", Toast.LENGTH_LONG);
+        //LinearLayout layout = (LinearLayout) toast.getView();
+        //layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        //toast.show();
     }
 
 
