@@ -7,16 +7,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_kwicon"
         android:label="@string/app_name"
         android:gravity="center"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_kwicon"
         android:supportsRtl="true"
         android:screenOrientation="sensorPortrait"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Opening"
-            android:label="@string/title_page"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

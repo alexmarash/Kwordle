@@ -4,33 +4,73 @@
     android:id="@+id/correctPop"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EB0B67C3">
+    android:background="#EB3E4145">
 
-    <Button
-        android:id="@+id/fiveLetterGame"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="200px"
         android:gravity="center"
-        android:onClick="fiveLetterStart"
-        android:text="@string/fiveLetterStart"
-        android:textSize="12sp" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/correctDone"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        <Button
+            android:id="@+id/fiveLetterGame"
+            android:layout_width="400px"
+            android:layout_height="200px"
+            android:layout_gravity="center"
+            android:layout_marginRight="40px"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/open_large_selector"
+            android:onClick="fiveLetterStart"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:scaleType="fitXY"
+            android:shadowColor="@color/black"
+            android:shadowDx="3.5"
+            android:shadowDy="3.3"
+            android:shadowRadius="3.6"
+            android:text="@string/newFiveLetter"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200px"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="200px"
+        android:layout_marginEnd="200px"
         android:layout_marginBottom="100dp"
         android:gravity="center"
-        android:onClick="doneNewGameClick"
-        android:text="@string/correctDone"
-        android:textSize="12sp" />
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/correctDone"
+            android:layout_width="400px"
+            android:layout_height="200px"
+            android:layout_gravity="center"
+            android:layout_marginRight="40px"
+            android:autoSizeMaxTextSize="24sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/open_large_selector"
+            android:onClick="doneNewGameClick"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:scaleType="fitXY"
+            android:shadowColor="@color/black"
+            android:shadowDx="3.5"
+            android:shadowDy="3.3"
+            android:shadowRadius="3.6"
+            android:text="@string/correctDone"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </LinearLayout>
 
 </RelativeLayout>

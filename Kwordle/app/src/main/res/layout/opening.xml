@@ -1,100 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout android:id="@+id/new_player_container"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_player_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/open_background">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/gameTitle"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/title_page2Line"
-            android:textAlignment="center"
-            android:textColor="#0E0E0E"
-            android:textSize="24sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
 
-        <TextView
-            android:id="@+id/newPlayer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/player"
-            android:textAlignment="center"
-            android:textColor="#0E0E0E"
-            android:textSize="24sp" />
+            <TextView
+                android:id="@+id/newPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="600px"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/player"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
 
 
-        <Spinner
-            android:id="@+id/playerSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="center"/>
+                <Spinner
+                    android:id="@+id/playerSpinner"
+                    android:layout_marginTop="50px"
+                    android:layout_width="800px"
+                    android:layout_height="100px"
+                    android:background="@drawable/spinner_background"
+                    android:layout_gravity="center"/>
 
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
+            android:layout_height="200dp"
             android:layout_gravity="bottom"
-            android:gravity="center">
-
-
+            android:layout_marginBottom="100dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
 
 
             <Button
                 android:id="@+id/newGameOpening"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
                 android:onClick="newGameClick"
-                android:layout_marginEnd="10dp"
-                android:textSize="24sp"
-                android:text="@string/newGame" />
+                android:layout_width="400px"
+                android:layout_height="200px"
+                android:layout_marginRight="40px"
+                android:autoSizeMaxTextSize="24sp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:background="@drawable/open_large_selector"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+                android:scaleType="fitXY"
+                android:shadowColor="@color/black"
+                android:shadowDx="3.5"
+                android:shadowDy="3.3"
+                android:shadowRadius="3.6"
+                android:text="@string/newGame"
+                android:textColor="@color/white" />
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:layout_marginRight="40px"
                 android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
+                android:background="@drawable/open_small_selector"
                 android:onClick="stats"
+                android:padding="50px"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/statistics" />
 
             <ImageButton
                 android:id="@+id/imageButton2"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:gravity="right"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
+                android:layout_width="200px"
+                android:layout_height="200px"
                 android:adjustViewBounds="true"
+                android:background="@drawable/open_small_selector"
+                android:gravity="right"
                 android:onClick="settings"
+                android:padding="50px"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/gear" />
 
         </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+</RelativeLayout>

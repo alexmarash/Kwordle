@@ -13,9 +13,12 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.Arrays;
+
 public class PlayerEntry extends Fragment implements View.OnClickListener {
     private String thisPlayerName = "";
     private Button submitButton;
+    public static Integer position = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,8 @@ public class PlayerEntry extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         if (!this.thisPlayerName.equals("")) {
             Opening.archiveHandler.newPlayer(this.thisPlayerName);
+            String[] thesePlayers;thesePlayers = Opening.archiveHandler.getListOfPlayers();
+            this.position = Arrays.asList(thesePlayers).indexOf(thisPlayerName);
         }
 
         startActivity(new Intent(getActivity(), Opening.class));

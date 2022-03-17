@@ -1,11 +1,13 @@
 package com.example.kwordle;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,7 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     public static String currentPlayer;
     public static Boolean hardMode = true;
     public static PlayedGameModal playedGameModal;
+    public static Integer thePosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +36,36 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
         archiveHandler = new ArchiveHandler(Opening.this);
         thesePlayers = archiveHandler.getListOfPlayers();
 
+        if (thePosition == 0) {
+            thePosition = PlayerEntry.position;
+        }
+
         //Create spinner, and listener for spinner click
         Spinner players = findViewById(R.id.playerSpinner);
         players.setOnItemSelectedListener(this);
 
         //Create the array adapter for the list of players
+        //ArrayAdapter ad = ArrayAdapter.createFromResource(this, android.R.layout.my_spinner);
         ArrayAdapter ad = new ArrayAdapter(this, android.R.layout.simple_spinner_item, thesePlayers);
 
         //set simple layout resource file for each item
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        //ad.setDropDownViewResource(R.layout.my_spinner);
         //Set adapter date to bind spinner data to spinner
         players.setAdapter(ad);
+        players.setSelection(thePosition);
     }
 
     // Start a new game
     public void newGameClick(View view){
+        //Button ngButton = findViewById(R.id.newGameOpening);
+        //ngButton.setBackgroundResource(R.drawable.button_new_game_c);
+        //if(View.id == R.id.newGameOpening) {
+        //    ngButton.setBackgroundResource(R.drawable.button_new_game_c);
+       // }
+
+
+
         // Check if no player is selected, if not go to new game popup, if so send a toast warning
         if (!currentPlayer.equals("     ")) {
             startActivity(new Intent(this, NewGamePopUp.class));
@@ -92,6 +109,12 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
         //Set the player to the player on the spinner
         this.currentPlayer = thesePlayers[position];
+
+        this.thePosition = position;
+
+
+        ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
 
         //If a player is selected set the hardMode
         if (!currentPlayer.equals("     ") && !currentPlayer.equals("New Player")) {

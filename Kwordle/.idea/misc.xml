@@ -5,17 +5,31 @@
       <map>
         <entry key="..\:/Users/alexm/AndroidStudioProjects/Kwordle/app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.254" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/ic_kwicon.xml" value="0.166" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/ic_launcher_background.xml" value="0.254" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/ic_new_game.xml" value="0.167" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/ic_new_game_a.xml" value="0.3305" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/ic_new_game_d.xml" value="0.219" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/open_large.xml" value="0.219" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/open_small_selector.xml" value="0.219" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/spinner_background.xml" value="0.368" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/spinner_border.xml" value="0.368" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/drawable/spinner_mine.xml" value="0.368" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout-v26/activity_main.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/correct.xml" value="0.375" />
-        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/five_letter_main.xml" value="0.1670792079207921" />
-        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/new_game_popup.xml" value="0.10911458333333333" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/five_letter_main.xml" value="0.1" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/my_spinner.xml" value="0.16914191419141913" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/new_game_popup.xml" value="0.165" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/opening.xml" value="0.1" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/player_entry.xml" value="0.1" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/popupccorrect.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/settings_popup.xml" value="0.25" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/statistics.xml" value="0.1" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/mipmap-anydpi-v26/kw_icon.xml" value="0.1" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/mipmap-anydpi-v26/kw_icon_round.xml" value="0.1" />
       </map>
     </option>
   </component>
