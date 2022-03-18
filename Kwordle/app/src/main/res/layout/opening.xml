@@ -32,13 +32,13 @@
                 android:textSize="24sp" />
 
 
-                <Spinner
-                    android:id="@+id/playerSpinner"
-                    android:layout_marginTop="50px"
-                    android:layout_width="800px"
-                    android:layout_height="100px"
-                    android:background="@drawable/spinner_background"
-                    android:layout_gravity="center"/>
+            <Spinner
+                android:id="@+id/playerSpinner"
+                android:layout_marginTop="50px"
+                android:layout_width="800px"
+                android:layout_height="100px"
+                android:background="@drawable/spinner_background"
+                android:layout_gravity="center"/>
 
 
         </LinearLayout>
