@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/correctPop"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#EB0B67C3">
+    style="@style/popupBackground">
 
     <TextView
         android:id="@+id/settingsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
+        style="@style/popupTitle"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="@string/settingTitle"
-        android:textSize="24sp" />
-
+        android:text="@string/settingTitle" />
 
     <FrameLayout
         android:id="@+id/hardSwitchLayout"
+        android:layout_marginTop="50px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -29,60 +20,52 @@
         android:layout_gravity="center">
 
         <Switch
+            android:layout_centerHorizontal="true"
             android:id="@+id/hardSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hard Mode"
-            android:layout_marginTop="10dp" />
+            android:text="@string/hard_mode"
+            android:layout_marginTop="10dp"
+            android:shadowColor="@color/black"
+            android:shadowDx="3.5"
+            android:shadowDy="3.3"
+            android:shadowRadius="3.6"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            />
     </FrameLayout>
 
 
     <Button
         android:id="@+id/changePlayer"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/hardSwitchLayout"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:onClick="changePlayerClick"
+        android:layout_below="@+id/hardSwitchLayout"
         android:text="@string/changePlayer"
-        android:textSize="12sp"
-        tools:ignore="UsingOnClickInXml" />
+        android:layout_marginTop="100px"
+        android:onClick="changePlayerClick"
+        style="@style/thinButton" />
 
 
 
     <Button
         android:id="@+id/resetWords"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/changePlayer"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:onClick="resetWordsClick"
+        android:layout_below="@id/changePlayer"
         android:text="@string/resetWords"
-        android:textSize="12sp"
-        tools:ignore="UsingOnClickInXml" />
+        android:layout_marginTop="100px"
+        android:onClick="resetWordsClick"
+        style="@style/thinButton" />
+
 
     <Button
         android:id="@+id/settingsDone"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
+        android:text="@string/close"
         android:onClick="doneSettingsClick"
-        android:text="@string/correctDone"
-        android:textSize="12sp" />
-
-
-
-
+        android:layout_marginTop="200px"
+        android:layout_marginBottom="25px"
+        android:layout_alignParentBottom="true"
+        style="@style/thinButton"/>
 </RelativeLayout>
+
+

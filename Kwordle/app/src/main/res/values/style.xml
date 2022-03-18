@@ -21,12 +21,54 @@
 
     </style>
 
-
+    <style name="popupBackground">
+        <item name="android:layout_width">800px</item>
+        <item name="android:layout_height">1200px</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/pop_up_background</item>
+        <item name="android:gravity">center</item>
+    </style>
 
     <style name="SpinnerStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="thinButton">
+        <item name="android:layout_width">400px</item>
+        <item name="android:layout_height">100px</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginRight">40px</item>
+        <item name="android:autoSizeMaxTextSize">12sp</item>
+        <item name="android:autoSizeMinTextSize">10sp</item>
+        <item name="android:autoSizeStepGranularity">2sp</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:background">@drawable/thin_button_selector</item>
+        <item name="android:paddingLeft">20px</item>
+        <item name="android:paddingRight">20px</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:shadowColor">@color/black</item>
+        <item name="android:shadowDx">3.5</item>
+        <item name="android:shadowDy">3.3</item>
+        <item name="android:shadowRadius">3.6</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="popupTitle">
+        <item name="android:layout_width">400px</item>
+        <item name="android:layout_height">100px</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">20px</item>
+        <item name="android:gravity">center</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:shadowColor">@color/black</item>
+        <item name="android:shadowDx">3.5</item>
+        <item name="android:shadowDy">3.3</item>
+        <item name="android:shadowRadius">3.6</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 
     <style name="displayGrid">

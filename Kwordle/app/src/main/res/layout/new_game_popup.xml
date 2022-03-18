@@ -2,130 +2,44 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/correctPop"
-    android:layout_width="800px"
-    android:layout_height="1200px"
-    android:layout_gravity="center"
-    android:background="@drawable/pop_up_background"
-    android:gravity="center">
+    style="@style/popupBackground">
 
     <TextView
-        android:layout_width="400px"
-        android:layout_height="100px"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20px"
-        android:gravity="center"
-        android:scaleType="fitXY"
-        android:shadowColor="@color/black"
-        android:shadowDx="3.5"
-        android:shadowDy="3.3"
-        android:shadowRadius="3.6"
-        android:text="@string/play"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
+        style="@style/popupTitle"
+        android:text="@string/play" />
 
     <Button
         android:id="@+id/fiveLetterGame"
+        android:text="@string/newFiveLetter"
         android:layout_alignParentTop="true"
         android:layout_marginTop="200px"
-        android:layout_width="400px"
-        android:layout_height="100px"
-        android:layout_gravity="center"
-        android:layout_marginRight="40px"
-        android:autoSizeMaxTextSize="12sp"
-        android:autoSizeMinTextSize="10sp"
-        android:autoSizeStepGranularity="2sp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/thin_button_selector"
         android:onClick="fiveLetterStart"
-        android:paddingLeft="20px"
-        android:paddingRight="20px"
-        android:scaleType="fitXY"
-        android:shadowColor="@color/black"
-        android:shadowDx="3.5"
-        android:shadowDy="3.3"
-        android:shadowRadius="3.6"
-        android:text="@string/newFiveLetter"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+        style="@style/thinButton" />
 
     <Button
         android:id="@+id/sixLetterGame"
-        android:layout_width="400px"
-        android:layout_height="100px"
         android:layout_below="@+id/fiveLetterGame"
-        android:layout_gravity="center"
-        android:layout_marginTop="100px"
-        android:layout_marginRight="40px"
-        android:autoSizeMaxTextSize="12sp"
-        android:autoSizeMinTextSize="10sp"
-        android:autoSizeStepGranularity="2sp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/thin_button_selector"
-        android:onClick="sixLetterStart"
-        android:paddingLeft="20px"
-        android:paddingRight="20px"
-        android:scaleType="fitXY"
-        android:shadowColor="@color/black"
-        android:shadowDx="3.5"
-        android:shadowDy="3.3"
-        android:shadowRadius="3.6"
         android:text="@string/newSixLetter"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+        android:layout_marginTop="100px"
+        android:onClick="sixLetterStart"
+        style="@style/thinButton" />
 
     <Button
         android:id="@+id/wordTetrisGame"
-        android:layout_width="400px"
-        android:layout_height="100px"
         android:layout_below="@+id/sixLetterGame"
-        android:layout_gravity="center"
-        android:layout_marginTop="100px"
-        android:layout_marginRight="40px"
-        android:autoSizeMaxTextSize="12sp"
-        android:autoSizeMinTextSize="10sp"
-        android:autoSizeStepGranularity="2sp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/thin_button_selector"
-        android:onClick="tetrisStart"
-        android:paddingLeft="20px"
-        android:paddingRight="20px"
-        android:scaleType="fitXY"
-        android:shadowColor="@color/black"
-        android:shadowDx="3.5"
-        android:shadowDy="3.3"
-        android:shadowRadius="3.6"
         android:text="@string/newTetris"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+        android:layout_marginTop="100px"
+        android:onClick="tetrisStart"
+        style="@style/thinButton" />
 
 
     <Button
         android:id="@+id/correctDone"
-        android:layout_width="400px"
-        android:layout_height="100px"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="25px"
-        android:layout_gravity="center"
-        android:layout_marginTop="200px"
-        android:layout_marginRight="40px"
-
-        android:autoSizeMaxTextSize="12sp"
-        android:autoSizeMinTextSize="10sp"
-        android:autoSizeStepGranularity="2sp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/thin_button_selector"
-        android:onClick="doneNewGameClick"
-        android:paddingLeft="20px"
-        android:paddingRight="20px"
-        android:scaleType="fitXY"
-        android:shadowColor="@color/black"
-        android:shadowDx="3.5"
-        android:shadowDy="3.3"
-        android:shadowRadius="3.6"
         android:text="@string/close"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+        android:onClick="doneNewGameClick"
+        android:layout_marginTop="200px"
+        android:layout_marginBottom="25px"
+        android:layout_alignParentBottom="true"
+        style="@style/thinButton"/>
 </RelativeLayout>
 

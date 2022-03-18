@@ -22,7 +22,8 @@ public class Settings extends Activity  {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * 0.6), (int) (height * 0.6));
+        //getWindow().setLayout((int) (width * 0.6), (int) (height * 0.6));
+        getWindow().setLayout((int) (800), (int) (1200));
 
         //Initialize switch
         Switch hard = (Switch) findViewById(R.id.hardSwitch);

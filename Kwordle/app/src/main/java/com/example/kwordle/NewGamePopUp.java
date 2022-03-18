@@ -16,7 +16,7 @@ public class NewGamePopUp extends Activity {
         super.onCreate(savedInstantState);
         setContentView(R.layout.new_game_popup);
 
-         comingSoon = getString(R.string.comingsoon);
+        comingSoon = getString(R.string.comingsoon);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
