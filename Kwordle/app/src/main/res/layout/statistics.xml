@@ -73,6 +73,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/played" />
 
@@ -83,6 +84,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/wins" />
 
@@ -94,6 +96,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/currentStreak" />
 
@@ -104,6 +107,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/maxStreak" />
 
@@ -114,6 +118,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/minTime" />
 
@@ -124,6 +129,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/maxTime" />
 
@@ -143,6 +149,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/played" />
 
@@ -153,6 +160,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/wins" />
 
@@ -165,6 +173,7 @@
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:textColor="@color/white"
                 android:text="@string/currentStreak" />
 
             <TextView
@@ -174,6 +183,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/maxStreak" />
 
@@ -184,6 +194,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/minTime" />
 
@@ -194,6 +205,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:text="@string/maxTime" />
 
