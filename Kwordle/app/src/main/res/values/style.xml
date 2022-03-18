@@ -21,6 +21,15 @@
 
     </style>
 
+    <style name="statsBackground">
+        <item name="android:layout_width">1000px</item>
+        <item name="android:layout_height">2000px</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/pop_up_background</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
     <style name="popupBackground">
         <item name="android:layout_width">800px</item>
         <item name="android:layout_height">1200px</item>

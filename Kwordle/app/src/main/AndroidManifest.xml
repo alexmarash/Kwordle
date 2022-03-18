@@ -39,7 +39,7 @@
             android:label="@string/statisticsTitle"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.popupTheme">
         </activity>
 
 

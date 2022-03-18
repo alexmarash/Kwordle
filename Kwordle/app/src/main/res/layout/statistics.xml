@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/statsBackground">
+    android:background="@drawable/stats_background">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/statsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/statisticsTitle"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="24dp" />
+            style="@style/popupTitle"
+            android:layout_marginTop="40px"
+            android:layout_centerHorizontal="true"
+            android:text="@string/statisticsTitle" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10px"
             android:layout_marginBottom="100dp"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="1dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/currentPlayer"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="100px"
+                android:layout_marginTop="20px"
+                android:scaleType="fitXY"
+                android:shadowColor="@color/black"
+                android:shadowDx="3.5"
+                android:shadowDy="3.3"
+                android:shadowRadius="3.6"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="12sp" />
+                android:gravity="left" />
 
             <TextView
                 android:id="@+id/numberOfLetters"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="100px"
+                android:layout_marginTop="20px"
+                android:scaleType="fitXY"
+                android:shadowColor="@color/black"
+                android:shadowDx="3.5"
+                android:shadowDy="3.3"
+                android:shadowRadius="3.6"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="12sp" />
+                android:gravity="right"/>
         </LinearLayout>
 
         <LinearLayout
@@ -57,63 +69,63 @@
             <TextView
                 android:id="@+id/played"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/played"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/played" />
 
             <TextView
                 android:id="@+id/winPercent"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/wins"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/wins" />
 
 
             <TextView
                 android:id="@+id/currentStreak"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/currentStreak"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/currentStreak" />
 
             <TextView
                 android:id="@+id/maxStreak"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/maxStreak"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/maxStreak" />
 
             <TextView
                 android:id="@+id/minTime"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/minTime"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/minTime" />
 
             <TextView
                 android:id="@+id/maxTime"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/maxTime"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/maxTime" />
 
         </LinearLayout>
 
@@ -127,85 +139,85 @@
             <TextView
                 android:id="@+id/playedTitle"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/played"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/played" />
 
             <TextView
                 android:id="@+id/winPercentTitle"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/wins"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/wins" />
 
 
             <TextView
                 android:id="@+id/currentStreakTitle"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/currentStreak"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/currentStreak" />
 
             <TextView
                 android:id="@+id/maxStreakTitle"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/maxStreak"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/maxStreak" />
 
             <TextView
                 android:id="@+id/minTimeTitle"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/minTime"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/minTime" />
 
             <TextView
                 android:id="@+id/maxTimeTitle"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="@string/maxTime"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:autoSizeTextType="uniform"/>
+                android:text="@string/maxTime" />
 
         </LinearLayout>
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/idBarChart"
             android:layout_width="match_parent"
-            android:layout_marginTop="50dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp" />
 
-
-        <Button
-            android:id="@+id/statsDone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:onClick="doneStats"
-            android:text="Done"
-            tools:layout_editor_absoluteX="380dp"
-            tools:layout_editor_absoluteY="1041dp" />
 
 
 
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/statsDone"
+        style="@style/thinButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80px"
+        android:onClick="doneStats"
+        android:text="@string/close" />
+
+</RelativeLayout>
