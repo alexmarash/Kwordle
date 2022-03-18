@@ -5,12 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.Toast;
 
 public class NewGamePopUp extends Activity {
+
+    public String comingSoon;
+
     @Override
     protected void onCreate(Bundle savedInstantState) {
         super.onCreate(savedInstantState);
         setContentView(R.layout.new_game_popup);
+
+         comingSoon = getString(R.string.comingsoon);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -18,9 +24,9 @@ public class NewGamePopUp extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width * 0.6),(int)(height * 0.6));
-
-        }
+        //getWindow().setLayout((int)(width * 0.6),(int)(height * 0.6));
+        getWindow().setLayout((int) (800), (int) (1200));
+    }
 
 
     public void fiveLetterStart(View view) {
@@ -32,5 +38,14 @@ public class NewGamePopUp extends Activity {
         finish();
     }
 
+    public void sixLetterStart(View view) {
+        Toast.makeText(getApplicationContext(), comingSoon, Toast.LENGTH_LONG).show();
+    }
+
+    public void tetrisStart(View view) {
+        Toast.makeText(getApplicationContext(), comingSoon, Toast.LENGTH_LONG).show();
+    }
 }
+
+
 

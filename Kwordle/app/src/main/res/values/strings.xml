@@ -7,6 +7,8 @@
     <string name="correctAnswer">You are Correct!!!!\nThe answer was:</string>
     <string name="correctAnswer2">You finished in</string>
     <string name="correctDone">Done</string>
+    <string name="close">Close</string>
+    <string name="play">Play</string>
     <string name="answer">Answer goes here</string>
     <string name="answerTries">Answer goes here</string>
     <string name="wrongAnswer">Sorry you were wrong \n The answer was:</string>
@@ -43,4 +45,7 @@
     <string name="newPlayerEntry">New Player</string>
     <string name="submit">Submit</string>
     <string name="newFiveLetter">5 Letter Game</string>
+    <string name="newSixLetter">6 Letter Game</string>
+    <string name="newTetris">Word Tetris</string>
+    <string name="comingsoon">Coming Soon!!!</string>
 </resources>
