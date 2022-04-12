@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hints_0">Here is a hint, use your hints!</string>
+    <string name="hints_1">You did not use all the hints</string>
+    <string name="hints_2">Trying to slip one by on me, I see you did not use all your hints</string>
+    <string name="hints_3">Remember you need to use all the hints</string>
+    <string name="hints_4">The hints are there to help you, you need to use them</string>
+    <string name="hints_5">Hint means: slight or indirect suggestion.  Please use them</string>
+    <string name="hints_6">Psst, remember to use the hints</string>
+    <string name="hints_7">You do not have to use the hints if you turn off hard mode</string>
+    <string name="hints_8">Do not make me angry, use your hints</string>
+    <string name="hints_9">NINNY!</string>
+
+    <string name="word_0">agint - see I can make up words too</string>
+    <string name="word_1">That is not a word!</string>
+    <string name="word_2">Remember each guess needs to be a word</string>
+    <string name="word_3">There are a lot of words out there, this is not one of them</string>
+    <string name="word_4">I think you might have misspelled your guess</string>
+    <string name="word_5">Did you think I would not notice this is not a word</string>
+    <string name="word_6">Did you place last in the spelling bee?  That is not a word</string>
+    <string name="word_7">No, No, No! That is not a word!</string>
+    <string name="word_8">You can only use English words</string>
+    <string name="word_9">No es una palabra</string>
+    <string name="word_10">I love you, but I cannot let that slide</string>
+
+    <string name="nice_0">I have met many, but none as smart as you</string>
+    <string name="nice_1">You are doing great, keep it up</string>
+    <string name="nice_2">I like you, do you like me too?</string>
+    <string name="nice_3">You are so smart!</string>
+    <string name="nice_4">You are the best!</string>
+    <string name="nice_5">I cannot believe how good you are at this</string>
+    <string name="nice_6">I guess I need to step up my game, you keep winning</string>
+    <string name="nice_7">Holy cow, you are amazing</string>
+    <string name="nice_8">Smart and good looking!</string>
+    <string name="nice_9">You are unstoppable</string>
+</resources>

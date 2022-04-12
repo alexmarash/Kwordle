@@ -4,6 +4,8 @@ package com.example.kwordle;
 import android.content.Context;
 import android.util.Pair;
 
+import java.util.Random;
+
 public class Play  {
 
     public static Pair<Integer[], Boolean> enter(Context context, char[] currentWord, char[] wordEntry, Integer[] wordColorInt,
@@ -53,6 +55,7 @@ public class Play  {
                 }
             }
         }
+
 
         return new Pair<>(currentWordColor, correct);
 

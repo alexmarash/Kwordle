@@ -13,6 +13,7 @@ import com.example.kwordle.Alphabets.alphaWrapper;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 
 public class FiveLetterBoard extends Opening {
@@ -114,7 +115,12 @@ public class FiveLetterBoard extends Opening {
 
         //Check if word is in the word list
         if (!WordLists.fiveWordListArray.contains(thisAnswer.toString())) {
-            Toast.makeText(getApplicationContext(), "THAT IS NOT A WORD!!!", Toast.LENGTH_LONG).show();
+            Random randWord = new Random();
+            int randWordNumber = randWord.nextInt(10);
+            String randWordString = "word_" + String.valueOf(randWordNumber);
+            int resourceWord = getResources().getIdentifier(randWordString, "string", "com.example.kwordle");
+
+            Toast.makeText(getApplicationContext(), resourceWord , Toast.LENGTH_LONG).show();
 
             return false;
         }
@@ -150,7 +156,13 @@ public class FiveLetterBoard extends Opening {
 
             //If failed hard check send toast
             if (!hardCheck) {
-                Toast.makeText(getApplicationContext(), "DID NOT USE ALL THE HINTS YOU DUMMY!!!", Toast.LENGTH_LONG).show();
+
+                Random randHint = new Random();
+                int randHintNumber = randHint.nextInt(10);
+                String randHintString = "hints_" + String.valueOf(randHintNumber);
+                int resourceHint = getResources().getIdentifier(randHintString, "string", "com.example.kwordle");
+
+                Toast.makeText(getApplicationContext(), resourceHint, Toast.LENGTH_LONG).show();
                 return;
             }
         }
@@ -159,6 +171,21 @@ public class FiveLetterBoard extends Opening {
         Pair<Integer[], Boolean> thisPlay = Play.enter(this, currentWord.clone(), wordEntry.clone(), wordColorInt, letters, alphabet);
         Integer[] currentWordColor = thisPlay.first;
         correct = thisPlay.second;
+
+        if (!correct) {
+            Random randNiceChoice = new Random();
+            int randNiceNumberChoice = randNiceChoice.nextInt(4);
+
+            if (randNiceNumberChoice == 0) {
+                Random randNice = new Random();
+                int randNiceNumber = randNice.nextInt(10);
+                String randNiceString = "nice_" + String.valueOf(randNiceNumber);
+                int resourceNice = getResources().getIdentifier(randNiceString, "string", "com.example.kwordle");
+
+                Toast.makeText(getApplicationContext(), resourceNice, Toast.LENGTH_LONG).show();
+            }
+        }
+
 
         //Set the colors for entry row
         setRowColor(currentWordColor);

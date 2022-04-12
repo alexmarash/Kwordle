@@ -53,12 +53,13 @@
 
             <ImageButton
                 android:id="@+id/stats"
-                android:onClick="stats"
                 android:layout_width="200px"
                 android:layout_height="200px"
                 android:layout_marginRight="40px"
                 android:adjustViewBounds="true"
                 android:background="@drawable/open_small_selector"
+                android:contentDescription="@string/statisticsTitle"
+                android:onClick="stats"
                 android:padding="50px"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/statistics" />
@@ -70,6 +71,7 @@
                 android:layout_height="200px"
                 android:adjustViewBounds="true"
                 android:background="@drawable/open_small_selector"
+                android:contentDescription="@string/settingTitle"
                 android:gravity="right"
                 android:onClick="settings"
                 android:padding="50px"
