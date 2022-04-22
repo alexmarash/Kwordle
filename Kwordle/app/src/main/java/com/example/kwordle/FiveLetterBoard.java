@@ -8,8 +8,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-
-import com.example.kwordle.Alphabets.alphaWrapper;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -46,11 +47,20 @@ public class FiveLetterBoard extends Opening {
     //public static char[] hints = new char[letters];
     public static ArrayList<Character> hintList = new ArrayList<Character>();
 
+    private UponLetterClick viewModel;
+
+    public SetLetterClicked setLetterClicked;
+
+    Fragment fragment;
+
     //OnCreate of the page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.five_letter_main);
+
+
+
 
         //Set teh player
         thePlayer = Opening.currentPlayer;
@@ -67,6 +77,90 @@ public class FiveLetterBoard extends Opening {
         //Set current try to zero
         currentTry = 0;
         newGame = true;
+
+        if (savedInstanceState == null) {
+            Bundle data = new Bundle();
+            data.putParcelable("alphabet", alphabet);
+
+            /*
+            for (Map.Entry<Character, AlphaWrapper> entry){
+
+            }
+            for (alpha : alphabet){
+
+
+            }
+            */
+
+            /*
+            Fragment fragment = new EpgEventListFragment();
+            fragment.setArguments(arguments);
+            fm.beginTransaction()
+                    .replace(placeholder, fragment, tabId)
+                    .commit();
+
+            */
+
+            FragmentManager fm = getSupportFragmentManager();
+
+            Fragment letterEntry = LetterEntryFragment.newInstance(1, alphabet);
+
+            //data.putInt("current_day", 1);
+
+            //letterEntry.setArguments(data);
+
+
+
+            FragmentTransaction ft = fm.beginTransaction();
+
+
+
+            ft.add(R.id.letter_container, letterEntry);
+            ft.commit();
+            /*
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    //.add(R.id.letter_container, LetterEntryFragment.class, null)
+                    //.add(R.id.letter_container, letterEntry, null)
+                    .replace(R.id.letter_container, letterEntry)
+                    .commit();
+
+             */
+        }
+            /*
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment fragment = fm.findFragmentById(R.id.letter_container);
+
+            if (fragment == null){
+                fragment = new LetterEntryFragment();
+                fm.beginTransaction()
+                .add(R.id.letter_container, fragment)
+                .commit();
+            }
+            */
+
+            /*
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.letter_fragment_view, first);
+            fragmentTransaction.commit();
+
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.letter_fragment_view, LetterEntryFragment.class, bundle)
+                    .commit();
+             */
+
+        //fragment = (Fragment) getSupportFragmentManager().findFragmentById(R.layout.letter_fragment);
+
+
+        /*
+        viewModel = new ViewModelProvider(this).get(UponLetterClick.class);
+        viewModel.getSelectedItem().observe(this, item -> {
+            characterNumber = item.getCharacterNumber();
+            char thisLetter = item.getLetter();
+            uponletterClick(thisLetter, characterNumber);
+        });
+         */
 
         /* TODO holding for possible use for savedInstances
         if (savedInstanceState != null){} else { }
@@ -250,10 +344,10 @@ public class FiveLetterBoard extends Opening {
 
 
     public void setAlphabetColor() {
-        for (Map.Entry<Character, alphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
-                alphaWrapper currentValue = entry.getValue();
-                TextView currentLetter = findViewById(currentValue.letter);
-                currentLetter.setBackgroundColor(currentValue.color);
+        for (Map.Entry<Character, AlphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
+                AlphaWrapper currentValue = entry.getValue();
+                TextView currentLetter = findViewById(currentValue.getLetter());
+                currentLetter.setBackgroundColor(currentValue.getColor());
         }
     }
 
@@ -297,6 +391,49 @@ public class FiveLetterBoard extends Opening {
         characterNumber += 1;
 
     }
+
+
+    public void uponletterClick(char let, Integer thisCharacterNumber){
+        wordEntry[characterNumber] = let;
+        TextView letterTextView = (TextView) findViewById(tableIds[currentTry][thisCharacterNumber]);
+        letterTextView.setText(String.valueOf(let));
+    }
+
+    public void updateLetter(SetLetterClicked listener) {
+        setLetterClicked = listener;
+    }
+
+    /*
+    //public void onLetterClick(Character inputLetter, Integer inputCharacterNumber){
+    public void onLetterClick() {
+        Character thisLetter = setLetterClicked.setletterClicked();
+        //letter = setLetterClicked.letter;
+        setLetterClicked.setletterClicked(inputLetter, inputCharacterNumber);
+        characterNumber = inputCharacterNumber;
+        if (characterNumber < 5) {
+            letterClick(inputLetter);
+        }
+    }
+
+     */
+
+
+
+    /*
+    @Override
+    public void onLetterClicked(Character inputLetter, Integer inputCharacterNumber){
+        characterNumber = inputCharacterNumber;
+        if (characterNumber < 5) {
+            letterClick(inputLetter);
+        }
+    }
+
+
+     */
+
+
+
+
     public void qClick(View view) {
         if (characterNumber < 5) {
             letterClick('Q');

@@ -20,6 +20,9 @@
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/correct.xml" value="0.375" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/five_letter_main.xml" value="0.1" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/five_letter_main_original.xml" value="0.1" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/letter_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/letter_fragment_original.xml" value="0.1" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/my_spinner.xml" value="0.16914191419141913" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/new_game_popup.xml" value="0.335" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/opening.xml" value="0.1" />
@@ -27,6 +30,7 @@
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/popupccorrect.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/settings_popup.xml" value="0.1" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/statistics.xml" value="0.335" />
+        <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/layout/test.xml" value="0.1670792079207921" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="..\:/Users/alexm/Documents/GitHub/Kwordle/Kwordle/app/src/main/res/mipmap-anydpi-v26/kw_icon.xml" value="0.1" />
