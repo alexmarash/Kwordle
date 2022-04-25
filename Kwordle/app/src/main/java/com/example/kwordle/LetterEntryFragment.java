@@ -1,5 +1,6 @@
 package com.example.kwordle;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -48,7 +49,7 @@ public class LetterEntryFragment extends Fragment {
         //textView = view.findViewById(R.id.text);
         //textView.setText("first");
 
-        Bundle newBundle = getArguments();
+        //Bundle newBundle = getArguments();
 
 
         return view;
@@ -63,8 +64,8 @@ public class LetterEntryFragment extends Fragment {
 
         Alphabets alphabet = getArguments().getParcelable("alphabet");
         characterNumber = 0;
-        viewModel = new ViewModelProvider(requireActivity()).get(UponLetterClick.class);
-
+        //viewModel = new ViewModelProvider(requireActivity()).get(UponLetterClick.class);
+        LetterViewModel model = new ViewModelProvider(requireActivity()).get(LetterViewModel.class);
 
         /*
         public void setAlphabetColor() {
@@ -80,16 +81,47 @@ public class LetterEntryFragment extends Fragment {
          */
 
 
+        /*
+        button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String anotherName = "John Doe";
+                model.getCurrentName().setValue(anotherName);
+            }
+        });
+
+         */
+
         //TextView qButton = (TextView) view.findViewById(R.id.buttonQ);
         AlphaWrapper qValue = alphabet.get('Q');
         TextView qButton = (TextView) view.findViewById(qValue.getLetter());
         qButton.setBackgroundColor(qValue.getColor());
+        qButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model.setLiveLetter("q");
+            }
+            });
+
+
+
         qButton.setOnClickListener(item -> {
+
+
+                model.setLiveLetter("q");
+            });
+
+           /*
+
             if (characterNumber > 5) {
                 LetterPassThrough letterPassThrough = new LetterPassThrough('Q', characterNumber);
-                viewModel.selectItem(letterPassThrough);
+                //viewModel.selectItem(letterPassThrough);
+                model.setLiveLetter("Q");
             }
         });
+
+
+            */
     }
 
 

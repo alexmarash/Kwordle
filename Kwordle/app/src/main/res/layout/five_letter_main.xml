@@ -19,12 +19,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+
+
         <LinearLayout
             android:id="@+id/topRow"
             android:layout_width="match_parent"
-            android:layout_height="200px"
-            android:layout_marginTop="50px"
-            android:layout_marginBottom="100px"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
@@ -32,16 +34,10 @@
             <Button
                 android:id="@+id/newGame"
                 android:onClick="newGameClick"
-                android:layout_width="400px"
-                android:layout_height="200px"
-                android:layout_marginRight="40px"
-                android:autoSizeMaxTextSize="24sp"
-                android:autoSizeMinTextSize="12sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/open_large_selector"
-                android:paddingLeft="20px"
-                android:paddingRight="20px"
+                style="@style/thinButton"
+                android:layout_marginRight="100dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
                 android:scaleType="fitXY"
                 android:shadowColor="@color/black"
                 android:shadowDx="3.5"
@@ -52,386 +48,330 @@
 
             <ImageButton
                 android:id="@+id/stats"
-                android:layout_width="200px"
-                android:layout_height="200px"
+                android:layout_width="100px"
+                android:layout_height="100px"
                 android:layout_marginRight="40px"
                 android:adjustViewBounds="true"
                 android:background="@drawable/open_small_selector"
                 android:contentDescription="@string/statisticsTitle"
                 android:onClick="stats"
-                android:padding="50px"
+                android:padding="10px"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/statistics" />
 
 
             <ImageButton
                 android:id="@+id/settings"
-                android:layout_width="200px"
-                android:layout_height="200px"
+                android:layout_width="100px"
+                android:layout_height="100px"
                 android:adjustViewBounds="true"
                 android:background="@drawable/open_small_selector"
                 android:contentDescription="@string/settingTitle"
                 android:gravity="right"
                 android:onClick="settings"
-                android:padding="50px"
+                android:padding="10px"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/gear" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/row_one"
+        <TableLayout
+            android:id="@+id/entry_table"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/topRow">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowOne_columnOne"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowOne_columnTwo"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowOne_columnThree"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowOne_columnFour"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowOne_columnFive"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/row_two"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/row_one">
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowTwo_columnOne"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowTwo_columnTwo"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowTwo_columnThree"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowTwo_columnFour"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowTwo_columnFive"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/row_three"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/row_two">
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowThree_columnOne"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowThree_columnTwo"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowThree_columnThree"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowThree_columnFour"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowThree_columnFive"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/row_four"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/row_three">
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFour_columnOne"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFour_columnTwo"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFour_columnThree"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFour_columnFour"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFour_columnFive"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/row_five"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/row_four">
-
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFive_columnOne"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFive_columnTwo"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFive_columnThree"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFive_columnFour"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.20">
-
-                <TextView
-                    android:id="@+id/rowFive_columnFive"
-                    style="@style/displayGrid"
-                    android:background="@color/white" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/row_six"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/row_five"
-                app:layout_constraintBottom_toTopOf="@+id/row_seven">
-
+            <TableRow
+                android:gravity="center"
+                android:padding="2dp">
 
                 <RelativeLayout
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="0.20">
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowOne_columnOne"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowOne_columnTwo"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowOne_columnThree"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowOne_columnFour"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowOne_columnFive"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:padding="2dp">
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowTwo_columnOne"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowTwo_columnTwo"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowTwo_columnThree"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowTwo_columnFour"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowTwo_columnFive"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+
+            </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:padding="2dp">
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowThree_columnOne"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowThree_columnTwo"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowThree_columnThree"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowThree_columnFour"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowThree_columnFive"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:padding="2dp">
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFour_columnOne"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFour_columnTwo"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFour_columnThree"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFour_columnFour"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFour_columnFive"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+
+            </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:padding="2dp">
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFive_columnOne"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFive_columnTwo"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFive_columnThree"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFive_columnFour"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
+
+                    <TextView
+                        android:id="@+id/rowFive_columnFive"
+                        style="@style/displayGrid"
+                        android:background="@color/white" />
+                </RelativeLayout>
+
+
+            </TableRow>
+
+            <TableRow
+                android:gravity="center"
+                android:padding="2dp">
+
+                <RelativeLayout
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
 
                     <TextView
                         android:id="@+id/rowSix_columnOne"
@@ -440,9 +380,8 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="0.20">
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
 
                     <TextView
                         android:id="@+id/rowSix_columnTwo"
@@ -451,9 +390,8 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="0.20">
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
 
                     <TextView
                         android:id="@+id/rowSix_columnThree"
@@ -462,9 +400,8 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="0.20">
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
 
                     <TextView
                         android:id="@+id/rowSix_columnFour"
@@ -473,9 +410,8 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="0.20">
+                    android:layout_height="50dp"
+                    android:layout_width="50dp">
 
                     <TextView
                         android:id="@+id/rowSix_columnFive"
@@ -484,30 +420,17 @@
                 </RelativeLayout>
 
 
-            </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/row_seven"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_weight="10"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/row_six">
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/letter_container"
-                android:name="com.example.kwordle.LetterEntryFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </TableRow>
+        </TableLayout>
 
     </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/letter_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

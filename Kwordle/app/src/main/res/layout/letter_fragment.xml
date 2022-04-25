@@ -1,39 +1,398 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DA1616">
+    android:background="@color/transparent">
 
 
-    <LinearLayout
-        android:id="@+id/topRow"
+    <TableRow
+        android:id="@+id/tbRow1"
         android:layout_width="match_parent"
-        android:layout_height="200px"
-        android:layout_marginTop="50px"
-        android:layout_marginBottom="100px"
-        android:gravity="center"
-        android:orientation="horizontal">
-    <Button
-        android:id="@+id/newGameTwo"
-        android:onClick="newGameClicktwo"
-        android:layout_width="400px"
-        android:layout_height="200px"
-        android:layout_marginRight="40px"
-        android:autoSizeMaxTextSize="24sp"
-        android:autoSizeMinTextSize="12sp"
-        android:autoSizeStepGranularity="2sp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/open_large_selector"
-        android:paddingLeft="20px"
-        android:paddingRight="20px"
-        android:scaleType="fitXY"
-        android:shadowColor="@color/black"
-        android:shadowDx="3.5"
-        android:shadowDy="3.3"
-        android:shadowRadius="3.6"
-        android:text="@string/newGame"
-        android:textColor="@color/white"/>
-    </LinearLayout>
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonQ"
+                style="@style/alphabetGrid"
+                android:onClick="qClick"
+                android:text="Q" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonW"
+                style="@style/alphabetGrid"
+                android:onClick="wClick"
+                android:text="W" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonE"
+                style="@style/alphabetGrid"
+                android:onClick="eClick"
+                android:text="E" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonR"
+                style="@style/alphabetGrid"
+                android:onClick="rClick"
+                android:text="R" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonT"
+                style="@style/alphabetGrid"
+                android:onClick="tClick"
+                android:text="T" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonY"
+                style="@style/alphabetGrid"
+                android:onClick="yClick"
+                android:text="Y" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonU"
+                style="@style/alphabetGrid"
+                android:onClick="uClick"
+                android:text="U" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonI"
+                style="@style/alphabetGrid"
+                android:onClick="iClick"
+                android:text="I" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonO"
+                style="@style/alphabetGrid"
+                android:onClick="oClick"
+                android:text="O" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonP"
+                style="@style/alphabetGrid"
+                android:onClick="pClick"
+                android:text="P" />
+        </RelativeLayout>
+
+    </TableRow>
+
+
+    <TableRow
+        android:id="@+id/tbRow2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbRow1" >
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.10">
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonA"
+                style="@style/alphabetGrid"
+                android:onClick="aClick"
+                android:text="A" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonS"
+                style="@style/alphabetGrid"
+                android:onClick="sClick"
+                android:text="S" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonD"
+                style="@style/alphabetGrid"
+                android:onClick="dClick"
+                android:text="D" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonF"
+                style="@style/alphabetGrid"
+                android:onClick="fClick"
+                android:text="F" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonG"
+                style="@style/alphabetGrid"
+                android:onClick="gClick"
+                android:text="G" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonH"
+                style="@style/alphabetGrid"
+                android:onClick="hClick"
+                android:text="H" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonJ"
+                style="@style/alphabetGrid"
+                android:onClick="jClick"
+                android:text="J" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonK"
+                style="@style/alphabetGrid"
+                android:onClick="kClick"
+                android:text="K" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonL"
+                style="@style/alphabetGrid"
+                android:onClick="lClick"
+                android:text="L" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.10">
+        </RelativeLayout>
+
+    </TableRow>
+
+
+    <TableRow
+        android:id="@+id/tbRow3"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbRow2" >
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.40">
+
+            <TextView
+                android:id="@+id/buttonEnter"
+                style="@style/alphabetGrid"
+                android:onClick="enterClick"
+                android:text="Enter" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonZ"
+                style="@style/alphabetGrid"
+                android:onClick="zClick"
+                android:text="Z" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonX"
+                style="@style/alphabetGrid"
+                android:onClick="xClick"
+                android:text="X" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonC"
+                style="@style/alphabetGrid"
+                android:onClick="cClick"
+                android:text="C" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonV"
+                style="@style/alphabetGrid"
+                android:onClick="vClick"
+                android:text="V" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonB"
+                style="@style/alphabetGrid"
+                android:onClick="bClick"
+                android:text="B" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonN"
+                style="@style/alphabetGrid"
+                android:onClick="nClick"
+                android:text="N" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.20">
+
+            <TextView
+                android:id="@+id/buttonM"
+                style="@style/alphabetGrid"
+                android:onClick="mClick"
+                android:text="M" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.40">
+
+            <TextView
+                android:id="@+id/buttonDelete"
+                style="@style/alphabetGrid"
+                android:onClick="deleteClick"
+                android:text="Delete" />
+
+        </RelativeLayout>
+
+    </TableRow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

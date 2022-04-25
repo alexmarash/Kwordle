@@ -59,13 +59,13 @@
 
     <Button
         android:id="@+id/settingsDone"
+        style="@style/thinButton"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/close"
-        android:onClick="doneSettingsClick"
         android:layout_marginTop="200px"
         android:layout_marginBottom="25px"
-        android:layout_alignParentBottom="true"
-        style="@style/thinButton"/>
+        android:onClick="doneSettingsClick"
+        android:text="@string/close" />
 </RelativeLayout>
 
 
