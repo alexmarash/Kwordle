@@ -8,8 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-
-import com.example.kwordle.Alphabets.alphaWrapper;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -46,6 +50,12 @@ public class FiveLetterBoard extends Opening {
     //public static char[] hints = new char[letters];
     public static ArrayList<Character> hintList = new ArrayList<Character>();
 
+    private UponLetterClick viewModel;
+
+    public SetLetterClicked setLetterClicked;
+
+    Fragment fragment;
+
     //OnCreate of the page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +77,135 @@ public class FiveLetterBoard extends Opening {
         //Set current try to zero
         currentTry = 0;
         newGame = true;
+
+
+
+        LetterViewModel model = new ViewModelProvider(this).get(LetterViewModel.class);
+
+        //Create keyboard fragment - this is the same fragment in all games
+        //Create a bundle and pass the current alphabet to color it correctly
+        if (savedInstanceState == null) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("alphabet", alphabet);
+            //bundle.putInt("this", 1);
+
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.letter_container, LetterEntryFragment.class, bundle)
+                    .commit();
+        }
+
+
+        model.getLetter().observe(this, String ->{
+
+            //TODO UPDATE UI HERE
+        });
+
+        // Create the observer which updates the UI.
+        final Observer<String> nameObserver = new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable final String newInput) {
+
+                if (newInput == "delete" && characterNumber > 0) {
+                        deleteClickNoView();
+                }
+                else if (newInput == "enter" && characterNumber.equals(letters)){
+                        enterClick();
+                }
+                else if (newInput != "delete" && newInput != "enter" && characterNumber < letters) {
+                        letterClick(newInput.charAt(0));
+                }
+            }
+        };
+
+        model.getLetter().observe(this, nameObserver);
+
+            /*
+            for (Map.Entry<Character, AlphaWrapper> entry){
+
+            }
+            for (alpha : alphabet){
+
+
+            }
+            */
+
+            /*
+            Fragment fragment = new EpgEventListFragment();
+            fragment.setArguments(arguments);
+            fm.beginTransaction()
+                    .replace(placeholder, fragment, tabId)
+                    .commit();
+
+            */
+
+
+        //FragmentManager fm = getSupportFragmentManager();
+
+        //Fragment letterEntry = LetterEntryFragment.newInstance(1, alphabet);
+        //Fragment letterEntry = new LetterEntryFragment();
+        //Fragment letterEntry = new TestFragment();
+        //data.putInt("current_day", 1);
+
+        //letterEntry.setArguments(data);
+
+
+
+        //FragmentTransaction ft = fm.beginTransaction();
+
+
+
+        //ft.add(R.id.letter_container, letterEntry);
+        //ft.commit();
+            /*
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    //.add(R.id.letter_container, LetterEntryFragment.class, null)
+                    //.add(R.id.letter_container, letterEntry, null)
+                    .replace(R.id.letter_container, letterEntry)
+                    .commit();
+
+             */
+
+                    /*
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment fragment = fm.findFragmentById(R.id.letter_container);
+
+            if (fragment == null){
+                fragment = new LetterEntryFragment();
+                fm.beginTransaction()
+                .add(R.id.letter_container, fragment)
+                .commit();
+            }
+            */
+
+            /*
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.letter_fragment_view, first);
+            fragmentTransaction.commit();
+
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.letter_fragment_view, LetterEntryFragment.class, bundle)
+                    .commit();
+             */
+
+        //fragment = (Fragment) getSupportFragmentManager().findFragmentById(R.layout.letter_fragment);
+
+
+
+
+
+
+
+        /*
+        viewModel = new ViewModelProvider(this).get(UponLetterClick.class);
+        viewModel.getSelectedItem().observe(this, item -> {
+            characterNumber = item.getCharacterNumber();
+            char thisLetter = item.getLetter();
+            uponletterClick(thisLetter, characterNumber);
+        });
+         */
 
         /* TODO holding for possible use for savedInstances
         if (savedInstanceState != null){} else { }
@@ -128,7 +267,8 @@ public class FiveLetterBoard extends Opening {
     }
 
     //Enter button actions
-    public void enterClick(View view) {
+    //public void enterClick(View view) {
+    public void enterClick() {
 
         //Check to see if there are enough characters selected
         if (!characterNumber.equals(letters)) {
@@ -250,10 +390,10 @@ public class FiveLetterBoard extends Opening {
 
 
     public void setAlphabetColor() {
-        for (Map.Entry<Character, alphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
-                alphaWrapper currentValue = entry.getValue();
-                TextView currentLetter = findViewById(currentValue.letter);
-                currentLetter.setBackgroundColor(currentValue.color);
+        for (Map.Entry<Character, AlphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
+                AlphaWrapper currentValue = entry.getValue();
+                TextView currentLetter = findViewById(currentValue.getLetter());
+                currentLetter.setBackgroundColor(currentValue.getColor());
         }
     }
 
@@ -291,19 +431,70 @@ public class FiveLetterBoard extends Opening {
 
     //Do for each letter click
     public void letterClick(char let){
-        wordEntry[characterNumber] = let;
-        TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-        letterTextView.setText(String.valueOf(let));
-        characterNumber += 1;
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = let;
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText(String.valueOf(let));
+            characterNumber += 1;
+        }
 
     }
-    public void qClick(View view) {
+
+/*
+    public void uponletterClick(char let, Integer thisCharacterNumber){
+        wordEntry[characterNumber] = let;
+        TextView letterTextView = (TextView) findViewById(tableIds[currentTry][thisCharacterNumber]);
+        letterTextView.setText(String.valueOf(let));
+    }
+
+
+ */
+    /*
+
+    public void updateLetter(SetLetterClicked listener) {
+        setLetterClicked = listener;
+    }
+
+     */
+
+    /*
+    //public void onLetterClick(Character inputLetter, Integer inputCharacterNumber){
+    public void onLetterClick() {
+        Character thisLetter = setLetterClicked.setletterClicked();
+        //letter = setLetterClicked.letter;
+        setLetterClicked.setletterClicked(inputLetter, inputCharacterNumber);
+        characterNumber = inputCharacterNumber;
         if (characterNumber < 5) {
-            letterClick('Q');
+            letterClick(inputLetter);
+        }
+    }
+
+     */
+
+
+
+    /*
+    @Override
+    public void onLetterClicked(Character inputLetter, Integer inputCharacterNumber){
+        characterNumber = inputCharacterNumber;
+        if (characterNumber < 5) {
+            letterClick(inputLetter);
         }
     }
 
 
+     */
+
+
+
+
+  //  public void qClick(View view) {
+  //      if (characterNumber < 5) {
+  //          letterClick('Q');
+  //      }
+  //  }
+
+/*
     public void wClick(View view) {
         if (characterNumber < 5) {
             letterClick('W');
@@ -454,6 +645,9 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
+ */
+
+    /*
     public void deleteClick(View view) {
         if (characterNumber > 0) {
             characterNumber -= 1;
@@ -461,7 +655,31 @@ public class FiveLetterBoard extends Opening {
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText(" ");
         }
+
+
     }
+
+     */
+/*
+    public void qClickNoView() {
+        if (characterNumber < 5) {
+            letterClick('Q');
+        }
+    }
+
+
+ */
+    public void deleteClickNoView() {
+        if (characterNumber > 0) {
+            characterNumber -= 1;
+            wordEntry[characterNumber] = ' ';
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText(" ");
+        }
+
+
+    }
+
 
     //Goto stats page
     public void stats(View view) {

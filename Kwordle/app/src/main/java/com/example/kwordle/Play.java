@@ -4,8 +4,6 @@ package com.example.kwordle;
 import android.content.Context;
 import android.util.Pair;
 
-import java.util.Random;
-
 public class Play  {
 
     public static Pair<Integer[], Boolean> enter(Context context, char[] currentWord, char[] wordEntry, Integer[] wordColorInt,
@@ -24,17 +22,17 @@ public class Play  {
                 currentWordColor[i] = context.getResources().getColor(R.color.green);
                 entryCheck[i] = ' ';
                 answerCheck[i] = '>';
-                Alphabets.alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
-                thisLetter.color = context.getResources().getColor(R.color.green);
+                AlphaWrapper thisLetter = alphabet.get(wordEntry[i]);
+                thisLetter.setColor(context.getResources().getColor(R.color.green));
                 alphabet.put(wordEntry[i], thisLetter);
 
             }
             else {
                 correct = false;
-                Alphabets.alphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
+                AlphaWrapper thisLetter  = alphabet.get(wordEntry[i]);
                 if (thisLetter.getColor() != context.getResources().getColor(R.color.yellow) &&
                         thisLetter.getColor() != context.getResources().getColor(R.color.green)) {
-                    thisLetter.color = context.getResources().getColor(R.color.gray);
+                    thisLetter.setColor(context.getResources().getColor(R.color.gray));
                     alphabet.put(wordEntry[i], thisLetter);}
             }
         }
@@ -46,10 +44,10 @@ public class Play  {
                     currentWordColor[i] = context.getResources().getColor(R.color.yellow);
                     entryCheck[i] = ' ';
                     answerCheck[j] = '>';
-                    Alphabets.alphaWrapper thisLetter = alphabet.get(wordEntry[i]);
+                    AlphaWrapper thisLetter = alphabet.get(wordEntry[i]);
                     //If the letter is already green do not change it in the alphabet
                     if (thisLetter.getColor() != context.getResources().getColor(R.color.green)) {
-                        thisLetter.color = context.getResources().getColor(R.color.yellow);
+                        thisLetter.setColor(context.getResources().getColor(R.color.yellow));
                         alphabet.put(wordEntry[i], thisLetter);
                     }
                 }

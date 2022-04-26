@@ -34,6 +34,7 @@
             android:theme="@style/AppTheme">
         </activity>
 
+
         <activity
             android:name=".Statistics"
             android:label="@string/statisticsTitle"
