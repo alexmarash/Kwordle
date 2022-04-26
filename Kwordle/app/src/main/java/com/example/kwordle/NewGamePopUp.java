@@ -31,6 +31,7 @@ public class NewGamePopUp extends Activity {
 
     public void fiveLetterStart(View view) {
         startActivity(new Intent(this, FiveLetterBoard.class));
+        finish();
     }
 
 

@@ -57,12 +57,12 @@ public class LetterEntryFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        //Alphabets alphabet = getArguments().getParcelable("alphabet");
+        Alphabets alphabet = (Alphabets) getArguments().getSerializable("alphabet");
 
-        //Bundle newBundle = getArguments();
 
-        Alphabets alphabet = getArguments().getParcelable("alphabet");
-        //characterNumber = 0;
-        //viewModel = new ViewModelProvider(requireActivity()).get(UponLetterClick.class);
+
+
         LetterViewModel model = new ViewModelProvider(requireActivity()).get(LetterViewModel.class);
 
         AlphaWrapper qValue = alphabet.get('Q');

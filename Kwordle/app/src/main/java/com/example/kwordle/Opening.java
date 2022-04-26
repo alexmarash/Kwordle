@@ -3,6 +3,7 @@ package com.example.kwordle;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,12 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //if(BuildConfig.DEBUG)
+        //    StrictMode.enableDefaults();
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opening);
 

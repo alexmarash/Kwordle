@@ -86,8 +86,10 @@ public class FiveLetterBoard extends Opening {
         //Create a bundle and pass the current alphabet to color it correctly
         if (savedInstanceState == null) {
             Bundle bundle = new Bundle();
-            bundle.putParcelable("alphabet", alphabet);
-            //bundle.putInt("this", 1);
+            //bundle.putParcelable("alphabet", alphabet);
+            bundle.putSerializable("alphabet", alphabet);
+
+
 
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
@@ -424,7 +426,7 @@ public class FiveLetterBoard extends Opening {
         //TODO Debugging items
         //theAnswer = "START";
         //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
-        //System.out.println("===============================" + theAnswer);
+        System.out.println("===============================" + theAnswer);
 
         return newWord;
     }

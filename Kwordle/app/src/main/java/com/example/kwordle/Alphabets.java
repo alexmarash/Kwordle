@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Alphabets implements Parcelable {
+public class Alphabets implements Serializable {
 
     public static Map<Character, AlphaWrapper> alphabet = new HashMap<>();
     //public static Context context;
@@ -51,6 +51,12 @@ public class Alphabets implements Parcelable {
     protected Alphabets(Parcel in) {
     }
 
+
+
+
+
+
+    /*
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeSerializable((Serializable) alphabet);
@@ -72,6 +78,21 @@ public class Alphabets implements Parcelable {
             return new Alphabets[size];
         }
     };
+
+
+
+
+     */
+
+
+
+
+
+
+
+
+
+
 
     /*
         protected Alphabets(Parcel in) {
