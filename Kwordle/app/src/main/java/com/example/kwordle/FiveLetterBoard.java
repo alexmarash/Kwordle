@@ -8,15 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -48,13 +45,8 @@ public class FiveLetterBoard extends Opening {
     public static Alphabets alphabet;
     public static String thePlayer;
     //public static char[] hints = new char[letters];
-    public static ArrayList<Character> hintList = new ArrayList<Character>();
+    public static ArrayList<Character> hintList = new ArrayList<>();
 
-    private UponLetterClick viewModel;
-
-    public SetLetterClicked setLetterClicked;
-
-    Fragment fragment;
 
     //OnCreate of the page
     @Override
@@ -62,14 +54,13 @@ public class FiveLetterBoard extends Opening {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.five_letter_main);
 
-        //Set teh player
+        //Set the player
         thePlayer = Opening.currentPlayer;
 
         //Create and initialize the alphabet and all colors and entries
         alphabet = new Alphabets(this);
         initializeWordColor();
-        //initializeHints();
-        hintList = new ArrayList<Character>();
+        hintList = new ArrayList<>();
 
         //Get current answer
         currentWord = getNewWord();
@@ -79,17 +70,14 @@ public class FiveLetterBoard extends Opening {
         newGame = true;
 
 
-
+        //View Model to share data with keyboard fragment
         LetterViewModel model = new ViewModelProvider(this).get(LetterViewModel.class);
 
         //Create keyboard fragment - this is the same fragment in all games
         //Create a bundle and pass the current alphabet to color it correctly
         if (savedInstanceState == null) {
             Bundle bundle = new Bundle();
-            //bundle.putParcelable("alphabet", alphabet);
             bundle.putSerializable("alphabet", alphabet);
-
-
 
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
@@ -98,116 +86,21 @@ public class FiveLetterBoard extends Opening {
         }
 
 
-        model.getLetter().observe(this, String ->{
-
-            //TODO UPDATE UI HERE
-        });
-
         // Create the observer which updates the UI.
-        final Observer<String> nameObserver = new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable final String newInput) {
-
-                if (newInput == "delete" && characterNumber > 0) {
-                        deleteClickNoView();
-                }
-                else if (newInput == "enter" && characterNumber.equals(letters)){
-                        enterClick();
-                }
-                else if (newInput != "delete" && newInput != "enter" && characterNumber < letters) {
-                        letterClick(newInput.charAt(0));
-                }
+        final Observer<String> letterObserver = newInput -> {
+            if (Objects.equals(newInput, "delete") && characterNumber > 0) {
+                    deleteClickNoView();
+            }
+            else if (Objects.equals(newInput, "enter") && characterNumber.equals(letters)){
+                    enterClick();
+            }
+            else if (!Objects.equals(newInput, "delete") && !Objects.equals(newInput, "enter") && characterNumber < letters) {
+                assert newInput != null;
+                letterClick(newInput.charAt(0));
             }
         };
 
-        model.getLetter().observe(this, nameObserver);
-
-            /*
-            for (Map.Entry<Character, AlphaWrapper> entry){
-
-            }
-            for (alpha : alphabet){
-
-
-            }
-            */
-
-            /*
-            Fragment fragment = new EpgEventListFragment();
-            fragment.setArguments(arguments);
-            fm.beginTransaction()
-                    .replace(placeholder, fragment, tabId)
-                    .commit();
-
-            */
-
-
-        //FragmentManager fm = getSupportFragmentManager();
-
-        //Fragment letterEntry = LetterEntryFragment.newInstance(1, alphabet);
-        //Fragment letterEntry = new LetterEntryFragment();
-        //Fragment letterEntry = new TestFragment();
-        //data.putInt("current_day", 1);
-
-        //letterEntry.setArguments(data);
-
-
-
-        //FragmentTransaction ft = fm.beginTransaction();
-
-
-
-        //ft.add(R.id.letter_container, letterEntry);
-        //ft.commit();
-            /*
-            getSupportFragmentManager().beginTransaction()
-                    .setReorderingAllowed(true)
-                    //.add(R.id.letter_container, LetterEntryFragment.class, null)
-                    //.add(R.id.letter_container, letterEntry, null)
-                    .replace(R.id.letter_container, letterEntry)
-                    .commit();
-
-             */
-
-                    /*
-            FragmentManager fm = getSupportFragmentManager();
-            Fragment fragment = fm.findFragmentById(R.id.letter_container);
-
-            if (fragment == null){
-                fragment = new LetterEntryFragment();
-                fm.beginTransaction()
-                .add(R.id.letter_container, fragment)
-                .commit();
-            }
-            */
-
-            /*
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.letter_fragment_view, first);
-            fragmentTransaction.commit();
-
-            getSupportFragmentManager().beginTransaction()
-                    .setReorderingAllowed(true)
-                    .add(R.id.letter_fragment_view, LetterEntryFragment.class, bundle)
-                    .commit();
-             */
-
-        //fragment = (Fragment) getSupportFragmentManager().findFragmentById(R.layout.letter_fragment);
-
-
-
-
-
-
-
-        /*
-        viewModel = new ViewModelProvider(this).get(UponLetterClick.class);
-        viewModel.getSelectedItem().observe(this, item -> {
-            characterNumber = item.getCharacterNumber();
-            char thisLetter = item.getLetter();
-            uponletterClick(thisLetter, characterNumber);
-        });
-         */
+        model.getLetter().observe(this, letterObserver);
 
         /* TODO holding for possible use for savedInstances
         if (savedInstanceState != null){} else { }
@@ -223,9 +116,10 @@ public class FiveLetterBoard extends Opening {
         savedInstanceState.putString("Key_theAnswer", theAnswer);
         savedInstanceState.putInt("Key_currentTry", currentTry);
 
-        //TODO may need to call savedStates of the alphabet later
-        //savedInstanceState.putSerializable("Key_alphabet", (Serializable) alphabet);
-        //savedInstanceState.putSerializable("Key_tablecolor", tableColorsInt);
+        /*TODO may need to call savedStates of the alphabet later
+        savedInstanceState.putSerializable("Key_alphabet", (Serializable) alphabet);
+        savedInstanceState.putSerializable("Key_tablecolor", tableColorsInt);
+        */
 
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -258,7 +152,7 @@ public class FiveLetterBoard extends Opening {
         if (!WordLists.fiveWordListArray.contains(thisAnswer.toString())) {
             Random randWord = new Random();
             int randWordNumber = randWord.nextInt(10);
-            String randWordString = "word_" + String.valueOf(randWordNumber);
+            String randWordString = "word_" + randWordNumber;
             int resourceWord = getResources().getIdentifier(randWordString, "string", "com.example.kwordle");
 
             Toast.makeText(getApplicationContext(), resourceWord , Toast.LENGTH_LONG).show();
@@ -269,7 +163,6 @@ public class FiveLetterBoard extends Opening {
     }
 
     //Enter button actions
-    //public void enterClick(View view) {
     public void enterClick() {
 
         //Check to see if there are enough characters selected
@@ -287,7 +180,7 @@ public class FiveLetterBoard extends Opening {
         if (!wordIsReal()){return;}
 
         //Check if hardmode, and if so check to see if all hints are used
-        Boolean hardCheck = true;
+        boolean hardCheck = true;
         String hardCheckString = new String(wordEntry);
         if (hardMode) {
             for (int i = 0; i < hintList.size(); i++) {
@@ -301,7 +194,7 @@ public class FiveLetterBoard extends Opening {
 
                 Random randHint = new Random();
                 int randHintNumber = randHint.nextInt(10);
-                String randHintString = "hints_" + String.valueOf(randHintNumber);
+                String randHintString = "hints_" + randHintNumber;
                 int resourceHint = getResources().getIdentifier(randHintString, "string", "com.example.kwordle");
 
                 Toast.makeText(getApplicationContext(), resourceHint, Toast.LENGTH_LONG).show();
@@ -309,7 +202,7 @@ public class FiveLetterBoard extends Opening {
             }
         }
 
-        //Creete the tuple of the word colors and correct check
+        //Create the tuple of the word colors and correct check
         Pair<Integer[], Boolean> thisPlay = Play.enter(this, currentWord.clone(), wordEntry.clone(), wordColorInt, letters, alphabet);
         Integer[] currentWordColor = thisPlay.first;
         correct = thisPlay.second;
@@ -321,7 +214,7 @@ public class FiveLetterBoard extends Opening {
             if (randNiceNumberChoice == 0) {
                 Random randNice = new Random();
                 int randNiceNumber = randNice.nextInt(10);
-                String randNiceString = "nice_" + String.valueOf(randNiceNumber);
+                String randNiceString = "nice_" + randNiceNumber;
                 int resourceNice = getResources().getIdentifier(randNiceString, "string", "com.example.kwordle");
 
                 Toast.makeText(getApplicationContext(), resourceNice, Toast.LENGTH_LONG).show();
@@ -333,7 +226,7 @@ public class FiveLetterBoard extends Opening {
         setRowColor(currentWordColor);
 
         //Clear hintlist
-        hintList = new ArrayList<Character>();
+        hintList = new ArrayList<>();
         for (int i = 0; i< letters; i++){
             if (!currentWordColor[i].equals(this.getResources().getColor(R.color.gray))){
                 hintList.add(wordEntry[i]);
@@ -374,22 +267,12 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
-
     public void initializeWordColor(){
         for (int i = 0; i < letters; i++){
             wordColor[i] = "gray";
             wordColorInt[i] = getResources().getColor(R.color.gray);
         }
     }
-
-    /*
-    public void initializeHints(){
-        for (int i = 0; i < letters; i++){
-            hints[i] = '-';
-        }
-    }
-    */
-
 
     public void setAlphabetColor() {
         for (Map.Entry<Character, AlphaWrapper> entry : Alphabets.alphabet.entrySet()  ){
@@ -403,13 +286,13 @@ public class FiveLetterBoard extends Opening {
     public char[] getNewWord(){
 
         //Get size of starting word list
-        Integer sizeOfStartingWords = WordLists.fiveStartingWords.size();
+        int sizeOfStartingWords = WordLists.fiveStartingWords.size();
 
         //If all words are used reset the list
         archiveHandler.resetIfAllUsed(sizeOfStartingWords, thePlayer);
 
         //While the word chosen has already been used, choose another word
-        Boolean wordUsed = true;
+        boolean wordUsed = true;
         while (wordUsed) {
             int index = (int) (Math.random() * sizeOfStartingWords);
             theAnswer = WordLists.fiveStartingWords.get(index);
@@ -423,10 +306,11 @@ public class FiveLetterBoard extends Opening {
             newWord[i] = theAnswer.charAt(i);
         }
 
-        //TODO Debugging items
-        //theAnswer = "START";
-        //char newWord[] = {'S', 'T', 'A', 'R', 'T'};
-        System.out.println("===============================" + theAnswer);
+        /*TODO Debugging items
+        theAnswer = "START";
+        char newWord[] = {'S', 'T', 'A', 'R', 'T'};
+        */
+        //System.out.println("===============================" + theAnswer);
 
         return newWord;
     }
@@ -439,238 +323,8 @@ public class FiveLetterBoard extends Opening {
             letterTextView.setText(String.valueOf(let));
             characterNumber += 1;
         }
-
     }
 
-/*
-    public void uponletterClick(char let, Integer thisCharacterNumber){
-        wordEntry[characterNumber] = let;
-        TextView letterTextView = (TextView) findViewById(tableIds[currentTry][thisCharacterNumber]);
-        letterTextView.setText(String.valueOf(let));
-    }
-
-
- */
-    /*
-
-    public void updateLetter(SetLetterClicked listener) {
-        setLetterClicked = listener;
-    }
-
-     */
-
-    /*
-    //public void onLetterClick(Character inputLetter, Integer inputCharacterNumber){
-    public void onLetterClick() {
-        Character thisLetter = setLetterClicked.setletterClicked();
-        //letter = setLetterClicked.letter;
-        setLetterClicked.setletterClicked(inputLetter, inputCharacterNumber);
-        characterNumber = inputCharacterNumber;
-        if (characterNumber < 5) {
-            letterClick(inputLetter);
-        }
-    }
-
-     */
-
-
-
-    /*
-    @Override
-    public void onLetterClicked(Character inputLetter, Integer inputCharacterNumber){
-        characterNumber = inputCharacterNumber;
-        if (characterNumber < 5) {
-            letterClick(inputLetter);
-        }
-    }
-
-
-     */
-
-
-
-
-  //  public void qClick(View view) {
-  //      if (characterNumber < 5) {
-  //          letterClick('Q');
-  //      }
-  //  }
-
-/*
-    public void wClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('W');
-        }
-    }
-
-    public void eClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('E');
-        }
-    }
-
-    public void rClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('R');
-        }
-    }
-
-    public void tClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('T');
-        }
-    }
-
-    public void yClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('Y');
-        }
-    }
-
-    public void uClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('U');
-        }
-    }
-
-    public void iClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('I');
-        }
-    }
-
-    public void oClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('O');
-        }
-    }
-
-    public void pClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('P');
-        }
-    }
-
-    public void aClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('A');
-        }
-    }
-
-    public void sClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('S');
-        }
-    }
-
-    public void dClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('D');
-        }
-    }
-
-    public void fClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('F');
-        }
-    }
-
-    public void gClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('G');
-        }
-    }
-
-    public void hClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('H');
-        }
-    }
-
-    public void jClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('J');
-        }
-    }
-
-    public void kClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('K');
-        }
-    }
-
-    public void lClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('L');
-        }
-    }
-
-    public void zClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('Z');
-        }
-    }
-
-    public void xClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('X');
-        }
-    }
-
-    public void cClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('C');
-        }
-    }
-
-    public void vClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('V');
-        }
-    }
-
-    public void bClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('B');
-        }
-    }
-
-    public void nClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('N');
-        }
-    }
-
-    public void mClick(View view) {
-        if (characterNumber < 5) {
-            letterClick('M');
-        }
-    }
-
- */
-
-    /*
-    public void deleteClick(View view) {
-        if (characterNumber > 0) {
-            characterNumber -= 1;
-            wordEntry[characterNumber] = ' ';
-            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-            letterTextView.setText(" ");
-        }
-
-
-    }
-
-     */
-/*
-    public void qClickNoView() {
-        if (characterNumber < 5) {
-            letterClick('Q');
-        }
-    }
-
-
- */
     public void deleteClickNoView() {
         if (characterNumber > 0) {
             characterNumber -= 1;
@@ -678,8 +332,6 @@ public class FiveLetterBoard extends Opening {
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText(" ");
         }
-
-
     }
 
 
