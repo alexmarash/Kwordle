@@ -106,18 +106,14 @@ public class FiveLetterBoard extends Opening {
             @Override
             public void onChanged(@Nullable final String newInput) {
 
-                if (newInput == "delete") {
-                    deleteClickNoView();
+                if (newInput == "delete" && characterNumber > 0) {
+                        deleteClickNoView();
                 }
-                //else if (newInput == "enter"){
-                 //   if (characterNumber < 5) {
-                //    enterClickNoView();
-                //}}
-                else {
-                    if (characterNumber < 5) {
+                else if (newInput == "enter" && characterNumber.equals(letters)){
+                        enterClick();
+                }
+                else if (newInput != "delete" && newInput != "enter" && characterNumber < letters) {
                         letterClick(newInput.charAt(0));
-                    }
-
                 }
             }
         };
@@ -271,7 +267,8 @@ public class FiveLetterBoard extends Opening {
     }
 
     //Enter button actions
-    public void enterClick(View view) {
+    //public void enterClick(View view) {
+    public void enterClick() {
 
         //Check to see if there are enough characters selected
         if (!characterNumber.equals(letters)) {
@@ -434,23 +431,31 @@ public class FiveLetterBoard extends Opening {
 
     //Do for each letter click
     public void letterClick(char let){
-        wordEntry[characterNumber] = let;
-        TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
-        letterTextView.setText(String.valueOf(let));
-        characterNumber += 1;
+        if (characterNumber < 5) {
+            wordEntry[characterNumber] = let;
+            TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
+            letterTextView.setText(String.valueOf(let));
+            characterNumber += 1;
+        }
 
     }
 
-
+/*
     public void uponletterClick(char let, Integer thisCharacterNumber){
         wordEntry[characterNumber] = let;
         TextView letterTextView = (TextView) findViewById(tableIds[currentTry][thisCharacterNumber]);
         letterTextView.setText(String.valueOf(let));
     }
 
+
+ */
+    /*
+
     public void updateLetter(SetLetterClicked listener) {
         setLetterClicked = listener;
     }
+
+     */
 
     /*
     //public void onLetterClick(Character inputLetter, Integer inputCharacterNumber){
@@ -489,7 +494,7 @@ public class FiveLetterBoard extends Opening {
   //      }
   //  }
 
-
+/*
     public void wClick(View view) {
         if (characterNumber < 5) {
             letterClick('W');
@@ -640,6 +645,9 @@ public class FiveLetterBoard extends Opening {
         }
     }
 
+ */
+
+    /*
     public void deleteClick(View view) {
         if (characterNumber > 0) {
             characterNumber -= 1;
@@ -651,12 +659,16 @@ public class FiveLetterBoard extends Opening {
 
     }
 
+     */
+/*
     public void qClickNoView() {
         if (characterNumber < 5) {
             letterClick('Q');
         }
     }
 
+
+ */
     public void deleteClickNoView() {
         if (characterNumber > 0) {
             characterNumber -= 1;
