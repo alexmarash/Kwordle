@@ -97,6 +97,8 @@ public class ArchiveHandler extends SQLiteOpenHelper {
                 + hard_COL + " TEXT)";
 
         db.execSQL(queryPLAYEDGAME);
+
+        db.close();
     }
 
     // this method is use to add played word to the Statistics database.
@@ -159,7 +161,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         // If won, add to current streak and won amount
         if (ifWon) {
             numberWon = playedList.getAmountWon() + 1;
-            newStreak = playedList.getCurrentStreak() + 1;
+            newStreak +=1;
         }
         // If lost set streat to 0
         else {
@@ -249,7 +251,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // For each of 4 - 10 word games
-        for (Integer i = 4; i < 10; i++){
+        for (int i = 4; i < 10; i++){
             // on below line we are creating a variable for content values.
             ContentValues values = new ContentValues();
 
@@ -293,24 +295,24 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         Cursor cursorArchive = db.rawQuery("SELECT * FROM " + TABLE_NAME_PLAYED_GAME, null);
 
         //Set up column numbers
-        Integer player = 0;
-        Integer played = 1;
-        Integer amountWon = 2;
-        Integer currentStreak = 3;
-        Integer maxStreak = 4;
-        Integer minTime = 5;
-        Integer maxTime = 6;
-        Integer numbLetters = 7;
-        Integer oneWon = 8;
-        Integer twoWon = 9;
-        Integer threeWon = 10;
-        Integer fourWon = 11;
-        Integer fiveWon = 12;
-        Integer sixWon = 13;
-        Integer sevenWon = 14;
-        Integer eightWon = 15;
-        Integer nineWon = 16;
-        Integer tenWon = 17;
+        int player = 0;
+        int played = 1;
+        int amountWon = 2;
+        int currentStreak = 3;
+        int maxStreak = 4;
+        int minTime = 5;
+        int maxTime = 6;
+        int numbLetters = 7;
+        int oneWon = 8;
+        int twoWon = 9;
+        int threeWon = 10;
+        int fourWon = 11;
+        int fiveWon = 12;
+        int sixWon = 13;
+        int sevenWon = 14;
+        int eightWon = 15;
+        int nineWon = 16;
+        int tenWon = 17;
 
         //Create new array list to hold query
         ArrayList<PlayedGameModal> playedArrayList = new ArrayList<>();
@@ -334,6 +336,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
 
         //Close cursor
         cursorArchive.close();
+        db.close();
         return playedArrayList;
     }
 
@@ -348,7 +351,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         Cursor cursorArchive = db.rawQuery("SELECT DISTINCT " + player_COL + " FROM " + TABLE_NAME_PLAYED_GAME, null);
 
         //Set column number for getting player from cursor
-        Integer player = 0;
+        int player = 0;
 
         //Create new array list to hold query
         String[] thePlayers = new String[cursorArchive.getCount() + 2];
@@ -357,7 +360,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         thePlayers[0] = "     ";
 
         //Index for the list of players
-        Integer i = 1;
+        int i = 1;
 
         //Move to first position
         if (cursorArchive.moveToFirst()) {
@@ -370,6 +373,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         }
 
         cursorArchive.close();
+        db.close();
 
         //Add New Player to the end of the list
         thePlayers[i] = "New Player";
@@ -390,25 +394,25 @@ public class ArchiveHandler extends SQLiteOpenHelper {
                 numbOfLetters_COL + "=?", args);
 
         //Set column numbers
-        Integer thisPlayer = 0;
-        Integer played = 1;
-        Integer amountWon = 2;
-        Integer currentStreak = 3;
-        Integer maxStreak = 4;
-        Integer minTime = 5;
-        Integer maxTime = 6;
-        Integer numbLetters = 7;
-        Integer oneWon = 8;
-        Integer twoWon = 9;
-        Integer threeWon = 10;
-        Integer fourWon = 11;
-        Integer fiveWon = 12;
-        Integer sixWon = 13;
-        Integer sevenWon = 14;
-        Integer eightWon = 15;
-        Integer nineWon = 16;
-        Integer tenWon = 17;
-        Integer hardMode = 18;
+        int thisPlayer = 0;
+        int played = 1;
+        int amountWon = 2;
+        int currentStreak = 3;
+        int maxStreak = 4;
+        int minTime = 5;
+        int maxTime = 6;
+        int numbLetters = 7;
+        int oneWon = 8;
+        int twoWon = 9;
+        int threeWon = 10;
+        int fourWon = 11;
+        int fiveWon = 12;
+        int sixWon = 13;
+        int sevenWon = 14;
+        int eightWon = 15;
+        int nineWon = 16;
+        int tenWon = 17;
+        int hardMode = 18;
 
         //Move to first - even though there is just one line this is needed
         cursorArchive.moveToFirst();
@@ -426,15 +430,13 @@ public class ArchiveHandler extends SQLiteOpenHelper {
                         cursorArchive.getInt(tenWon), cursorArchive.getString(hardMode));
 
         cursorArchive.close();
+        db.close();
         return thisPlayedGameModal;
     }
 
     //Check if the player is in hard mode - pulled from Opening
     public Boolean isThisHardMode (PlayedGameModal thisPlayedGameModal){
-        if (thisPlayedGameModal.getHardMode().equals("true")){
-            return true;
-        }
-        return false;
+        return thisPlayedGameModal.getHardMode().equals("true");
     }
 
     public void setPlayerHardMode (PlayedGameModal playedList, Boolean hard){
@@ -521,6 +523,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         }
 
         cursorArchive.close();
+        db.close();
         return archiveModalArrayList;
     }
 
@@ -584,12 +587,15 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] args = {"true"};
         //Cursor query
-        Cursor cursor = db.query(TABLE_NAME_WORD, null, "Correct=?", args, null, null, null);
+        try (Cursor cursor = db.query(TABLE_NAME_WORD, null, "Correct=?", args, null, null, null)) {
 
-        if (cursor.getCount() == startingWords){
-            deleteAllAnswersForPlayer(player);
-
+            if (cursor.getCount() == startingWords) {
+                deleteAllAnswersForPlayer(player);
+                cursor.close();
+            }
         }
+
+        db.close();
     }
 
     //Check if a words has been used and was answered correctly
@@ -598,9 +604,11 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] args = {possibleWord, "true"};
         //Cursor query
-        Cursor cursor = db.query(TABLE_NAME_WORD, null, "Answer=? AND Correct=?", args, null, null, null);
+        try (Cursor cursor = db.query(TABLE_NAME_WORD, null, "Answer=? AND Correct=?", args, null, null, null)) {
 
-        return cursor.getCount() > 0;
+            return cursor.getCount() > 0;
+        }
+
     }
 
 
@@ -610,6 +618,7 @@ public class ArchiveHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_WORD);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PLAYED_GAME);
         onCreate(db);
+        db.close();
     }
 
 }
