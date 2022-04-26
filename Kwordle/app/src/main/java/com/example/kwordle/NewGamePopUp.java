@@ -16,8 +16,6 @@ public class NewGamePopUp extends Activity {
         super.onCreate(savedInstantState);
         setContentView(R.layout.new_game_popup);
 
-        comingSoon = getString(R.string.comingsoon);
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -31,6 +29,7 @@ public class NewGamePopUp extends Activity {
 
     public void fiveLetterStart(View view) {
         startActivity(new Intent(this, FiveLetterBoard.class));
+        finish();
     }
 
 
@@ -39,11 +38,11 @@ public class NewGamePopUp extends Activity {
     }
 
     public void sixLetterStart(View view) {
-        Toast.makeText(getApplicationContext(), comingSoon, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.comingsoon), Toast.LENGTH_LONG).show();
     }
 
     public void tetrisStart(View view) {
-        Toast.makeText(getApplicationContext(), comingSoon, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.comingsoon), Toast.LENGTH_LONG).show();
     }
 }
 

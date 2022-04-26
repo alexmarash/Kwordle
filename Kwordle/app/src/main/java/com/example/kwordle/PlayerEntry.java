@@ -17,7 +17,6 @@ import java.util.Arrays;
 
 public class PlayerEntry extends Fragment implements View.OnClickListener {
     private String thisPlayerName = "";
-    private Button submitButton;
     public static Integer position = 0;
 
     @Override
@@ -32,7 +31,7 @@ public class PlayerEntry extends Fragment implements View.OnClickListener {
     savedInstanceState){
         View view = inflater.inflate(R.layout.player_entry, container, false);
         EditText newPlayerName = (EditText) view.findViewById(R.id.newPlayerInput);
-        submitButton = (Button) view.findViewById(R.id.submitButton);
+        Button submitButton = (Button) view.findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
 
         newPlayerName.addTextChangedListener(new TextWatcher() {
@@ -66,7 +65,7 @@ public class PlayerEntry extends Fragment implements View.OnClickListener {
         if (!this.thisPlayerName.equals("")) {
             Opening.archiveHandler.newPlayer(this.thisPlayerName);
             String[] thesePlayers;thesePlayers = Opening.archiveHandler.getListOfPlayers();
-            this.position = Arrays.asList(thesePlayers).indexOf(thisPlayerName);
+            position = Arrays.asList(thesePlayers).indexOf(thisPlayerName);
         }
 
         startActivity(new Intent(getActivity(), Opening.class));

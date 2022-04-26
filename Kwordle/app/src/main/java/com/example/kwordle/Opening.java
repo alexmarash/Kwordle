@@ -3,6 +3,7 @@ package com.example.kwordle;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,12 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //if(BuildConfig.DEBUG)
+        //    StrictMode.enableDefaults();
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opening);
 
@@ -58,14 +65,6 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
     // Start a new game
     public void newGameClick(View view){
-        //Button ngButton = findViewById(R.id.newGameOpening);
-        //ngButton.setBackgroundResource(R.drawable.button_new_game_c);
-        //if(View.id == R.id.newGameOpening) {
-        //    ngButton.setBackgroundResource(R.drawable.button_new_game_c);
-       // }
-
-
-
         // Check if no player is selected, if not go to new game popup, if so send a toast warning
         if (!currentPlayer.equals("     ")) {
             startActivity(new Intent(this, NewGamePopUp.class));
@@ -77,10 +76,6 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
     public void noPlayerSelected(View view){
         Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER! I CANT SEE YOUR LOVELY FACE", Toast.LENGTH_LONG).show();
-        //Toast toast = Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER! I CANT SEE YOUR LOVELY FACE", Toast.LENGTH_LONG);
-        //LinearLayout layout = (LinearLayout) toast.getView();
-        //layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-        //toast.show();
     }
 
 
@@ -108,9 +103,9 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
         //Set the player to the player on the spinner
-        this.currentPlayer = thesePlayers[position];
+        currentPlayer = thesePlayers[position];
 
-        this.thePosition = position;
+        thePosition = position;
 
 
         ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);

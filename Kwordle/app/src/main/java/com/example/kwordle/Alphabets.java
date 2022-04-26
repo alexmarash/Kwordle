@@ -9,16 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Alphabets implements Parcelable {
+public class Alphabets implements Serializable {
 
     public static Map<Character, AlphaWrapper> alphabet = new HashMap<>();
     //public static Context context;
 
-
     //Initialize alphabet
     Alphabets(Context context) {
-        //this.context = context;
-
         alphabet.put('A', new AlphaWrapper(R.id.buttonA, context.getResources().getColor(R.color.white)));
         alphabet.put('B', new AlphaWrapper(R.id.buttonB, context.getResources().getColor(R.color.white)));
         alphabet.put('C', new AlphaWrapper(R.id.buttonC, context.getResources().getColor(R.color.white)));
@@ -45,62 +42,8 @@ public class Alphabets implements Parcelable {
         alphabet.put('X', new AlphaWrapper(R.id.buttonX, context.getResources().getColor(R.color.white)));
         alphabet.put('Y', new AlphaWrapper(R.id.buttonY, context.getResources().getColor(R.color.white)));
         alphabet.put('Z', new AlphaWrapper(R.id.buttonZ, context.getResources().getColor(R.color.white)));
-
     }
 
-    protected Alphabets(Parcel in) {
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeSerializable((Serializable) alphabet);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Alphabets> CREATOR = new Creator<Alphabets>() {
-        @Override
-        public Alphabets createFromParcel(Parcel in) {
-            return new Alphabets(in);
-        }
-
-        @Override
-        public Alphabets[] newArray(int size) {
-            return new Alphabets[size];
-        }
-    };
-
-    /*
-        protected Alphabets(Parcel in) {
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        public static final Creator<Alphabets> CREATOR = new Creator<Alphabets>() {
-            @Override
-            public Alphabets createFromParcel(Parcel in) {
-                return new Alphabets(in);
-            }
-
-            @Override
-            public Alphabets[] newArray(int size) {
-                return new Alphabets[size];
-            }
-        };
-
-
-         */
     public AlphaWrapper get(char thisCharacter){
         return alphabet.get(thisCharacter);
     }
@@ -108,36 +51,5 @@ public class Alphabets implements Parcelable {
     public void put(char thisCharacter, AlphaWrapper thisWrapper){
         alphabet.put(thisCharacter, thisWrapper);
     }
-
-    public Set<Map.Entry<Character, AlphaWrapper>> entrySet(){
-        return alphabet.entrySet();
-    }
-
-
-
-    /*
-    public static class AlphaWrapper {
-        public int letter;
-        public int color;
-
-        public AlphaWrapper(int letter, int color) {
-            this.letter = letter;
-            this.color = color;
-        }
-
-        public int getColor() {return this.color;}
-        public int getLetter() {return this.letter;}
-
-    }
-
-     */
-
-
-    /*
-    public void readFromParcel(Parcel source) {
-        this.alphabet = (HashMap<Character, AlphaWrapper>) source.readSerializable();
-    }
-
-     */
 
 }
