@@ -9,7 +9,7 @@ public class LetterViewModel extends ViewModel {
 
     public LiveData<String> getLetter() {
         if (thisLetter == null) {
-            thisLetter = new MutableLiveData<String>();
+            thisLetter = new MutableLiveData<>();
             loadLetter();
         }
         return thisLetter;

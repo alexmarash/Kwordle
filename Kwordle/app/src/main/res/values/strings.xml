@@ -49,4 +49,6 @@
     <string name="newTetris">Word Tetris</string>
     <string name="comingsoon">Coming Soon!!!</string>
     <string name="hard_mode">Hard Mode</string>
+    <string name="letterWords">\ Letter Words</string>
+
 </resources>

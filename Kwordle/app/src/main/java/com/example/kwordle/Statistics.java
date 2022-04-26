@@ -27,7 +27,7 @@ public class Statistics extends Opening {
     BarDataSet barDataSet;
 
     // array list for storing entries.
-    ArrayList barEntriesArrayList;
+    ArrayList<BarEntry> barEntriesArrayList;
 
     PlayedGameModal playerStats;
 
@@ -44,7 +44,7 @@ public class Statistics extends Opening {
         TextView playerText = (TextView) findViewById(R.id.currentPlayer);
         playerText.setText(currentPlayer);
         TextView lettersText = (TextView) findViewById(R.id.numberOfLetters);
-        lettersText.setText(String.valueOf(theLetters) + " Letter Words");
+        lettersText.setText(theLetters + getString(R.string.letterWords));
 
         //Pull the stats for the players
         playerStats = archiveHandler.readPlayedForPlayer(currentPlayer, theLetters);
@@ -54,14 +54,14 @@ public class Statistics extends Opening {
         TextView wins = (TextView) findViewById(R.id.winPercent);
 
         double winPrecentage = 0.0;
-        if (playerStats.getAmountWon() > 0){
-                winPrecentage = Math.round(100 * playerStats.getAmountWon() / playerStats.getPlayed());
+        if (playerStats.getAmountWon() > 0 && playerStats.getPlayed() > 0){
+                winPrecentage = Math.round(100.0 * playerStats.getAmountWon() / playerStats.getPlayed());
             }
 
         DecimalFormat f = new DecimalFormat("##.00");
 
         //wins.setText(String.format("%.2f", winPrecentage) + "%");
-        wins.setText(String.valueOf(f.format(winPrecentage)) + "%");
+        wins.setText(f.format(winPrecentage) + "%");
 
         TextView currentStreak = (TextView) findViewById(R.id.currentStreak);
         currentStreak.setText(String.valueOf(playerStats.getCurrentStreak()));
@@ -75,7 +75,7 @@ public class Statistics extends Opening {
 
 
         TextView quickestGame = (TextView) findViewById(R.id.minTime);
-        quickestGame.setText(String.valueOf((int)minMinutes) + "\'" + String.valueOf((int)minSeconds) +"\"");
+        quickestGame.setText((int) minMinutes + "'" + (int) minSeconds +"\"");
         //quickestGame.setText(String.valueOf(playerStats.getMinTime()));
 
 
@@ -84,7 +84,7 @@ public class Statistics extends Opening {
 
 
         TextView longestGame = (TextView) findViewById(R.id.maxTime);
-        longestGame.setText(String.valueOf((int)maxMinutes) + "\'" + String.valueOf((int)maxSeconds) +"\"");
+        longestGame.setText((int) maxMinutes + "'" + (int) maxSeconds +"\"");
         //longestGame.setText(String.valueOf(playerStats.getMaxTime()));
 
 
