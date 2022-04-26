@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.Switch;
+
+import androidx.appcompat.widget.SwitchCompat;
 
 public class Settings extends Activity  {
 
@@ -26,28 +26,25 @@ public class Settings extends Activity  {
         getWindow().setLayout((int) (800), (int) (1200));
 
         //Initialize switch
-        Switch hard = (Switch) findViewById(R.id.hardSwitch);
+        SwitchCompat hard = (SwitchCompat) findViewById(R.id.hardSwitch);
 
         //Set switch based on hardmode
         hard.setChecked(Opening.hardMode);
 
         //Create listener for switch
-        hard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            //Based on swtich set hard mode in modal, opening and update player in database
-            public void onCheckedChanged (CompoundButton buttonView,boolean isChecked){
-            if (isChecked) {
-                Opening.playedGameModal.setHardMode("true");
-                Opening.hardMode = true;
-                Opening.archiveHandler.setPlayerHardMode(Opening.playedGameModal, true);
-            } else {
-                Opening.playedGameModal.setHardMode("false");
-                Opening.hardMode = false;
-                Opening.archiveHandler.setPlayerHardMode(Opening.playedGameModal, false);
+        //Based on swtich set hard mode in modal, opening and update player in database
+        hard.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        if (isChecked) {
+            Opening.playedGameModal.setHardMode("true");
+            Opening.hardMode = true;
+            Opening.archiveHandler.setPlayerHardMode(Opening.playedGameModal, true);
+        } else {
+            Opening.playedGameModal.setHardMode("false");
+            Opening.hardMode = false;
+            Opening.archiveHandler.setPlayerHardMode(Opening.playedGameModal, false);
 
-            }
         }
-        });
+    });
     }
 
     //Reset all words buttong

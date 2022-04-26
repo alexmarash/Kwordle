@@ -32,7 +32,7 @@ public class PopCorrect extends Activity {
         if (FiveLetterBoard.correct) {
             correctTextView.setText(R.string.congrats);
             if (FiveLetterBoard.currentTry > 1) {
-                answerTriesTextView.setText(String.valueOf(FiveLetterBoard.currentTry) + getString(R.string.tries));
+                answerTriesTextView.setText(FiveLetterBoard.currentTry + getString(R.string.tries));
             }
             else {
                 answerTriesTextView.setText(R.string.oneTry);
@@ -40,7 +40,7 @@ public class PopCorrect extends Activity {
         }
         else{
             correctTextView.setText(R.string.wrongAnswer);
-            wrongTriesTextView.setText(getString(R.string.blewIt) + String.valueOf(FiveLetterBoard.currentTry) + getString(R.string.tries));
+            wrongTriesTextView.setText(getString(R.string.blewIt) + FiveLetterBoard.currentTry + getString(R.string.tries));
             answerTriesTextView.setText(R.string.youSuck);
         }
     }

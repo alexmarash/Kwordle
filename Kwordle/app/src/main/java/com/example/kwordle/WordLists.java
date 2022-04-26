@@ -47,7 +47,6 @@ public class WordLists {
             return wordListArray;
         }
 
-
         //Return completed array
         return wordListArray;
     }

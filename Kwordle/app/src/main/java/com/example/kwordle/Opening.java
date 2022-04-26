@@ -65,14 +65,6 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
     // Start a new game
     public void newGameClick(View view){
-        //Button ngButton = findViewById(R.id.newGameOpening);
-        //ngButton.setBackgroundResource(R.drawable.button_new_game_c);
-        //if(View.id == R.id.newGameOpening) {
-        //    ngButton.setBackgroundResource(R.drawable.button_new_game_c);
-       // }
-
-
-
         // Check if no player is selected, if not go to new game popup, if so send a toast warning
         if (!currentPlayer.equals("     ")) {
             startActivity(new Intent(this, NewGamePopUp.class));
@@ -84,10 +76,6 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
 
     public void noPlayerSelected(View view){
         Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER! I CANT SEE YOUR LOVELY FACE", Toast.LENGTH_LONG).show();
-        //Toast toast = Toast.makeText(getApplicationContext(), "PLEASE SELECT A PLAYER! I CANT SEE YOUR LOVELY FACE", Toast.LENGTH_LONG);
-        //LinearLayout layout = (LinearLayout) toast.getView();
-        //layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-        //toast.show();
     }
 
 
@@ -115,9 +103,9 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
         //Set the player to the player on the spinner
-        this.currentPlayer = thesePlayers[position];
+        currentPlayer = thesePlayers[position];
 
-        this.thePosition = position;
+        thePosition = position;
 
 
         ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
