@@ -82,7 +82,17 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     // Go to stats page
     public void stats(View view){
         if (!currentPlayer.equals("     ") && !currentPlayer.equals("New Player")) {
-            startActivity(new Intent(this, Statistics.class));
+            Intent statsActivity = new Intent(this, Statistics.class);
+            Bundle extras = new Bundle();
+            extras.putInt("letters", 5);
+            statsActivity.putExtras(extras);
+
+            startActivity(statsActivity);
+
+
+
+
+            //startActivity(new Intent(this, Statistics.class));
         }
         else {
             noPlayerSelected(view);
@@ -92,7 +102,15 @@ public class Opening extends AppCompatActivity implements AdapterView.OnItemSele
     // Go to Settings page
     public void settings(View view){
         if (!currentPlayer.equals("     ") && !currentPlayer.equals("New Player")) {
-            startActivity(new Intent(this, Settings.class));
+            Intent setActivity = new Intent(this, Settings.class);
+            Bundle extras = new Bundle();
+            extras.putInt("letters", 5);
+            setActivity.putExtras(extras);
+
+            startActivity(setActivity);
+
+
+            //startActivity(new Intent(this, Settings.class));
         }
         else {
             noPlayerSelected(view);

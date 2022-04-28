@@ -39,7 +39,9 @@ public class Statistics extends Opening {
         setContentView(R.layout.statistics);
 
         //TODO add in a spinner for the amount of letters  - Do when added new number of letter games
-        Integer theLetters = 5;
+        //Integer theLetters = 5;
+
+        int theLetters = getIntent().getExtras().getInt("letters");
 
         TextView playerText = (TextView) findViewById(R.id.currentPlayer);
         playerText.setText(currentPlayer);

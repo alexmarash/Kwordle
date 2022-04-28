@@ -15,6 +15,8 @@ public class Settings extends Activity  {
         super.onCreate(savedInstantState);
         setContentView(R.layout.settings_popup);
 
+        int theLetters = getIntent().getExtras().getInt("letters");
+
         //Set window size
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

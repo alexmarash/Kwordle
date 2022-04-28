@@ -11,16 +11,22 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class WordLists {
     //Create five letter word lists
     public static List<String> fiveWordListArray = new ArrayList<>();
     public static List<String> fiveStartingWords = new ArrayList<>();
+    public static List<String> sixWordListArray = new ArrayList<>();
+    public static List<String> sixStartingWords = new ArrayList<>();
 
     WordLists(Context context){
         //Initialize five letter word lists - done once upon opening app
         fiveWordListArray = getWordListArray("five", context);  //All 5 letter words
         fiveStartingWords = getStartingWords("five", context);  //Answer 5 letter words
+
+        sixWordListArray = getWordListArray("six", context);  //All 5 letter words
+        sixStartingWords = getStartingWords("six", context);  //Answer 5 letter words
 
     }
 
@@ -41,6 +47,8 @@ public class WordLists {
             //Read each line until null and add the word to the array
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
+                nextLine[0]= nextLine[0].replace("\n", "");
+                nextLine[0] = nextLine[0].toUpperCase();
                 wordListArray.add(nextLine[0]);
             }
         } catch (IOException | CsvValidationException e) {
@@ -69,6 +77,8 @@ public class WordLists {
             //Read each line until null and add the word to the array
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
+                nextLine[0]= nextLine[0].replace("\n", "");
+                nextLine[0] = nextLine[0].toUpperCase();
                 startingWords.add(nextLine[0]);
             }
         } catch (IOException | CsvValidationException e) {

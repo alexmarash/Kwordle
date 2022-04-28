@@ -17,21 +17,22 @@ import java.util.Objects;
 import java.util.Random;
 
 
-public class FiveLetterBoard extends Opening {
+public class SixLetterBoard extends Opening {
 
-    public static Integer tries = 6;
-    public static Integer letters = 5;
+    public static Integer tries = 7;
+    public static Integer letters = 6;
     public static Integer characterNumber = 0;
     public static char[] wordEntry = new char[letters];
     public static Integer currentTry;
 
     public int[][] tableIds= {
-            {R.id.rowOne_columnOne, R.id.rowOne_columnTwo, R.id.rowOne_columnThree, R.id.rowOne_columnFour, R.id.rowOne_columnFive},
-            {R.id.rowTwo_columnOne, R.id.rowTwo_columnTwo, R.id.rowTwo_columnThree, R.id.rowTwo_columnFour, R.id.rowTwo_columnFive},
-            {R.id.rowThree_columnOne, R.id.rowThree_columnTwo, R.id.rowThree_columnThree, R.id.rowThree_columnFour, R.id.rowThree_columnFive},
-            {R.id.rowFour_columnOne, R.id.rowFour_columnTwo, R.id.rowFour_columnThree, R.id.rowFour_columnFour, R.id.rowFour_columnFive},
-            {R.id.rowFive_columnOne, R.id.rowFive_columnTwo, R.id.rowFive_columnThree, R.id.rowFive_columnFour, R.id.rowFive_columnFive},
-            {R.id.rowSix_columnOne, R.id.rowSix_columnTwo, R.id.rowSix_columnThree, R.id.rowSix_columnFour, R.id.rowSix_columnFive}
+            {R.id.rowOne_columnOne, R.id.rowOne_columnTwo, R.id.rowOne_columnThree, R.id.rowOne_columnFour, R.id.rowOne_columnFive, R.id.rowOne_columnSix},
+            {R.id.rowTwo_columnOne, R.id.rowTwo_columnTwo, R.id.rowTwo_columnThree, R.id.rowTwo_columnFour, R.id.rowTwo_columnFive, R.id.rowTwo_columnSix},
+            {R.id.rowThree_columnOne, R.id.rowThree_columnTwo, R.id.rowThree_columnThree, R.id.rowThree_columnFour, R.id.rowThree_columnFive, R.id.rowThree_columnSix},
+            {R.id.rowFour_columnOne, R.id.rowFour_columnTwo, R.id.rowFour_columnThree, R.id.rowFour_columnFour, R.id.rowFour_columnFive, R.id.rowFour_columnSix},
+            {R.id.rowFive_columnOne, R.id.rowFive_columnTwo, R.id.rowFive_columnThree, R.id.rowFive_columnFour, R.id.rowFive_columnFive, R.id.rowFive_columnSix},
+            {R.id.rowSix_columnOne, R.id.rowSix_columnTwo, R.id.rowSix_columnThree, R.id.rowSix_columnFour, R.id.rowSix_columnFive, R.id.rowSix_columnSix},
+            {R.id.rowSeven_columnOne, R.id.rowSeven_columnTwo, R.id.rowSeven_columnThree, R.id.rowSeven_columnFour, R.id.rowSeven_columnFive, R.id.rowSeven_columnSix}
     };
 
     public static Integer[][] tableColorsInt = new Integer[tries][letters];
@@ -52,7 +53,7 @@ public class FiveLetterBoard extends Opening {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.five_letter_main);
+        setContentView(R.layout.six_letter_main);
 
         //Set the player
         thePlayer = Opening.currentPlayer;
@@ -149,7 +150,7 @@ public class FiveLetterBoard extends Opening {
         }
 
         //Check if word is in the word list
-        if (!WordLists.fiveWordListArray.contains(thisAnswer.toString())) {
+        if (!WordLists.sixWordListArray.contains(thisAnswer.toString())) {
             Random randWord = new Random();
             int randWordNumber = randWord.nextInt(10);
             String randWordString = "word_" + randWordNumber;
@@ -247,7 +248,7 @@ public class FiveLetterBoard extends Opening {
 
     //Check to see if the game is complete, and update the archive, and trigger pop up if it is
     public void checkComplete(boolean correct, Integer currentTry){
-        if (correct || currentTry > 5) {
+        if (correct || currentTry > tries - 1) {
             //Set the finished time
             double finishedTime = (Math.round(System.currentTimeMillis() - Time))/60000.0;
             archiveHandler.addWord(thePlayer, theAnswer, String.valueOf(correct), finishedTime, currentTry, letters);
@@ -261,7 +262,7 @@ public class FiveLetterBoard extends Opening {
             correctActivity.putExtras(extras);
 
             startActivity(correctActivity);
-            //startActivity(new Intent(FiveLetterBoard.this,PopCorrect.class));
+            //startActivity(new Intent(SixLetterBoard.this,PopCorrect.class));
         }
     }
 
@@ -293,8 +294,7 @@ public class FiveLetterBoard extends Opening {
     //Get a new word
     public char[] getNewWord(){
 
-        //Get size of starting word list
-        int sizeOfStartingWords = WordLists.fiveStartingWords.size();
+        int sizeOfStartingWords = WordLists.sixStartingWords.size();
 
         //If all words are used reset the list
         archiveHandler.resetIfAllUsed(sizeOfStartingWords, thePlayer);
@@ -303,7 +303,8 @@ public class FiveLetterBoard extends Opening {
         boolean wordUsed = true;
         while (wordUsed) {
             int index = (int) (Math.random() * sizeOfStartingWords);
-            theAnswer = WordLists.fiveStartingWords.get(index);
+
+            theAnswer = WordLists.sixStartingWords.get(index);
 
             wordUsed = archiveHandler.checkIfUsed(theAnswer);
         }
@@ -325,7 +326,7 @@ public class FiveLetterBoard extends Opening {
 
     //Do for each letter click
     public void letterClick(char let){
-        if (characterNumber < 5) {
+        if (characterNumber < letters) {
             wordEntry[characterNumber] = let;
             TextView letterTextView = (TextView) findViewById(tableIds[currentTry][characterNumber]);
             letterTextView.setText(String.valueOf(let));
@@ -345,21 +346,17 @@ public class FiveLetterBoard extends Opening {
 
     //Goto stats page
     public void stats(View view) {
-
         Intent statsActivity = new Intent(this, Statistics.class);
         Bundle extras = new Bundle();
         extras.putInt("letters", letters);
         statsActivity.putExtras(extras);
 
         startActivity(statsActivity);
-
-
         //startActivity((new Intent(this, Statistics.class)));
     }
 
     //Goto settings popup
     public void settings(View view) {
-
         Intent setActivity = new Intent(this, Settings.class);
         Bundle extras = new Bundle();
         extras.putInt("letters", letters);

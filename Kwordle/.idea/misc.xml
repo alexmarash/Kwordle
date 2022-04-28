@@ -38,9 +38,11 @@
         <entry key="app/src/main/res/layout/five_letter_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/letter_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/letter_fragment_original.xml" value="0.2015625" />
+        <entry key="app/src/main/res/layout/my_spinner.xml" value="0.22864583333333333" />
         <entry key="app/src/main/res/layout/new_game_popup.xml" value="0.21965579710144928" />
         <entry key="app/src/main/res/layout/opening.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/settings_popup.xml" value="0.21965579710144928" />
+        <entry key="app/src/main/res/layout/six_letter_main.xml" value="0.22864583333333333" />
       </map>
     </option>
   </component>

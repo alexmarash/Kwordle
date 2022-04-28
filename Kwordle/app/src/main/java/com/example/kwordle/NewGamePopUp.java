@@ -38,7 +38,8 @@ public class NewGamePopUp extends Activity {
     }
 
     public void sixLetterStart(View view) {
-        Toast.makeText(getApplicationContext(), getString(R.string.comingsoon), Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, SixLetterBoard.class));
+        finish();
     }
 
     public void tetrisStart(View view) {
